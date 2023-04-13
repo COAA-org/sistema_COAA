@@ -19,6 +19,80 @@ function validarLogin() {
         ipt_email.focus();
     }
 }
+function validarEndereco() {
+    // variáveis
+    var rua = ipt_rua.value;
+    var numero = ipt_numero.value;
+    // var complemento = ipt_complemento.value;
+    var cep = ipt_cep.value;
+    var bairro = ipt_bairro.value;
+    var cidade = ipt_cidade.value;
+
+    var valida_rua = "";
+    var valida_numero = "";
+    // var valida_complemento = "";
+    var valida_cep = "";
+    var valida_bairro = "";
+    var valida_cidade = "";
+
+    // validações
+    valida_rua = rua.startsWith('Rua') || rua.startsWith('Avenida');
+    valida_numero = numero.length > 0;
+    // valida_complemento = complemento.length > 0;
+    valida_cep = cep.length == 8;
+    valida_bairro = bairro.length > 0;
+    valida_cidade = cidade.length > 0;
+
+    // verificações
+    if (valida_rua && valida_numero && valida_cep && valida_bairro && valida_cidade) {
+        alert("Campos inseridos corretamente!");
+    }
+    if (rua == 0 && numero == 0 && cep ==0 && bairro == 0 && cidade == 0) {
+        alert ("Os campos do Endereço são obrigatórios!") 
+    }
+    if (typeof rua == "number") {
+        alert("Insira apenas o nome da Rua!");
+        ipt_rua.focus();
+    } else if (rua == 0) {
+        alert("Insira um endereço válido!");
+        ipt_rua.focus();
+    }
+    if (numero <= 0) {
+        alert("Insira um número válido!");
+        ipt_numero.focus();
+    }
+    else if (typeof numero == "string") {
+        alert("Insira apenas valores numéricos ao número da indústria!");
+        ipt_numero.focus();
+    } 
+    if (cep == 0) {
+        alert ("Insira o CEP!");
+        ipt_cep.focus();
+    }
+    if (cep.length < 8 || cep.length > 8) {
+        alert ("Insira um CEP válido!")
+    }
+    else if (typeof cep == "string") {
+        alert("Apenas valores numéricos são aceitos para o CEP!");
+        ipt_cep.focus();
+    }
+    if (bairro == 0) {
+        alert ("Insira o bairro!");
+        ipt_bairro.focus();
+    }
+    else if (typeof bairro == "number") {
+        alert("Não insira valores numéricos no bairro!");
+        ipt_bairro.focus();
+    } 
+    if (cidade == 0) {
+        alert ("Insira a cidade!");
+        ipt_cidade.focus();
+    }
+    else if (typeof cidade == "number") {
+        alert("Não insira valores numéricos na cidade!");
+        ipt_cidade.focus();
+    } 
+}
 
 function validarContato() {
     // Variaveis
