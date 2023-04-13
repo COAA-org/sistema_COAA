@@ -68,7 +68,33 @@ function validarContato() {
     }
 }
 
+function validarInfos(){
+    // criação de variáveis
+    var nomeEmpresa = ipt_nomeEmpresa.value;
+    var descricao = ipt_descricaoEmpresa.value;
+    var cnpj = ipt_cnpj.value;
+
+    //verificações
+    var verif_nome =  nomeEmpresa == '';
+    var verif_desc = descricao.length < 10;
+    //verifica se o cnpj está vazio, se o tamanho do digitado é diferente do padrão(14 dígitos) e elimina os valores falsos mais comuns
+    var verif_cnpj = cnpj == '' || cnpj.length != 14 || cnpj == '00000000000000' || cnpj == '11111111111111' || cnpj == '22222222222222' || cnpj == '33333333333333' || cnpj == '44444444444444' || cnpj == '55555555555555' || cnpj == '66666666666666' || cnpj == '77777777777777' || cnpj == '88888888888888' || cnpj == '99999999999999';
+    if(verif_nome){
+        alert("Insira corretamente o nome");
+        ipt_nomeEmpresa.focus();
+    }else if(verif_desc){
+        alert("A descrição deve conter pelo menos 10 caracteres");
+        ipt_descricaoEmpresa.focus();
+    }
+    else if(verif_cnpj){
+        alert("Informe um CNPJ válido");
+        ipt_cnpj.focus();
+    }
+
+}
+
 // Função para chamar outras funções que são de validação 
 function validar() {
     validarContato();
+    validarInfos();
 }
