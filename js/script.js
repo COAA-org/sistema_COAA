@@ -82,11 +82,12 @@ function validarInfos(){
     if(verif_nome){
         alert("Insira corretamente o nome");
         ipt_nomeEmpresa.focus();
-    }else if(verif_desc){
+    }
+    if(verif_desc){
         alert("A descrição deve conter pelo menos 10 caracteres");
         ipt_descricaoEmpresa.focus();
     }
-    else if(verif_cnpj){
+    if(verif_cnpj){
         alert("Informe um CNPJ válido");
         ipt_cnpj.focus();
     }
