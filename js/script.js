@@ -61,19 +61,16 @@ function validarEndereco() {
         alert("Insira um número válido!");
         ipt_numero.focus();
     }
-    else if (typeof numero == "string") {
-        alert("Insira apenas valores numéricos ao número da indústria!");
+    else if (typeof numero == 0) {
+        alert("Insira número válido à indústria!");
         ipt_numero.focus();
     } 
-    if (cep.lenght == 0) {
+    if (cep.length == 0) {
         alert ("Insira o CEP!");
         ipt_cep.focus();
     }
     if (cep.length < 8 || cep.length > 8) {
-        alert ("Insira um CEP válido!")
-    }
-    if (typeof cep == "string") {
-        alert("Apenas valores numéricos são aceitos para o CEP!");
+        alert ("Insira um CEP válido!");
         ipt_cep.focus();
     }
     if (bairro == 0) {
@@ -189,7 +186,7 @@ function criptografar(){
     }
 }
 
-function Calcular() {
+function calcular() {
     var salario = ipt_salario.value;
     var atraso = ipt_atraso.value;
 
