@@ -40,6 +40,10 @@ a {
     text-decoration: none;
     color: black;
 }
+.header a:hover{
+    text-decoration: underline 3px;
+    text-decoration-color: #05FF00;
+}
 
 /*BANNER*/
 .container {

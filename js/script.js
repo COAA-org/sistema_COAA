@@ -72,7 +72,7 @@ function validarEndereco() {
     if (cep.length < 8 || cep.length > 8) {
         alert ("Insira um CEP válido!")
     }
-    else if (typeof cep == "string") {
+    if (typeof cep == "string") {
         alert("Apenas valores numéricos são aceitos para o CEP!");
         ipt_cep.focus();
     }
