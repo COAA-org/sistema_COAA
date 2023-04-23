@@ -112,7 +112,7 @@ function validarContato() {
         if (valida_whats) {
             if (valida_email) {
                 // Todos os campos estão corretos :) !
-                alert(`Todos os campos estão corretos :)`);
+                // alert(`Todos os campos estão corretos :)`);
 
             } else {
                 alert(`Os E-mails não podem ser diferentes!`);
@@ -170,6 +170,7 @@ function validar() {
     validarContato();
     validarInfos();
     validarEndereco();
+    window.location="../dashboard/dashboard.html"
 }
 
 //criptografa a senha
