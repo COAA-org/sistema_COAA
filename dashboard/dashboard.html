@@ -73,7 +73,7 @@
                         </div>
                     </div>
 
-<!-- quadrado do setor funcional inicio -->
+                    <!-- quadrado do setor funcional inicio -->
 
                     <div class="quadrado-maior">
                         <div style="display: flex; margin-left: 20px;">
@@ -83,7 +83,7 @@
                         </div>
                     </div>
 
-<!-- quadrado do setor funcional fim -->
+                    <!-- quadrado do setor funcional fim -->
 
                 </div>
                 <div class="organizar-quadrados">
@@ -157,84 +157,84 @@
                 </h1>
             </div>
 
-        </div>  
+        </div>
 </body>
 
 <script>
     const ctx2 = document.getElementById('myChart2');
     var chave = new Chart(
-            ctx2,
-            {
-                type: 'line',
-                data: {
-                    datasets: [{
-                        label: 'Chave',
-                        type: 'line',
-                        borderColor: ['rgba(2, 160, 8, 0.8)'],
+        ctx2,
+        {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Chave',
+                    type: 'line',
+                    borderColor: ['rgba(2, 160, 8, 0.8)'],
+                }]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        distribution: 'series',
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Chave'
+                        },
+                        ticks: {
+                            beginAtZero: true
+                        }
                     }]
                 },
-                options: {
-                    scales: {
-                        xAxes: [{
-                            distribution: 'series',
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }],
-                        yAxes: [{
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Chave'
-                            },
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                    },
-                    animation: {
-                        duration: 0
-                    }
+                animation: {
+                    duration: 0
                 }
             }
-        );
-
-        var paginacao = {};
-        var tempo = {};
-        function obterDados(grafico, endpoint) {
-            var http = new XMLHttpRequest();
-            http.open('GET', 'http://localhost:3000/sensores/' + endpoint, false);
-            http.send(null);
-            var valores = JSON.parse(http.responseText);
-            if (paginacao[endpoint] == null) {
-                paginacao[endpoint] = 0;
-            }
-            if (tempo[endpoint] == null) {
-                tempo[endpoint] = 0;
-            }
-            // Exibir à partir do último elemento exibido anteriormente
-            var ultimaPaginacao = paginacao[endpoint];
-            paginacao[endpoint] = valores.length;
-            var valores = valores.slice(ultimaPaginacao);
-            valores.forEach((valor) => {
-                //Máximo de 60 itens exibidos no gráfico
-                if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
-                    grafico.data.labels.shift();
-                    grafico.data.datasets[0].data.shift();
-                }
-
-                grafico.data.labels.push(tempo[endpoint]++);
-                grafico.data.datasets[0].data.push(parseFloat(valor));
-                grafico.update();
-            })
         }
+    );
 
-        setInterval(() => {
-           // obterDados(dht11Umidade, 'dht11/umidade');
-            //obterDados(dht11Temperatura, 'dht11/temperatura');
-            //obterDados(luminosidade, 'luminosidade');
-            //obterDados(lm35Temperatura, 'lm35/temperatura');
-            obterDados(chave, 'chave');
-        }, 1000);
+    var paginacao = {};
+    var tempo = {};
+    function obterDados(grafico, endpoint) {
+        var http = new XMLHttpRequest();
+        http.open('GET', 'http://localhost:3000/sensores/' + endpoint, false);
+        http.send(null);
+        var valores = JSON.parse(http.responseText);
+        if (paginacao[endpoint] == null) {
+            paginacao[endpoint] = 0;
+        }
+        if (tempo[endpoint] == null) {
+            tempo[endpoint] = 0;
+        }
+        // Exibir à partir do último elemento exibido anteriormente
+        var ultimaPaginacao = paginacao[endpoint];
+        paginacao[endpoint] = valores.length;
+        var valores = valores.slice(ultimaPaginacao);
+        valores.forEach((valor) => {
+            //Máximo de 60 itens exibidos no gráfico
+            if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+                grafico.data.labels.shift();
+                grafico.data.datasets[0].data.shift();
+            }
+
+            grafico.data.labels.push(tempo[endpoint]++);
+            grafico.data.datasets[0].data.push(parseFloat(valor));
+            grafico.update();
+        })
+    }
+
+    setInterval(() => {
+        // obterDados(dht11Umidade, 'dht11/umidade');
+        //obterDados(dht11Temperatura, 'dht11/temperatura');
+        //obterDados(luminosidade, 'luminosidade');
+        //obterDados(lm35Temperatura, 'lm35/temperatura');
+        obterDados(chave, 'chave');
+    }, 1000);
 
 </script>
 
@@ -278,7 +278,7 @@
 
     const ctx4 = document.getElementById('myChart4');
 
-    new Chart (ctx4 = {
+    new Chart(ctx4 = {
         type: 'line',
         data: data,
     });
@@ -298,7 +298,7 @@
 </script>
 <script>
     const setor2 = document.getElementById('myChart5');
-    
+
 </script>
 
 
@@ -372,22 +372,23 @@
     new Chart(ctx5, {
         type: 'pie',
         data: {
-    datasets: [{
-        data: [10, 30],
-        backgroundColor: [
+            datasets: [{
+                data: [10, 30],
+                backgroundColor: [
                     'rgba(127, 252, 92, 0.8)',
                     'rgba(0, 160, 8, 0.8)',
                 ],
-    
-    }],
 
-    // These labels appear in the legend and in the tooltips when hovering different arcs
-    labels: [
-        'Refeitorio 1',
-        'Refeitorio 2',
-    ]
-    }
-});
+            }],
+
+            // These labels appear in the legend and in the tooltips when hovering different arcs
+            labels: [
+                'Refeitorio 1',
+                'Refeitorio 2',
+            ]
+        }
+    });
 
 </script>
+
 </html>

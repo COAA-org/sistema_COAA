@@ -1,3 +1,5 @@
+var erros = 0;
+
 function validarLogin() {
     // Variaveis
     var email = ipt_email.value;
@@ -46,49 +48,61 @@ function validarEndereco() {
     // verificações
     if (valida_rua && valida_numero && valida_cep && valida_bairro && valida_cidade) {
         alert("Campos inseridos corretamente!");
+        erros += 1;
     }
-    if (rua == 0 && numero == 0 && cep ==0 && bairro == 0 && cidade == 0) {
-        alert ("Os campos do Endereço são obrigatórios!") 
+    if (rua == 0 && numero == 0 && cep == 0 && bairro == 0 && cidade == 0) {
+        alert("Os campos do Endereço são obrigatórios!")
+        erros += 1;
     }
     if (typeof rua == "number") {
         alert("Insira apenas o nome da Rua!");
+        erros += 1;
         ipt_rua.focus();
     } else if (rua == 0) {
         alert("Insira um endereço válido!");
+        erros += 1;
         ipt_rua.focus();
     }
     if (numero <= 0) {
         alert("Insira um número válido!");
+        erros += 1;
         ipt_numero.focus();
     }
     else if (typeof numero == 0) {
         alert("Insira número válido à indústria!");
+        erros += 1;
         ipt_numero.focus();
-    } 
+    }
     if (cep.length == 0) {
-        alert ("Insira o CEP!");
+        alert("Insira o CEP!");
+        erros += 1;
         ipt_cep.focus();
     }
     if (cep.length < 8 || cep.length > 8) {
-        alert ("Insira um CEP válido!");
+        alert("Insira um CEP válido!");
+        erros += 1;
         ipt_cep.focus();
     }
     if (bairro == 0) {
-        alert ("Insira o bairro!");
+        alert("Insira o bairro!");
+        erros += 1;
         ipt_bairro.focus();
     }
     else if (typeof bairro == "number") {
         alert("Não insira valores numéricos no bairro!");
+        erros += 1;
         ipt_bairro.focus();
-    } 
+    }
     if (cidade == 0) {
-        alert ("Insira a cidade!");
+        alert("Insira a cidade!");
+        erros += 1;
         ipt_cidade.focus();
     }
     else if (typeof cidade == "number") {
         alert("Não insira valores numéricos na cidade!");
+        erros += 1;
         ipt_cidade.focus();
-    } 
+    }
 }
 
 function validarContato() {
@@ -109,57 +123,64 @@ function validarContato() {
 
     // Verificações
     if (valida_telefone) {
-        if (valida_whats) {
-            if (valida_email) {
-                // Todos os campos estão corretos :) !
-                // alert(`Todos os campos estão corretos :)`);
-
-            } else {
-                alert(`Os E-mails não podem ser diferentes!`);
-                ipt_emailConfirm.focus()
-            }
-
-        } else if (typeof whats == "string") {
-            alert(`Não aceitamos letras no campo de WhatsApp!`);
-            ipt_wpp.focus();
-
-        } else {
-            alert(`Por favor, insira o WhatsApp corretamente!`);
-            ipt_wpp.focus();
-        }
-
+        console.log("tel: OK")
     } else if (typeof telefone == "string") {
         alert(`Não aceitamos letras no campo de telefone!`);
+        erros += 1;
         ipt_telefone.focus();
-
     } else {
         alert(`Por favor, insira o telefone corretamente!`);
+        erros += 1;
         ipt_telefone.focus();
+    }
 
+    if (valida_whats) {
+        console.log("zap: OK")
+    } else if (typeof whats == "string") {
+        alert(`Não aceitamos letras no campo de WhatsApp!`);
+        erros += 1;
+        ipt_wpp.focus();
+    } else {
+        alert(`Por favor, insira o WhatsApp corretamente!`);
+        erros += 1;
+        ipt_wpp.focus();
+    }
+
+    if (valida_email) {
+        // Todos os campos estão corretos :) !
+        // alert(`Todos os campos estão corretos :)`);
+        console.log("Tudo OK")
+    } else {
+        alert(`Os E-mails não podem ser diferentes!`);
+        erros += 1;
+        ipt_emailConfirm.focus()
     }
 }
 
-function validarInfos(){
+function validarInfos() {
     // criação de variáveis
     var nomeEmpresa = ipt_nomeEmpresa.value;
     var descricao = ipt_descricaoEmpresa.value;
     var cnpj = ipt_cnpj.value;
 
     //verificações
-    var verif_nome =  nomeEmpresa == '';
+    var verif_nome = nomeEmpresa == '';
     var verif_desc = descricao.length < 10;
     //verifica se o cnpj está vazio, se o tamanho do digitado é diferente do padrão(14 dígitos) e elimina os valores falsos mais comuns
     var verif_cnpj = cnpj == '' || cnpj.length != 14 || cnpj == '00000000000000' || cnpj == '11111111111111' || cnpj == '22222222222222' || cnpj == '33333333333333' || cnpj == '44444444444444' || cnpj == '55555555555555' || cnpj == '66666666666666' || cnpj == '77777777777777' || cnpj == '88888888888888' || cnpj == '99999999999999';
-    if(verif_nome){
+    if (verif_nome) {
         alert("Insira corretamente o nome");
+        erros += 1;
         ipt_nomeEmpresa.focus();
     }
-    if(verif_desc){
+    if (verif_desc) {
         alert("A descrição deve conter pelo menos 10 caracteres");
+        erros += 1;
         ipt_descricaoEmpresa.focus();
     }
-    if(verif_cnpj){
+    if (verif_cnpj) {
         alert("Informe um CNPJ válido");
+        erros += 1;
         ipt_cnpj.focus();
     }
 
@@ -170,16 +191,23 @@ function validar() {
     validarContato();
     validarInfos();
     validarEndereco();
-    window.location="../dashboard/dashboard.html"
+
+    if (erros == 0) {
+        window.location = "../cadastro/CadastroConcluido.html";
+    }
+}
+
+function avancar() {
+    window.location = "../dashboard/dashboard.html";
 }
 
 //criptografa a senha
-function criptografar(){
+function criptografar() {
     var senha = ipt_senha.value;
     var ascii = 0;
     var x = 0;
 
-    while(senha[x]){
+    while (senha[x]) {
         ascii = senha[x].charCodeAt();
         ascii += 3;
         msg.innerHTML += String.fromCharCode(ascii);
@@ -204,7 +232,7 @@ function calcular() {
 
     /* Resposta calcular porcentagem Absenteísmo (%) = Número de dias ou horas 
     de ausência / período de horas úteis da empresa x 100*/
-    
+
     var perdidos = (((atraso * 22) / 60) * GanhoHora);
     var totalPerdido = (perdidos * 12);
     var totalFuncionarios = (totalPerdido * ipt_funcionarios.value);
