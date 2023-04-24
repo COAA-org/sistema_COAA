@@ -53,8 +53,10 @@ a {
 }
 
 .banner {
-    margin-top: 2%;
     margin-bottom: 10%;
+    background-image: url(../img/fotor_2023-4-20_19_50_39\ 1.png);
+    height: 750px;
+    align-items: center;
 }
 
 .banner .container {
@@ -64,6 +66,7 @@ a {
 .banner .texto {
     width: 50%;
     font-family: 'Barlow';
+    color: #fff;
 }
 
 #btn_saibaMais {
@@ -82,7 +85,7 @@ a {
 .banner .container p {
     font-size: 60px;
     font-weight: bolder;
-    margin-bottom: 2%;
+    margin-bottom: 4px;
 }
 
 .banner .container h4 {
@@ -92,28 +95,25 @@ a {
 
 /*SERVIÇOS CARD*/
 .servicos {
-    width: 800px;
-    height: 400px;
+    width: 550px;
+    height: 507px;
 }
-
-.servico .box-servico {
-    width: 60%;
-    height: 250px;
-    padding: 5%;
-    justify-content: center;
+#servicos.servico{
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    font-family: 'Barlow';
-    background-color: #B4FF5C;
-    border-radius: 15%;
-    box-shadow: 10px 10px #003A00;
+}
+.servico .texto{
+    width: 550px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 75px;
     text-align: center;
 }
-
-.servico .box-servico h1 {
+.servico h1 {
     text-decoration: underline;
     text-decoration-color: #05FF00;
 }
-
 .servico {
     margin-bottom: 8%;
 }
