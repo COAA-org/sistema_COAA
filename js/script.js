@@ -215,33 +215,49 @@ function criptografar() {
     }
 }
 
+// function calcular() {
+//     var salario = ipt_salario.value;
+//     var atraso = ipt_atraso.value;
+
+//     /* 
+//         Horas trabalhadas = 8 (horas por dia trabalhadas) * (30 (dias do mes) - 8 (final de semana) = 22) -- dias 
+//         8 * 22 = 176 (horas trabalhadas por mês)
+//         valor salario / horas trabalhadas (salario/176)
+//         */
+//     var GanhoHora = (salario / 176);
+
+//     /* (atraso * 22 (dias trabalhados)) -- transformar em hora * ganhohora
+
+//      */
+
+//     /* Resposta calcular porcentagem Absenteísmo (%) = Número de dias ou horas 
+//     de ausência / período de horas úteis da empresa x 100*/
+
+//     var perdidos = (((atraso * 22) / 60) * GanhoHora);
+//     var totalPerdido = (perdidos * 12);
+//     var totalFuncionarios = (totalPerdido * ipt_funcionarios.value);
+//     var porcentagemAbsenteísmo = ((totalPerdido / 8) / 100);
+
+//     div_mensagem.innerHTML += `Atualmente a taxa de absenteísmo da sua empresa é ${porcentagemAbsenteísmo}%. Se um funcionário 
+//     atrasar por dia ${ipt_atraso.value} minutos, serão perdidos ${perdidos} reais por mês. Ao olhar a longo prazo, em um ano, 
+//     serão pedidos ${totalPerdido} reais. Caso toda a equipe tenha esse padrão, o prejuízo anual será de ${totalFuncionarios} reais. `;
+//     /* Criar textinho com todas as informaçoes */
+// }
+
 function calcular() {
-    var salario = ipt_salario.value;
-    var atraso = ipt_atraso.value;
+    div_mensagem.innerHTML = "";
 
-    /* 
-        Horas trabalhadas = 8 (horas por dia trabalhadas) * (30 (dias do mes) - 8 (final de semana) = 22) -- dias 
-        8 * 22 = 176 (horas trabalhadas por mês)
-        valor salario / horas trabalhadas (salario/176)
-        */
-    var GanhoHora = (salario / 176);
+        var horasTrab = ipt_horasTrabalhadas.value;
+        var horasExtr = ipt_horasExtras.value;
 
-    /* (atraso * 22 (dias trabalhados)) -- transformar em hora * ganhohora
+        var prodPotencial = (horasTrab - horasExtr) / horasTrab;
+        var prctgSistema = (horasTrab - (horasExtr * 0.5)) / horasTrab;
 
-     */
+        div_mensagem.innerHTML += `Sua produtividade pontencial <b>atual é de ${(prodPotencial * 100).toFixed(1)}%</b><br>`;
 
-    /* Resposta calcular porcentagem Absenteísmo (%) = Número de dias ou horas 
-    de ausência / período de horas úteis da empresa x 100*/
+        div_mensagem.innerHTML += `<br>Usando nosso sistema, sua <b>Produtividade Potencial pode chegar até ${(prctgSistema * 100).toFixed(1)}%</b><br>`;
 
-    var perdidos = (((atraso * 22) / 60) * GanhoHora);
-    var totalPerdido = (perdidos * 12);
-    var totalFuncionarios = (totalPerdido * ipt_funcionarios.value);
-    var porcentagemAbsenteísmo = ((totalPerdido / 8) / 100);
-
-    div_mensagem.innerHTML += `Atualmente a taxa de absenteísmo da sua empresa é ${porcentagemAbsenteísmo}%. Se um funcionário 
-    atrasar por dia ${ipt_atraso.value} minutos, serão perdidos ${perdidos} reais por mês. Ao olhar a longo prazo, em um ano, 
-    serão pedidos ${totalPerdido} reais. Caso toda a equipe tenha esse padrão, o prejuízo anual será de ${totalFuncionarios} reais. `;
-    /* Criar textinho com todas as informaçoes */
+        div_mensagem.innerHTML += `<br>Ou seja, um aumento de ${((prctgSistema - prodPotencial) * 100).toFixed(1)}% na Produtividade Potencial.`;
 }
 
 //FALE CONOSCO VERIFICAÇÃO
