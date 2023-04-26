@@ -27,6 +27,11 @@
     </div>
 
     <div class="banner">
+        <div class="banner">
+            <div class="botaoend">
+                       <div class="botaohome"><a href="login/login.html"><b>Login</b></a></div>
+                       <div class="botaohome"><a href="cadastro/cadastro.html"><b>Cadastrar</b></a></div>
+                   </div>           
         <div class="container">
             <div class="texto">
                 <p>Por trás de todo sucesso, sempre há uma grande liderança.</p>
@@ -37,7 +42,7 @@
     </div>
 
     <div class="servico" id="servicos">
-            <div class="texto">
+            <div class="texto" style="color: black;">
                 <h1>Nosso Serviços</h1>
                 <p style="font-size: 20px">Tenha acesso a <b style="color:darkgreen">gráficos em tempo real</b> do
                     controle de movimentação de pessoas e <b style="color:darkgreen">gerencie o fluxo</b> em
@@ -64,7 +69,6 @@
     </div>
 
     <div class="sobre" id="sobre">
-        <img class="engrenagem" src="img/rotacao-da-engrenagem (1) 2.png" alt="">
         <div class="container">
             <h1>Quem Somos</h1>
 
@@ -95,7 +99,7 @@
     </div>
     <div class="divisao">
         <div class="linha"></div>
-        <img src="img/rotacao-da-engrenagem (1) 3.png" alt="">
+        <img src="img/rotacao-da-engrenagem (1) 3.png" alt="" width="300px" height="100px">
     </div>
 
     <div class="time">
@@ -134,13 +138,15 @@
                             <h1 class="div_simulação">Simulação</h1>
                             <div class="box">
                                 <div class="paragrafo">
-                                    <h1>Sua Produtividade com nosso sw</h1>
-                                    <p>Dentro do setor que mais tem funcionário</p>
-                                    Horas trabalhadas por dia <input id="ipt_horasTrabalhadas"><br>
-                                    Média de horas extras <input id="ipt_horasExtras"><br>
-
-                                    <br>
-                                    <button onclick="calcular()">Calcular</button>
+                                    <div>
+                                        <h1>Sua Produtividade com nosso sw</h1>
+                                        <p>Dentro do setor que mais tem funcionário</p>
+                                        Horas trabalhadas por dia:  <input id="ipt_horasTrabalhadas"><br>
+                                        <br>
+                                        Média de horas extras:  <input id="ipt_horasExtras"><br>
+                                        <br>
+                                        <button onclick="calcular()"><B>Calcular</B></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -182,7 +188,7 @@
         <span class="footerCard">Termos e condições</span>
         <span class="footerCard">Privacidade</span>
         <span class="footerCard">Trabalhe conosco</span>
-        <div id="direitos">Todos os elementos que compõem este site, incluindo, mas não se limitando, as suas marcas,
+        <div id="direitos" class="footertexto">Todos os elementos que compõem este site, incluindo, mas não se limitando, as suas marcas,
             sinais de propaganda, textos, fotos e outras imagens, são propriedade e objeto de direitos exclusivos de
             seus respectivos titulares e/ou licenciados. A reprodução destes elementos sem prévia autorização dos
             respectivos proprietários e/ou licenciados constitui ou pode vir a constituir violação de propriedade
