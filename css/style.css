@@ -255,9 +255,26 @@ a {
 /*TIME*/
 .time{
     margin-bottom: 5%;
+    display: flex;
+    flex-direction: column;
 }
-.time h1{
+.time .linha1{
+    display: flex;
+    flex-direction: row;
     width: 100%;
+    align-content: space-between;
+    justify-content: center;
+}
+.time .linha2{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-content: space-between;
+    justify-content: center;
+}
+
+.time h1{
+    width: fit-content;
     margin-bottom: 5%;
     font-family: 'Barlow';
     margin-left: 5%;
@@ -268,13 +285,14 @@ a {
 }
 .time .container{
     flex-wrap: nowrap;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 .time .dev{
     width: 20%;
-    margin-left: 2%;
-    margin-right: 2%;
+    margin-left: 4%;
+    margin-right: 4%;
     display: flex;
     flex-direction: column;
     justify-content: center;
