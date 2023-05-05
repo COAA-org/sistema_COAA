@@ -46,3 +46,8 @@ Além disso, quando um colaborador precisa se ausentar da empresa, independente 
 5. Aumentar a taxa de produtividade a fim de diminuir a taxa de absenteísmo.
 6. Criar um site funcional.
 7. Ter gráficos de livre acesso a usuários após um cadastro.
+
+### Justificativa
+
+**DIMINUIR** em 50% o absenteísmo nas indústrias, e consequentemente, aumentar a sua produtividade e entrega de resultados ao monitorar e controlar o fluxo de pessoas.
+
