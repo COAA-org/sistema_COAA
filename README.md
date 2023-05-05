@@ -51,3 +51,27 @@ Além disso, quando um colaborador precisa se ausentar da empresa, independente 
 
 **DIMINUIR** em 50% o absenteísmo nas indústrias, e consequentemente, aumentar a sua produtividade e entrega de resultados ao monitorar e controlar o fluxo de pessoas.
 
+### BACKLOG – C.O.A.A.
+|Requisito |Descrição |Classificação|
+| :------- | :------- | :---------: |
+|Tela de login| Tela para entrar no sistema.| Essencial|
+|Tela de cadastro| Tela para cadastro do nome, e-mail e senha do cliente. |Essencial|
+|Tela inicial|Tela de início ou Home Page do site institucional.|Essencial|
+|Calculadora financeira|Calculadora para simulação de negócios do cliente interessado.|Essencial|
+|Fale conosco|Tela para contato com a equipe administradora do serviço.|Essencial|
+|Dashboard|Painel para visualização dos dados em gráficos.|Essencial|
+|Registro de fluxo|Registros feitos pelos sensores de proximidade.|Essencial|
+|Recuperação de senha|Ferramenta para recuperar uma senha perdida pelo usuário.|Importante|
+|Validação de conta|Função para validação e confirmação dos dados do cadastro.|Importante|
+|Recomendação de rota|Ferramenta de recomendação de melhor rota para evitar aglomeração.|Desejável|
+
+### Premissas
+1. Os aparelhos utilizados irão estar em um bom condicionamento e em pleno funcionamento;
+2. O local será disponibilizado para a instalação dos sensores;
+3. Não haverá entrada e saída de um indivíduo de maneira constante em um curto período de tempo;
+4. Não haverá um obstáculo ou alguém que fique na frente dos sensores de maneira integral; 
+5. Não ocorrerá fenômenos naturais que possam atrapalhar na obtenção ou na produção dos dados;
+6. Não haverá interferência intencional ou não no equipamento utilizado; 
+7. Os dados serão utilizados da melhor forma pelos usuários do sistema C.O.A.A.
+8. As dúvidas do cliente serão respondidas em um prazo de 7h a 24h em dias úteis.
+
