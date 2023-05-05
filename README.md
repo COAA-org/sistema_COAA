@@ -36,3 +36,13 @@ O grande problema relacionado ao atraso para uma empresa é o conceito de absent
 Uma alta taxa de absenteísmo pode indicar um possível aumento no índice de turnover, podendo ser interpretada como um descontentamento com o trabalho, o que resulta na falta de compromisso com horários, logo, o comparecimento contínuo afetado é um alerta para possíveis desligamentos da empresa. 
 
 Além disso, quando um colaborador precisa se ausentar da empresa, independente do motivo, a organização continua a realizar uma série de pagamentos ao profissional, como remuneração, FGTS, etc., sem que haja a prestação de serviço do funcionário durante o período da ausência, o que acaba gerando custos.
+
+### Objetivo 
+
+1. Implantar sensores de bloqueio para ter um controle de pessoas no ambiente.
+2. Ter um controle de pessoas monitorado pelo nosso software.
+3. Implantar nosso sistema na maior parte de ambientes planejados.
+4. Com um prazo de no máximo 4 semanas para a instalação do sistema (a partir da contratação).
+5. Aumentar a taxa de produtividade a fim de diminuir a taxa de absenteísmo.
+6. Criar um site funcional.
+7. Ter gráficos de livre acesso a usuários após um cadastro.
