@@ -17,3 +17,22 @@
 Nós, da C.O.A.A, desenvolvemos um projeto para auxiliar as empresas no controle do absenteísmo, monitorando o fluxo de pessoas e obtendo dados essenciais para o auxílio e redução dessa problemática que é tão frequente atualmente no dia a dia das empresas.
 
 A C.O.A.A possui uma equipe capacitada no ramo da tecnologia, com todos os conhecimentos necessários para trazer o melhor resultado possível, com qualidade e inovação. Escolhemos trilhar um caminho coletivo, a fim de oferecer soluções inteligentes para aumentar o desenvolvimento da gestão nas indústrias e fábricas.
+
+### Contexto
+ Muitas empresas enfrentam problemas diários com a falta ou uma deficiência no controle dos fluxos de pessoas, ou seja, problemas relacionados ao excesso de indivíduos em um mesmo local, podendo causar obstrução de locais e de serviços. Nas indústrias, um tema de extrema importância, mas que pouco se fala, é a logística indoor, que se trata justamente da movimentação interna do espaço e propõe a integração de boas práticas nos fluxos internos e externos no segmento industrial. Entre as vantagens de se ter uma gestão sobre o fluxo de pessoas no seu negócio, se encontra a agilidade e otimização nos processos, desta forma reduzindo custos com atividades desnecessárias e evitando a perda de tempo em tais atividades. Além da vantagem competitiva que a solução transmite para o negócio, deixando a empresa que possui uma boa gestão de sua logística indoor a frente de outras.
+ 
+ Segundo estudo conduzido pela Gallup (Gallup-Healthways Well-Being Index), o absenteísmo está diretamente associado com a queda na produtividade dos funcionários, sendo algo danoso para os lucros da empresa.  
+
+De acordo com uma pesquisa conduzida por Gizele Aguiar e Jannine Rodrigues para a Faculdade Anhanguera de Brasília, acompanhando as causas e consequências do absenteísmo em uma empresa do ramo de saúde, nesta pesquisa, os próprios funcionários apontaram o que poderia ser feito para que essa taxa de atrasos diminuísse, o resultado foi o seguinte: 
+
+<img src="https://user-images.githubusercontent.com/125617308/236511896-87151e5e-b430-4e02-92da-667e6d4e1214.png" width="500px;"/>
+
+Como é possível notar, cerca de 23% dos funcionários revelam que uma melhora no ambiente físico de trabalho, um dos funcionários entrevistados deu a seguinte declaração.
+
+> "Melhores condições no ambiente de trabalho como mobiliários adequados, iluminação, ventilação, entre outros, me trariam melhor satisfação."
+
+O grande problema relacionado ao atraso para uma empresa é o conceito de absenteísmo, termo que serve para designar a soma dos períodos de ausência de um funcionário de seu ambiente de trabalho, ou seja, consiste em um padrão de ausências, podendo ser faltas e/ou atrasos, e que pode causar um grande prejuízo em termos financeiros, uma vez que **o consumo total de minutos perdidos de um trabalhador diariamente é em média 04 dias de trabalho de por ano, além de afetar a produção interna, demora excessiva na obtenção de informações/ferramentas, entre outros casos.**
+
+Uma alta taxa de absenteísmo pode indicar um possível aumento no índice de turnover, podendo ser interpretada como um descontentamento com o trabalho, o que resulta na falta de compromisso com horários, logo, o comparecimento contínuo afetado é um alerta para possíveis desligamentos da empresa. 
+
+Além disso, quando um colaborador precisa se ausentar da empresa, independente do motivo, a organização continua a realizar uma série de pagamentos ao profissional, como remuneração, FGTS, etc., sem que haja a prestação de serviço do funcionário durante o período da ausência, o que acaba gerando custos.
