@@ -13,7 +13,7 @@ const SERIAL_BAUD_RATE = 9600;
 //define a porta que o servidor irá usar
 const SERVIDOR_PORTA = 3000;
 const HABILITAR_OPERACAO_INSERIR = true;
-
+var cont = 0;
 const serial = async (
     valoresDht11Umidade,
     valoresDht11Temperatura,
@@ -65,14 +65,22 @@ const serial = async (
         valoresLm35Temperatura.push(lm35Temperatura);
         valoresChave.push(chave);
 
+        
         //parte do banco de dados
         if (HABILITAR_OPERACAO_INSERIR) {
             const date = new Date().toLocaleString();
-            //const dd = date.get
-            await poolBancoDados.execute(
-                'INSERT INTO tbregistro (idRegistro, saidaDado) VALUES (?, ?)',
-                [null, chave]
-            );
+            var verifPassou = true;
+            if (chave == 1) {
+                    cont++;
+                    console.log(chave + ',' + cont);
+            }
+            if (cont >= 20) {
+                await poolBancoDados.execute(
+                    'INSERT INTO tbregistro (idRegistro, saidaDado) VALUES (?, ?)',
+                    [null, cont]
+                );
+                    cont = 0;
+            }
         }
 
     });
