@@ -12,7 +12,7 @@ const mysql = require('mysql2');
 const SERIAL_BAUD_RATE = 9600;
 //define a porta que o servidor irá usar
 const SERVIDOR_PORTA = 3000;
-const HABILITAR_OPERACAO_INSERIR = false;
+const HABILITAR_OPERACAO_INSERIR = true;
 
 const serial = async (
     valoresDht11Umidade,
@@ -27,8 +27,8 @@ const serial = async (
             host: 'localhost',
             port: 3306,
             user: 'root',
-            password: 'urubu100',
-            database: 'metricas'
+            password: '1234567',
+            database: 'bdcooa'
         }
     ).promise();
 
@@ -67,9 +67,11 @@ const serial = async (
 
         //parte do banco de dados
         if (HABILITAR_OPERACAO_INSERIR) {
+            const date = new Date().toLocaleString();
+            //const dd = date.get
             await poolBancoDados.execute(
-                'INSERT INTO sensores (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave) VALUES (?, ?, ?, ?, ?)',
-                [dht11Umidade, dht11Temperatura, luminosidade, lm35Temperatura, chave]
+                'INSERT INTO tbregistro (idRegistro, saidaDado) VALUES (?, ?)',
+                [null, chave]
             );
         }
 
