@@ -64,7 +64,8 @@ h1{
 }
 
 .quadrado{
-    border: black 2px solid;
+    border: rgba(0, 0, 0, 0.5) 1px solid;
+    border-radius: 10px;
     width: 200px;
     height: 120px;
     display: flex;
@@ -81,7 +82,7 @@ h1{
 }
 
 .alerta{
-    border: black 2px solid;
+    border: rgba(0, 0, 0, 0.5) 1px solid;
     width: 260px;
     height: 270px;
     display: flex;
@@ -89,16 +90,25 @@ h1{
     flex-direction: column;
 }
 
+.alerta p b{
+    display: flex;
+    align-items: flex-start;
+    color: red;
+    -webkit-text-stroke: 1px black;
+}
+
 .caixa-alerta{
-    border: black 1px solid;
-    border-radius: 20px;
+    border: rgba(0, 0, 0, 0.5) 1px solid;
+    border-radius: 10px;
     height: 30px;
     margin-top: 10px;
     padding: 10px;
+    text-align: center;
+    font-weight: 500;
 }
 
 .quadrado-maior{
-    border: black 2px solid;
+    border: rgba(0, 0, 0, 0.5) 1px solid;
     width: 675px;
     height: 320px;
     margin-top: 20px;
@@ -116,7 +126,7 @@ h1{
 }
 
 .quadrado2{
-    border: black 2px solid;
+    border: rgba(0, 0, 0, 0.5) 1px solid;
     width: 300px;
     height: 135px;
     display: flex;
@@ -142,7 +152,7 @@ h4{
 }
 
 .quadrado3{
-    border: black 2px solid;
+    border: rgba(0, 0, 0, 0.5) 1px solid;
     width: 400px;
     height: 235px;
     display: flex;
