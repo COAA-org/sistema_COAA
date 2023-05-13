@@ -47,7 +47,7 @@ i#burguer{
 .coluna{
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
+    width: 150px;
 }
 
 .linha{
@@ -80,12 +80,16 @@ menu > li > a {
     border-top: 2px solid gray;
     width: 70px;
     border-radius: 20px;
+    margin-top: 5px;
     justify-content: center;
-    margin-left: 50px;
 }
 
 menu{
     display: none;
+}
+
+li{
+    list-style-type: none;
 }
 
 ul {
@@ -118,7 +122,6 @@ a {
     margin-bottom: 10%;
     background-image: url(../img/fotor_2023-4-24_21_43_0\ 1.jpg);
     height: 750px;
-    align-items: center;
     display: flex;
     flex-direction: row;
 }
