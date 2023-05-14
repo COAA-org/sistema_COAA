@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+* {
+    font-family: 'Open Sans';
+}
+
+body {
+    margin: 0;
+    background-image: url("../img/bg_cadastro.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center ;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+/*Começo da página*/
+.header {
+    display: flex;
+    justify-content: space-between  ;
+}
+
+.header img {
+    width: 45vh;
+    height: 6vw;
+}
+
+.header .titulosAdm {
+    display: flex;
+    flex-direction: column;
+}
+
+.header h1 {
+    margin: 0;
+    margin-top: 10px;
+    margin-left: 70px;
+    font-size: 57px;
+}
+
+.header h2 {
+    margin: 0;
+    margin-left: 76px;
+    font-size: 30px;
+}
+/*Fim Começo Página*/
+
+/*Formulário*/
+.form {
+    margin: 10px 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.form .inputContainer {
+    width: 500px;
+    margin: 15px 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.form h1 {
+    margin: 10px 50px;
+}
+
+.form .inputContainer label {
+    margin: 0px 7px;
+    font-size: 20px;
+}
+
+input, label {
+    display: block;
+}
+
+.label{
+    font-size: 15px;
+    margin: 0;
+}
+
+input{
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 200px;
+    height: 20px;
+    text-align: center;
+    margin: 5px;
+}
+
+.senhaAdm {
+    margin-left: 48px;
+}
+
+#ipt_senhaAdm {
+    width: 220px;
+}
+
+#ipt_checkSenhaAdm {
+    width: 220px;
+}
+/*Fim formulário*/
+
+/*Botão*/
+.btn {
+    margin-top: 75px;
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+button {
+    background-color:#E6005A;
+    color: white;
+    height: 40px;
+    width: 130px;
+    border: 1px solid black;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 2px 3px black;
+}
+
+/*Fim botão*/
+
