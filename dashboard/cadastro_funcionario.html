@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COAA | Cadastro Funcionário</title>
+    <link rel="stylesheet" href="../css/style_cadastro.css">
+</head>
+
+<body>
+
+    <div>
+        <!--Começo página-->
+        <div class="header">
+            <h1>Cadastro funcionário</h1>
+
+            <img src="../img/logotipo.png">
+        </div>
+        <!--Fim começo página-->
+
+        <!--Formulário-->
+        <div class="form">
+
+            <div class="formBlock">
+                <h1>Informações</h1>
+                <div class="inputContainer">
+
+                    <div>
+                        <label class="label">Nome completo:</label>
+                        <input type="text" id="ipt_nomeFuncionario"></label>
+                    </div>
+
+
+                    <div>
+                        <label class="label">CPF:</label>
+                        <input type="text" id="ipt_cpfFuncionario">
+                    </div>
+
+
+                    <div>
+                        <label class="label">E-mail:</label>
+                        <input type="email" id="ipt_emailFuncionario">
+                    </div>
+
+                    <div>
+                        <label class="label">Senha:</label>
+                        <input type="password" id="ipt_SenhaFuncionario">
+                    </div>
+
+
+                    <div>
+                        <label class="label">Confirme sua senha:</label>
+                        <input type="password" id="ipt_ConfirmacaoSenhaFuncionario">
+                    </div>
+
+                </div>
+
+                <div class="btn">
+                    <button onclick="validarFuncionario()">Avançar</button>
+                </div>
+
+            </div>
+
+        </div>
+        <!--Fim Formulário-->
+
+    </div>
+</body>
+
+<script src="../js/script_funcionario.js"></script>
+
+</html>
