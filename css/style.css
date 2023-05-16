@@ -550,6 +550,9 @@ a {
     font-size: 20px;
     border-radius: 20px;
 }
+.footer button a {
+    color: white;
+}
 .navegacao{
     width: 20%;
     height: 100%;
