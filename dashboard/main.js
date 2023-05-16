@@ -13,6 +13,8 @@ const SERIAL_BAUD_RATE = 9600;
 //define a porta que o servidor irá usar
 const SERVIDOR_PORTA = 3000;
 const HABILITAR_OPERACAO_INSERIR = true;
+
+// variaveis para inserir no banco
 var cont = 0;
 const serial = async (
     valoresDht11Umidade,
@@ -71,17 +73,23 @@ const serial = async (
             const date = new Date().toLocaleString();
             var verifPassou = true;
             if (chave == 1) {
-                    cont++;
-                    console.log(chave + ',' + cont);
+                cont++;
+                console.log(chave + ',' + cont);
             }
-            if (cont >= 20) {
-                await poolBancoDados.execute(
-                    'INSERT INTO tbregistro (idRegistro, saidaDado) VALUES (?, ?)',
-                    [null, cont]
-                );
+            
+            async function inserirBanco() {
+                if (cont >= 10) {
+                        await poolBancoDados.execute(
+                            'INSERT INTO tbregistro (idRegistro, saidaDado) VALUES (?, ?)',
+                            [null, cont]
+                        );
                     cont = 0;
+                }
             }
+            setTimeout(inserirBanco, 5000, cont);
+            
         }
+
 
     });
     arduino.on('error', (mensagem) => {
