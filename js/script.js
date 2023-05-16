@@ -11,7 +11,7 @@ function validarLogin() {
 
     if (verif_email) {
         if (verif_senha) {
-            window.location.assign('./cadastro.html');// Redirecioando o usuário para a pág de cadastro
+            window.location.assign('./cadastro.html');// Redirecionando o usuário para a pág de cadastro
         } else {
             alert(`Senha Inválida! Cuidado com tentativas inválidas!`);
             ipt_senha.focus();
@@ -25,14 +25,12 @@ function validarEndereco() {
     // variáveis
     var rua = ipt_rua.value;
     var numero = ipt_numero.value;
-    // var complemento = ipt_complemento.value;
     var cep = ipt_cep.value;
     var bairro = ipt_bairro.value;
     var cidade = ipt_cidade.value;
 
     var valida_rua = "";
     var valida_numero = "";
-    // var valida_complemento = "";
     var valida_cep = "";
     var valida_bairro = "";
     var valida_cidade = "";
@@ -40,7 +38,6 @@ function validarEndereco() {
     // validações
     valida_rua = rua.startsWith('Rua') || rua.startsWith('Avenida');
     valida_numero = numero.length > 0;
-    // valida_complemento = complemento.length > 0;
     valida_cep = cep.length == 8;
     valida_bairro = bairro.length > 0;
     valida_cidade = cidade.length > 0;

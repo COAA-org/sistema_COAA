@@ -31,7 +31,7 @@ html, body {
 
 /*Formulário*/
 .form {
-    margin: 10px 20px;
+    margin: 5% 5%;
     padding: 10px;
     display: flex;
     flex-direction: row;
@@ -39,15 +39,15 @@ html, body {
 }
 
 .form .inputContainer {
-    width: 500px;
-    margin: 5px 50px;
+    width: 50%;
+    margin: 1% 5%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
 .form h1 {
-    margin: 0px 50px;
+    margin: 0 5%;
 }
 
 .form .inputContainer label {
@@ -76,7 +76,8 @@ input{
 
 /*Botão*/
 .btn {
-    width: 1275px;
+    width: 90%;
+    margin-top: 10%;
     display: flex;
     justify-content: flex-end;
 }
