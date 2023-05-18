@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap');
+
+* {
+    font-family: 'barlow';
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+body {
+    margin: 0;
+    background-image: url("../img/bg_login.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center ;
+}
+
+/*Conteiner do formulário*/
+.form .container h1 {
+    margin: 0;
+    font-weight: 700;
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 50%;
+    background-color: #B4FF5C;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.form .logo {
+    width: 100%;
+    padding-top: 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.form .container {
+    height: 275px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 50px;
+    padding-bottom: 150px;
+}
+
+.inputText {
+    height: 40px;
+    width: 275px;
+    border: 0;
+    border-radius: 45px;
+    text-align: center;
+}
+
+::placeholder {
+    color: black;
+    font-weight: 1000;
+    opacity: 0.5;
+}
+
+.suport {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+
+.inputBox {
+    font-size: 12px;
+    cursor: pointer;
+}
+
+button {
+    height: 40px;
+    width: 275px;
+    border: 0;
+    border-radius: 45px;
+    background-color: #E6005A;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    box-shadow: 2px 3px black;
+    cursor: pointer;
+}
+/*Fim Conteiner do formulário*/
+
+/*Imagens*/
+
+.images {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.images .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login {
+    height: 430px;
+    width: 470px;
+}
+
+/*.gears {
+    height: 0.1%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.halfGear {
+    transform-origin: bottom right;
+    height: 120px;
+    width: fit-content;
+}
+
+.quarterGear {
+    transform-origin: bottom right;
+    height: 155px;
+    width: fit-content;
+}*/
+
+/*Fim imagens*/
