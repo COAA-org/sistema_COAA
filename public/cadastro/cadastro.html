@@ -331,10 +331,9 @@
         var descVar = ipt_descricaoEmpresa.value;
         var cnpjVar = ipt_cnpj.value;
         var telVar = ipt_telefone.value;
-        var whatsVar = ipt_wpp.value;
         var emailVar = ipt_email.value;
         var confirmarEmail = ipt_emailConfirm.value;
-        var senhaVar = ipt_senha.value;
+        var whatsVar = ipt_wpp.value;
 
         var valida_telefone = "";
         //var valida_whats = "";
@@ -342,7 +341,7 @@
 
         // Validações
         valida_telefone = telVar.length <= 8 && telVar.length >= 12;
-        //valida_whats = whats.length >= 8 && whats.length <= 12;
+        valida_whats = whats.length >= 8 && whats.length <= 12;
         valida_email = emailVar != confirmarEmail;
 
         //verificações
@@ -351,10 +350,9 @@
         //verifica se o cnpj está vazio, se o tamanho do digitado é diferente do padrão(14 dígitos) e elimina os valores falsos mais comuns
         var verif_cnpj = cnpjVar == '' || cnpjVar.length != 14 || cnpjVar == '00000000000000' || cnpjVar == '11111111111111' || cnpjVar == '22222222222222' || cnpjVar == '33333333333333' || cnpjVar == '44444444444444' || cnpjVar == '55555555555555' || cnpjVar == '66666666666666' || cnpjVar == '77777777777777' || cnpjVar == '88888888888888' || cnpjVar == '99999999999999';
 
-        var verif_senha = senhaVar.length <= 6;
 
 
-        if (valida_telefone || valida_email || verif_nome || verif_desc || verif_cnpj || verif_senha) {
+        if (valida_telefone || valida_email || verif_nome || verif_desc || verif_cnpj) {
             alert("Preencha os campos corretamente")
 
             //finalizarAguardar();
@@ -374,9 +372,8 @@
                 descServer: descVar,
                 nomeServer: nomeVar,
                 telServer: telVar,
-                //whatsServer: whatsVar,
-                emailServer: emailVar,
-                senhaServer: senhaVar
+                whatsServer: whatsVar,
+                emailServer: emailVar
             })
         }).then(function (resposta) {
 
@@ -388,10 +385,6 @@
                 alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
                 document.getElementById("tela3").style.display = "block";
                 document.getElementById("tela2").style.display = "none";
-                //window.location = "../login/login.html";
-                //setTimeout(() => {
-                //  window.location = "login.html";
-                //}, "2000")
 
                 limparFormulario();
                 //finalizarAguardar();

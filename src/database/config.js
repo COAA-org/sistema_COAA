@@ -21,7 +21,7 @@ var sqlServerConfig = {
 //mudar o nome 
 var mySqlConfig = {
     host: "localhost",
-    database: "bdcooa",
+    database: "COAA",
     user: "root",
     password: "1234567",
 };
