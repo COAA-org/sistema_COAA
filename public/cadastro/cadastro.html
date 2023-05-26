@@ -250,7 +250,7 @@
                 </div>
                 <!--Fim Formulário-->
                 <div class="btn">
-                    <button onclick="validar()">Avançar</button>
+                    <button onclick="cadastraFabrica()">Avançar</button>
                 </div>
             </div>
 
@@ -331,9 +331,10 @@
         var descVar = ipt_descricaoEmpresa.value;
         var cnpjVar = ipt_cnpj.value;
         var telVar = ipt_telefone.value;
+        var whatsVar = ipt_wpp.value;
         var emailVar = ipt_email.value;
         var confirmarEmail = ipt_emailConfirm.value;
-        var whatsVar = ipt_wpp.value;
+        var senhaVar = ipt_senha.value;
 
         var valida_telefone = "";
         //var valida_whats = "";
@@ -341,7 +342,7 @@
 
         // Validações
         valida_telefone = telVar.length <= 8 && telVar.length >= 12;
-        valida_whats = whats.length >= 8 && whats.length <= 12;
+        //valida_whats = whats.length >= 8 && whats.length <= 12;
         valida_email = emailVar != confirmarEmail;
 
         //verificações
@@ -350,9 +351,10 @@
         //verifica se o cnpj está vazio, se o tamanho do digitado é diferente do padrão(14 dígitos) e elimina os valores falsos mais comuns
         var verif_cnpj = cnpjVar == '' || cnpjVar.length != 14 || cnpjVar == '00000000000000' || cnpjVar == '11111111111111' || cnpjVar == '22222222222222' || cnpjVar == '33333333333333' || cnpjVar == '44444444444444' || cnpjVar == '55555555555555' || cnpjVar == '66666666666666' || cnpjVar == '77777777777777' || cnpjVar == '88888888888888' || cnpjVar == '99999999999999';
 
+        var verif_senha = senhaVar.length <= 6;
 
 
-        if (valida_telefone || valida_email || verif_nome || verif_desc || verif_cnpj) {
+        if (valida_telefone || valida_email || verif_nome || verif_desc || verif_cnpj || verif_senha) {
             alert("Preencha os campos corretamente")
 
             //finalizarAguardar();
@@ -372,8 +374,9 @@
                 descServer: descVar,
                 nomeServer: nomeVar,
                 telServer: telVar,
-                whatsServer: whatsVar,
-                emailServer: emailVar
+                //whatsServer: whatsVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar
             })
         }).then(function (resposta) {
 
@@ -385,6 +388,10 @@
                 alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
                 document.getElementById("tela3").style.display = "block";
                 document.getElementById("tela2").style.display = "none";
+                //window.location = "../login/login.html";
+                //setTimeout(() => {
+                //  window.location = "login.html";
+                //}, "2000")
 
                 limparFormulario();
                 //finalizarAguardar();
@@ -393,7 +400,71 @@
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
+            //finalizarAguardar();
+        });
+
+        return false;
+
+    }
+
+    function cadastraFabrica() {
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = ipt_nomefabrica.value;
+        var telVar = ipt_telefone.value;
+        var cepVar = ipt_cep.value;
+        var numVar = ipt_numero.value;
+
+        var valida_telefone = "";
+
+        // Validações
+        valida_telefone = telVar.length <= 8 && telVar.length >= 12;
+        //verificações
+        var verif_nome = nomeVar == '';
+        
+
+        if (valida_telefone || verif_nome) {
+            alert("Preencha os campos corretamente")
+
+            //finalizarAguardar();
+            return false;
+        }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrarFabrica", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                telServer: telVar,
+                //cepServer: cepVar,
+                //numServer: numVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                //cardErro.style.display = "block";
+
+                alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+                window.location = "../login/login.html";
+                setTimeout(() => {
+                  window.location = "login.html";
+                }, "2000")
+
+                //limparFormulario();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            //finalizarAguardar();
         });
 
         return false;
