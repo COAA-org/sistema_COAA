@@ -114,10 +114,10 @@
                         <input type="text" id="ipt_telefone">
                     </div>
 
-                    <div>
+                    <!-- <div>
                         <label class="label">Whatsapp:</label>
                         <input type="text" id="ipt_wpp">
-                    </div>
+                    </div> -->
 
                     <div>
                         <label class="label">Email:</label>
@@ -127,10 +127,6 @@
                     <div>
                         <label class="label">Confirmar email:</label>
                         <input type="email" id="ipt_emailConfirm">
-                    </div>
-                    <div>
-                        <label class="senha">Senha:</label>
-                        <input type="text" id="ipt_senha">
                     </div>
 
                 </div>
@@ -168,6 +164,11 @@
                         <label class="label">Cidade:</label>
                         <input type="text" id="ipt_cidade">
                     </div>
+
+                    <div>
+                        <label class="label">Estado:</label>
+                        <input type="text" id="ipt_estado">
+                    </div>
                 </div>
                 <!--Fim Formulário-->
                 <div class="btn">
@@ -200,7 +201,7 @@
                     </div>
                     <div>
                         <label class="label">Telefone:</label>
-                        <input type="text" id="ipt_telefonefabrica">
+                        <input type="text" id="ipt_telefoneFabrica">
                     </div>
                 </div>
             </div>
@@ -221,31 +222,31 @@
                 <div class="inputContainer">
                     <div>
                         <label class="label">Rua:</label>
-                        <input type="text" id="ipt_rua">
+                        <input type="text" id="ipt_ruaFabrica">
                     </div>
                     <div>
                         <label class="label">Número:</label>
-                        <input type="number" id="ipt_numero">
+                        <input type="number" id="ipt_numeroFabrica">
                     </div>
                     <div>
                         <label class="label">Complemento:</label>
-                        <input type="text" id="ipt_complemento">
+                        <input type="text" id="ipt_complementoFabrica">
                     </div>
                     <div>
                         <label class="label">CEP:</label>
-                        <input type="text" id="ipt_cep">
+                        <input type="text" id="ipt_cepFabrica">
                     </div>
                     <div>
                         <label class="label">Bairro:</label>
-                        <input type="text" id="ipt_bairro">
+                        <input type="text" id="ipt_bairroFabrica">
                     </div>
                     <div>
                         <label class="label">Cidade:</label>
-                        <input type="text" id="ipt_cidade">
+                        <input type="text" id="ipt_cidadeFabrica">
                     </div>
                     <div>
                         <label class="label">Estado:</label>
-                        <input type="text" id="ipt_bairro">
+                        <input type="text" id="ipt_EstadoFabrica">
                     </div>
                 </div>
                 <!--Fim Formulário-->
@@ -307,7 +308,7 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+                alert("Cadastro realizado com sucesso! Redirecionando para o cadastro de empresa");
                 document.getElementById("tela1").style.display = "none";
                 document.getElementById("tela2").style.display = "block";
 
@@ -331,10 +332,18 @@
         var descVar = ipt_descricaoEmpresa.value;
         var cnpjVar = ipt_cnpj.value;
         var telVar = ipt_telefone.value;
-        var whatsVar = ipt_wpp.value;
+        //var whatsVar = ipt_wpp.value;
         var emailVar = ipt_email.value;
         var confirmarEmail = ipt_emailConfirm.value;
-        var senhaVar = ipt_senha.value;
+        var ruaVar = ipt_rua.value;
+        var bairroVar = ipt_bairro.value;
+        var cidadeVar = ipt_cidade.value;
+        var estadoVar = ipt_estado.value;
+        var cepVar = ipt_cep.value;
+        var numeroVar= ipt_numero.value;
+       // var compVar = ipt_complemento.value;
+
+
 
         var valida_telefone = "";
         //var valida_whats = "";
@@ -351,10 +360,10 @@
         //verifica se o cnpj está vazio, se o tamanho do digitado é diferente do padrão(14 dígitos) e elimina os valores falsos mais comuns
         var verif_cnpj = cnpjVar == '' || cnpjVar.length != 14 || cnpjVar == '00000000000000' || cnpjVar == '11111111111111' || cnpjVar == '22222222222222' || cnpjVar == '33333333333333' || cnpjVar == '44444444444444' || cnpjVar == '55555555555555' || cnpjVar == '66666666666666' || cnpjVar == '77777777777777' || cnpjVar == '88888888888888' || cnpjVar == '99999999999999';
 
-        var verif_senha = senhaVar.length <= 6;
+        //var verif_senha = senhaVar.length <= 6;
 
 
-        if (valida_telefone || valida_email || verif_nome || verif_desc || verif_cnpj || verif_senha) {
+        if (valida_telefone || valida_email || verif_nome || verif_desc || verif_cnpj) {
             alert("Preencha os campos corretamente")
 
             //finalizarAguardar();
@@ -374,9 +383,15 @@
                 descServer: descVar,
                 nomeServer: nomeVar,
                 telServer: telVar,
-                //whatsServer: whatsVar,
                 emailServer: emailVar,
-                senhaServer: senhaVar
+                //whatsServer: whatsVar,
+                ruaServer: ruaVar,
+                cidadeServer: cidadeVar,
+                estadoServer: estadoVar,
+                bairroServer: bairroVar,
+                cepServer: cepVar,
+                numServer: numeroVar
+                //compServer: compVar
             })
         }).then(function (resposta) {
 
@@ -385,7 +400,7 @@
             if (resposta.ok) {
                 //cardErro.style.display = "block";
 
-                alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+                alert("Cadastro realizado com sucesso! Redirecionando para o cadastro de fábrica");
                 document.getElementById("tela3").style.display = "block";
                 document.getElementById("tela2").style.display = "none";
                 //window.location = "../login/login.html";
@@ -412,10 +427,15 @@
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
         var nomeVar = ipt_nomefabrica.value;
-        var telVar = ipt_telefone.value;
-        var cepVar = ipt_cep.value;
-        var numVar = ipt_numero.value;
+        var telVar = ipt_telefoneFabrica.value;
 
+        var numVar = ipt_numeroFabrica.value;
+        var ruaVar = ipt_ruaFabrica.value;
+        var compVar = ipt_complementoFabrica.value;
+        var cepVar = ipt_cepFabrica.value;
+        var bairroVar = ipt_bairroFabrica.value;
+        var cidadeVar = ipt_cidadeFabrica.value;
+        //var estadoVar = ipt_EstadoFabrica.value;
         var valida_telefone = "";
 
         // Validações
@@ -442,8 +462,12 @@
                 // Agora vá para o arquivo routes/usuario.js
                 nomeServer: nomeVar,
                 telServer: telVar,
-                //cepServer: cepVar,
-                //numServer: numVar
+                numServer: numVar,
+                ruaServer: ruaVar,
+                compServer: compVar,
+                cepServer: cepVar,
+                bairroServer: bairroVar,
+                cidadeServer: cidadeVar
             })
         }).then(function (resposta) {
 
