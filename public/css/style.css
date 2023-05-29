@@ -643,6 +643,9 @@ a {
     background-color: #E6005A;
     border-radius: 20px;
 }
+.footer span a {
+   color: #fff;
+}
 .footer #direitos{
     width: 90%;
     margin: auto;
