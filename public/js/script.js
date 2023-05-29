@@ -212,35 +212,6 @@ function criptografar() {
     }
 }
 
-// function calcular() {
-//     var salario = ipt_salario.value;
-//     var atraso = ipt_atraso.value;
-
-//     /* 
-//         Horas trabalhadas = 8 (horas por dia trabalhadas) * (30 (dias do mes) - 8 (final de semana) = 22) -- dias 
-//         8 * 22 = 176 (horas trabalhadas por mês)
-//         valor salario / horas trabalhadas (salario/176)
-//         */
-//     var GanhoHora = (salario / 176);
-
-//     /* (atraso * 22 (dias trabalhados)) -- transformar em hora * ganhohora
-
-//      */
-
-//     /* Resposta calcular porcentagem Absenteísmo (%) = Número de dias ou horas 
-//     de ausência / período de horas úteis da empresa x 100*/
-
-//     var perdidos = (((atraso * 22) / 60) * GanhoHora);
-//     var totalPerdido = (perdidos * 12);
-//     var totalFuncionarios = (totalPerdido * ipt_funcionarios.value);
-//     var porcentagemAbsenteísmo = ((totalPerdido / 8) / 100);
-
-//     div_mensagem.innerHTML += `Atualmente a taxa de absenteísmo da sua empresa é ${porcentagemAbsenteísmo}%. Se um funcionário 
-//     atrasar por dia ${ipt_atraso.value} minutos, serão perdidos ${perdidos} reais por mês. Ao olhar a longo prazo, em um ano, 
-//     serão pedidos ${totalPerdido} reais. Caso toda a equipe tenha esse padrão, o prejuízo anual será de ${totalFuncionarios} reais. `;
-//     /* Criar textinho com todas as informaçoes */
-// }
-
 function calcular() {
     div_mensagem.innerHTML = "";
 
@@ -259,40 +230,40 @@ function calcular() {
 
 //FALE CONOSCO VERIFICAÇÃO
 function enviar() {
-    var contact_nome = ipt_nome.value;
     var contact_email = ipt_email.value;
+    var contact_assunto = ipt_assunto.value;
     var contact_ddd = ddd.value;
     var contact_telefone = telefone.value;
-    var contact_assunto = assunto.value;
+    var contact_conteudo = conteudo.value;
 
-    var verif_nome = contact_nome != '';
     var verif_email = contact_email != '' && (contact_email.indexOf('@') >= 0) && contact_email.endsWith('.com');
     var verif_assunto = contact_assunto != '';
     var verif_ddd = contact_ddd != '';
     var verif_telefone = contact_telefone != '';
-    if (!(verif_nome)) {
-        document.getElementById("ipt_nome").style.border = "1px solid red";
-        alert("Preencha o campo nome!");
-    }
+    var verif_conteudo = contact_conteudo != '';
     if (!(verif_email)) {
         document.getElementById("ipt_email").style.border = "1px solid red";
         alert("Informe o email corretamente!");
+    }
+    if (!(verif_assunto)) {
+        document.getElementById("ipt_assunto").style.border = "1px solid red";
+        alert("O campo assunto não pode estar vazio");
     }
     if (!(verif_ddd && verif_telefone)) {
         document.getElementById("ddd").style.border = "1px solid red";
         document.getElementById("telefone").style.border = "1px solid red";
         alert("Informe corretamente o número de telefone");
     }
-    if (!(verif_assunto)) {
-        document.getElementById("assunto").style.border = "1px solid red";
-        alert("O campo assunto não pode estar vazio");
+    if (!(verif_conteudo)) {
+        document.getElementById("conteudo").style.border = "1px solid red";
+        alert("O campo conteúdo não pode estar vazio");
     }
-    if (verif_nome && verif_email && verif_ddd && verif_telefone && verif_assunto) {
-        document.getElementById("ipt_nome").style.border = "none";
+    if (verif_assunto && verif_email && verif_ddd && verif_telefone && verif_conteudo) {
         document.getElementById("ipt_email").style.border = "none";
+        document.getElementById("ipt_assunto").style.border = "none";
         document.getElementById("ddd").style.border = "none";
         document.getElementById("telefone").style.border = "none";
-        document.getElementById("assunto").style.border = "none";
+        document.getElementById("conteudo").style.border = "none";
     }
 }
 
