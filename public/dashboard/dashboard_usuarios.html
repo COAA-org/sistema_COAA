@@ -15,13 +15,13 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body>
+<body onload="carregaFuncs(sessionStorage.ID_EMPRESA)">
     <div class="divGrande">
 
         <div class="parteVerde">
             <img class="logo" src="../img/Logo.png" alt="Logo da parte verde" width="200" height="50">
             <div class="retaSeparar"></div>
-            <button class="botaoAddUsuario">
+            <button class="botaoAddUsuario" onclick="cadastUser()">
                 <div class="posicaoBotaoAdd">
                     <p>+</p>
                     <img class="imagem-perfil" src="../img/login.png" alt="Foto-usuario" width="35px" height="35px">
@@ -36,15 +36,107 @@
 
             <div>
                 <h1>Usuários</h1>
+
             </div>
 
             <div class="listaUsuario">
-                <div class="telaLista"></div>
+                <div class="telaLista">
+                    <table id="tbUsuarios">
+                        
+
+                        <tr id="linhaTabela">
+                            <td class="dado " id="nomeDoFuncionario">LARISSA</td>
+                            <td class="dado" id="botoesTb">
+                                <button id="btn_delete" onclick="deletar()">DELETAR</button>
+                                <button id="btn_Alterar" onclick="edit()">ALTERAR</button>
+                            </td>
+                        </tr>
+
+                       
+                    </table>
+                </div>
             </div>
         </div>
 
-        <script>
-
-        </script>
 
 </html>
+<script>
+    var idServer = sessionStorage.ID_EMPRESA;
+
+    function carregaFuncs(idEmpresa){
+        fetch(`/usuarios/listarFuncs/${idEmpresa}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    carregaResult(resposta);
+                    
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function carregaResult(resultado){
+        var tabela = document.getElementById("tbUsuarios");
+        tabela.innerHTML = '';
+        for(var i = 0; i < resultado.length; i++){
+            var publi = resultado[i];
+            var resto = i%2;
+            if(resto == 0){
+                tabela.innerHTML += `<tr id="linhaTabela" style="background-color: #e1ffae;">
+                            <td class="dado " id="nomeDoFuncionario" >${publi.nome}</td>
+                            <td class="dado" id="botoesTb">
+                                <button id="btn_delete" onclick="deletar(${publi.idCadLog})">DELETAR</button>
+                                <button id="btn_Alterar" onclick="alterar(${publi.idCadLog})">ALTERAR</button>
+                            </td>
+                        </tr>`;
+            }
+            else{
+                tabela.innerHTML += `<tr id="linhaTabela">
+                            <td class="dado " id="nomeDoFuncionario">${publi.nome}</td>
+                            <td class="dado" id="botoesTb">
+                                <button id="btn_delete" onclick="deletar(${publi.idCadLog})">DELETAR</button>
+                                <button id="btn_Alterar" onclick="alterar(${publi.idCadLog})">ALTERAR</button>
+                            </td>
+                        </tr>`;
+            }
+        }
+    }
+
+    function alterar(idUser){
+        window.location.assign("editar_usuario.html");
+        sessionStorage.idFunc = idUser;
+    }
+
+    function deletar(idFunc) {
+        console.log("Criar função de apagar funcionário escolhido - ID" + idFunc);
+        fetch(`/usuarios/deletarFunc/${idFunc}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.EMAIL_USUARIO + "!");
+                window.location = "/dashboard/dashboard_usuarios.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function cadastUser(){
+        window.location.assign("cadastro_funcionario.html");
+    }
+</script>

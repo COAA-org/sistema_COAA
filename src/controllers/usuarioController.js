@@ -23,6 +23,28 @@ function listar(req, res) {
             }
         );
 }
+//para listar todos os funcionários de determinada empresa (por isso pega o idEmpresa)
+function listarFuncs(req, res) {
+    var id = req.params.idEmpresa;
+    if (id == undefined) {
+        res.status(400).send("Seu id de empresa está undefined!");
+    }else{
+    usuarioModel.listarFuncs(id)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
 
 function entrar(req, res) {
     var email = req.body.emailServer;
@@ -157,6 +179,47 @@ function cadastrarAdm(req, res) {
             );
     }
 }
+
+function cadastrarFunc(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var nome = req.body.nomeServer;
+    var senha = req.body.senhaServer;
+    var email = req.body.emailServer;
+    var cpf = req.body.cpfServer;
+    var empresa = req.body.empresaServer;
+
+
+    // Faça as validações dos valores
+    if (nome == undefined) {
+        res.status(400).send("Seu nome está undefined!");
+    } else if (senha == undefined) {
+        res.status(400).send("Sua senha está undefined!");
+    } else if (email == undefined) {
+        res.status(400).send("Seu e-mail está undefined!");
+    } else if(cpf == undefined){
+        res.status(400).send("Seu CPF está undefined!");
+    }else if(empresa == undefined){
+        res.status(400).send("Seu fkEmpresa está undefined!");
+    } else {
+        
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.cadastrarFunc(nome, senha, email, cpf, empresa)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
 function cadastrarFabrica(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
@@ -207,11 +270,78 @@ function cadastrarFabrica(req, res) {
     }
 }
 
+function selectFuncById(req, res){
+    var id = req.params.idFunc;
+    if (id == undefined) {
+        res.status(400).send("Seu id de funcionário está undefined!");
+    }else{
+    usuarioModel.selectFuncById(id)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
+
+function editar(req, res) {
+    var id = req.params.idFunc;
+    var novoNome = req.body.novoNomeServer;
+    var novoCPF = req.body.novoCpfServer;
+    var novoEmail = req.body.novoEmailServer;
+    var novaSenha = req.body.novaSenhaServer;
+
+    usuarioModel.editar(id, novoNome, novoCPF, novoEmail, novaSenha)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a alteração do usuário: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+}
+
+function deletarFunc(req, res){
+    var id = req.params.idFunc;
+
+    usuarioModel.deletarFunc(id)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao deletar o funcionário: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
 module.exports = {
     entrar,
     cadastrarAdm,
     cadastrarEmpresa,
     cadastrarFabrica,
+    cadastrarFunc,
+    deletarFunc,
+    editar,
     listar,
+    listarFuncs,
+    selectFuncById,
     testar
 }
