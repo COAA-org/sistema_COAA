@@ -115,6 +115,16 @@ function deletarFunc(idFunc) {
     return database.executar(instrucao);
 }
 
+function cadastrarLocal(nomeLocal, setor, modeloSensor){
+
+    var modSensor = modeloSensor;
+    var instrucao = `
+        INSERT INTO LocalFab (nomeLocal, setor) VALUES(${nomeLocal}, ${setor}) ;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     entrar,
     cadastrarAdm,
@@ -125,5 +135,6 @@ module.exports = {
     listar,
     listarFuncs,
     selectFuncById,
-    editar
+    editar,
+    cadastrarLocal
 };

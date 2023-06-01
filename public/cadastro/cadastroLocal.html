@@ -67,7 +67,7 @@
 <script>
 
     function cadastraLocal() {
-        var erro =  false;
+        var erro = false;
 
         var nomeLocal = ipt_nomeLocal.value;
         var setor = ipt_setor.value;
@@ -76,52 +76,57 @@
         var check_nomeLocal = nomeLocal == "" || nomeLocal == undefined;
         var check_setor = setor == "" || setor == undefined;
 
-        if(check_nomeLocal){
+        if (check_nomeLocal) {
             alert(`Prencha o nome do local corretamente`);
             erro = true;
         }
 
-        if(check_setor){
+        if (check_setor) {
             alert(`Prencha o nome do setor corretamente`);
             erro = true;
         }
 
-        if(!erro){
+        if (!erro) {
 
             console.log("HEHEEHEHEHEHE deu certo :)")
-            //     fetch("/usuarios/cadastrarAdm", {
-            //         method: "POST",
-            //         headers: {
-            //             "Content-Type": "application/json"
-            //         },
-            //         body: JSON.stringify({
-            //             // crie um atributo que recebe o valor recuperado aqui
-            //             // Agora vá para o arquivo routes/usuario.js
-            //             nomeServer: nomeVar,
-            //             senhaServer: senhaVar,
-            //             emailServer: emailVar,
-            //             cpfServer: cpfVar
-            //         })
-            //     }).then(function (resposta) {
-        
-            //         console.log("resposta: ", resposta);
-        
-            //         if (resposta.ok) {
-            //             alert("Cadastro realizado com sucesso! Redirecionando para o cadastro de empresa");
-            //             document.getElementById("tela1").style.display = "none";
-            //             document.getElementById("tela2").style.display = "block";
-        
-            //             limparFormulario();
-            //         } else {
-            //             throw ("Houve um erro ao tentar realizar o cadastro!");
-            //         }
-            //     }).catch(function (resposta) {
-            //         console.log(`#ERRO: ${resposta}`);
-            //         //finalizarAguardar();
-            //     });
-        
-            //     return false;
+            fetch("/usuarios/cadastrarLocal", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    nomeLocal: nomeLocal,
+                    setor: setor,
+                    modeloSensor: modeloSensor
+                })
+            }).then(function (resposta) {
+
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    //cardErro.style.display = "block";
+
+                    alert("Cadastro do local realizado com sucesso! Redirecionando para a dashboard");
+                    window.location = "../dashboard/dashboard.html";
+                    setTimeout(() => {
+                        window.location = "dashboard.html";
+                    }, "2000")
+
+                    //limparFormulario();
+                } else {
+                    throw ("Houve um erro ao tentar realizar o cadastro!");
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                //finalizarAguardar();
+            });
+
+            return false
+
         }
+
 
         // Enviando o valor da nova input
 
