@@ -75,8 +75,8 @@ const serial = async (
                 // cont++;
                 // console.log(chave + ',' + cont);
                 await poolBancoDados.execute(
-                    'INSERT INTO Registro (idRegistro, saidaDado) VALUES (?, ?)',
-                    [null, chave]
+                    'INSERT INTO Registro (idRegistro, saidaDado, fkSensores) VALUES (?, ?, ?)',
+                    [null, chave, 1]
                 );
             }
             
