@@ -105,17 +105,17 @@ function validarEndereco() {
 function validarContato() {
     // Variaveis
     var telefone = ipt_telefone.value;
-    var whats = ipt_wpp.value;
+    // var whats = ipt_wpp.value;
     var email = ipt_email.value;
     var emailConfirm = ipt_emailConfirm.value;
 
     var valida_telefone = "";
-    var valida_whats = "";
+    // var valida_whats = "";
     var valida_email = "";
 
     // Validações
     valida_telefone = telefone.length >= 8 && telefone.length <= 13;
-    valida_whats = whats.length >= 8 && whats.length <= 12;
+    // valida_whats = whats.length >= 8 && whats.length <= 12;
     valida_email = email == emailConfirm;
 
     // Verificações
@@ -131,17 +131,17 @@ function validarContato() {
         ipt_telefone.focus();
     }
 
-    if (valida_whats) {
-        console.log("zap: OK")
-    } else if (typeof whats == "string") {
-        alert(`Não aceitamos letras no campo de WhatsApp!`);
-        erros += 1;
-        ipt_wpp.focus();
-    } else {
-        alert(`Por favor, insira o WhatsApp corretamente!`);
-        erros += 1;
-        ipt_wpp.focus();
-    }
+    // if (valida_whats) {
+    //     console.log("zap: OK")
+    // } else if (typeof whats == "string") {
+    //     alert(`Não aceitamos letras no campo de WhatsApp!`);
+    //     erros += 1;
+    //     ipt_wpp.focus();
+    // } else {
+    //     alert(`Por favor, insira o WhatsApp corretamente!`);
+    //     erros += 1;
+    //     ipt_wpp.focus();
+    // }
 
     if (valida_email) {
         // Todos os campos estão corretos :) !

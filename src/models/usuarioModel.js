@@ -61,7 +61,7 @@ function cadastrarEmpresa(cnpj, desc, nome, telefone, email, rua, bairro, estado
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucaoEnd), database.executar(instrucao);
 }
-function cadastrarFabrica(nome, telefone, numero, rua, complemento, cep, bairro, cidade) {
+function cadastrarFabrica(nome, telefone, numero, rua, complemento, estado, cep, bairro, cidade) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, telefone, numero, rua, complemento, cep, bairro, cidade);
     //alterar aqui para os parâmetros da tabela 
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
@@ -69,8 +69,8 @@ function cadastrarFabrica(nome, telefone, numero, rua, complemento, cep, bairro,
     //////////////////////////////////
     // ALTERAR - COLOCAR LIGAÇÃO COM A CHAVE ESTRANGEIRA DA TABELA ENDEREÇO
     ///////////////////////////////////
-    var instrucaoEnd = `INSERT INTO Endereco (lougradouro, bairro, municipio, cep)
-    SELECT * FROM (SELECT '${rua}', '${bairro}', '${cidade}', '${cep}') AS tmp
+    var instrucaoEnd = `INSERT INTO Endereco (lougradouro, bairro, cidade, estado, cep)
+    SELECT * FROM (SELECT '${rua}', '${bairro}', '${cidade}', '${estado}', '${cep}') AS tmp
     WHERE NOT EXISTS (
         SELECT cep FROM Endereco WHERE cep = '${cep}'
     ) LIMIT 1;`;
