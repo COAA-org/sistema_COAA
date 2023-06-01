@@ -52,7 +52,7 @@
 
                     <div>
                         <label class="label">Confirme sua senha:</label>
-                        <input type="password" id="ipt_confirmacaoSenhaFuncionario">
+                        <input type="password" id="ipt_checkSenhaFuncionario">
                     </div>
 
                 </div>
@@ -73,6 +73,63 @@
 
 </html>
 <script>
+
+function editar() {
+        var nomeVar = ipt_nomeFuncionario.value;
+        var senhaVar = ipt_senhaFuncionario.value;
+        var emailVar = ipt_emailFuncionario.value;
+        var cpfVar = ipt_cpfFuncionario.value;
+        var chkSenhaVar = ipt_checkSenhaFuncionario.value;
+
+        //Verificação de campos vazios
+        var valida_vazio = nomeVar == "" && senhaVar == "" && emailVar == "" && cpfVar == "" && chkSenhaVar == ""; //Todos os campos  estão vazios
+        var nome_vazio = nomeVar == ""; //Nome está vazio
+        var senha_vazio = senhaVar == ""; //Senha está vazia
+        var email_vazio = emailVar == ""; //Email está vazio
+        var cpf_vazio = cpfVar == "";//CPF está vazio
+        var chkSenha_vazio = chkSenhaVar == ""; //Confirmação de senha está vazia
+
+        // Validações (Se verdadeiras, os campos estão incorretos)
+        var verif_chkSenha = senhaVar != chkSenhaVar; //Senha diferente da confirmação de senha
+        var verif_emailFunc = emailVar.indexOf('@') == -1; //Email não tem @
+        var verif_senha = senhaVar.length <= 6; //Senha fraca
+        var verif_cpf = cpfVar.length < 11 || cpfVar.length > 11;//CPF com menos ou mais de 11 digitos
+
+
+        if (valida_vazio){//Nenhum campo preenchido
+            alert("Todos os campos estão vazios, preencha-os corretamente!");
+
+            return false;
+        }
+        else {//Alguns campos preenchidos
+            if (nome_vazio) {
+                alert("Nome deve ser informado corretamente!")
+            }
+
+            if (email_vazio || verif_emailFunc) {
+                alert("E-mail deve ser informado corretamente!")
+            }
+
+            if (cpf_vazio || verif_cpf) {
+                alert("CPF deve ser informado corretamente!")
+            }
+
+            if (senha_vazio || verif_senha) {
+                alert("Senha inválida! Sua senha deve ser maior que 6 dígitos!")
+            }
+
+            if (chkSenha_vazio){
+                alert("Confirme sua senha!")
+            }
+
+            if (verif_chkSenha){
+                alert("Confirmação da senha incompatível!")
+            }
+
+            return false;
+        }
+}
+
     var idUsuario = sessionStorage.idFunc;
     function selectFuncById(id) {
         fetch(`/usuarios/listarFuncById/${id}`, { cache: 'no-store' }).then(function (response) {

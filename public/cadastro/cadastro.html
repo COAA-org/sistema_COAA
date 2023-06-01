@@ -37,7 +37,7 @@
 
                     <div>
                         <label class="label">Senha:</label>
-                        <input type="text" id="ipt_senhaAdm">
+                        <input type="password" id="ipt_senhaAdm">
                     </div>
 
 
@@ -48,7 +48,7 @@
 
                     <div>
                         <label class="label">Confirmação de senha:</label>
-                        <input type="text" id="ipt_checkSenhaAdm">
+                        <input type="password" id="ipt_checkSenhaAdm">
                     </div>
 
                     <div>
@@ -273,21 +273,56 @@
         var senhaVar = ipt_senhaAdm.value;
         var emailVar = ipt_emailAdm.value;
         var cpfVar = ipt_cpfAdm.value;
+        var chkSenhaVar = ipt_checkSenhaAdm.value;
 
-        var valida_vazio = nomeVar == "" || senhaVar == "" || emailVar == "" || cpfVar == "" || ipt_checkSenhaAdm.value == '';
+        //Verificação de campos vazios
+        var valida_vazio = nomeVar == "" && senhaVar == "" && emailVar == "" && cpfVar == "" && chkSenhaVar == ""; //Todos os campos  estão vazios
+        var nome_vazio = nomeVar == ""; //Nome está vazio
+        var senha_vazio = senhaVar == ""; //Senha está vazia
+        var email_vazio = emailVar == ""; //Email está vazio
+        var cpf_vazio = cpfVar == "";//CPF está vazio
+        var chkSenha_vazio = chkSenhaVar == ""; //Confirmação de senha está vazia
 
-        // Validações
-        var chkSenha = senhaVar != ipt_checkSenhaAdm.value;
-        var verif_emailFunc = emailVar == "" && !(emailVar.endsWith('.com') || emailVar.endsWith('.br')) || emailVar.indexOf('@') == -1;
-        var verif_senha = senhaVar.length <= 6;
+        // Validações (Se verdadeiras, os campos estão incorretos)
+        var verif_chkSenha = senhaVar != chkSenhaVar; //Senha diferente da confirmação de senha
+        var verif_emailFunc = emailVar.indexOf('@') == -1; //Email não tem @
+        var verif_senha = senhaVar.length <= 6; //Senha fraca
+        var verif_cpf = cpfVar.length < 11 || cpfVar.length > 11;//CPF com menos ou mais de 11 digitos
 
 
-        if (valida_vazio || chkSenha || verif_senha || verif_emailFunc) {
-            alert("Preencha os campos corretamente")
+        if (valida_vazio){//Nenhum campo preenchido
+            alert("Todos os campos estão vazios, preencha-os corretamente!");
 
-            //finalizarAguardar();
             return false;
         }
+        else {//Alguns campos preenchidos
+            if (nome_vazio) {
+                alert("Nome deve ser informado corretamente!")
+            }
+
+            if (email_vazio || verif_emailFunc) {
+                alert("E-mail deve ser informado corretamente!")
+            }
+
+            if (cpf_vazio || verif_cpf) {
+                alert("CPF deve ser informado corretamente!")
+            }
+
+            if (senha_vazio || verif_senha) {
+                alert("Senha inválida! Sua senha deve ser maior que 6 dígitos!")
+            }
+
+            if (chkSenha_vazio){
+                alert("Confirme sua senha!")
+            }
+
+            if (verif_chkSenha){
+                alert("Confirmação da senha incompatível!")
+            }
+
+            return false;
+        }
+        
 
         // Enviando o valor da nova input
         fetch("/usuarios/cadastrarAdm", {
@@ -328,47 +363,47 @@
 
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
-        var nomeVar = ipt_nomeEmpresa.value;
-        var descVar = ipt_descricaoEmpresa.value;
-        var cnpjVar = ipt_cnpj.value;
-        var telVar = ipt_telefone.value;
-        //var whatsVar = ipt_wpp.value;
-        var emailVar = ipt_email.value;
-        var confirmarEmail = ipt_emailConfirm.value;
-        var ruaVar = ipt_rua.value;
-        var bairroVar = ipt_bairro.value;
-        var cidadeVar = ipt_cidade.value;
-        var estadoVar = ipt_estado.value;
-        var cepVar = ipt_cep.value;
-        var numeroVar= ipt_numero.value;
-       // var compVar = ipt_complemento.value;
+    //     var nomeVar = ipt_nomeEmpresa.value;
+    //     var descVar = ipt_descricaoEmpresa.value;
+    //     var cnpjVar = ipt_cnpj.value;
+    //     var telVar = ipt_telefone.value;
+    //     //var whatsVar = ipt_wpp.value;
+    //     var emailVar = ipt_email.value;
+    //     var confirmarEmail = ipt_emailConfirm.value;
+    //     var ruaVar = ipt_rua.value;
+    //     var bairroVar = ipt_bairro.value;
+    //     var cidadeVar = ipt_cidade.value;
+    //     var estadoVar = ipt_estado.value;
+    //     var cepVar = ipt_cep.value;
+    //     var numeroVar= ipt_numero.value;
+    //    // var compVar = ipt_complemento.value;
 
 
 
-        var valida_telefone = "";
-        //var valida_whats = "";
-        var valida_email = "";
+        // var valida_telefone = "";
+        // var valida_whats = "";
+        // var valida_email = "";
 
-        // Validações
-        valida_telefone = telVar.length <= 8 && telVar.length >= 12;
-        //valida_whats = whats.length >= 8 && whats.length <= 12;
-        valida_email = emailVar != confirmarEmail;
+        // // Validações
+        // valida_telefone = telVar.length <= 8 && telVar.length >= 12;
+        // valida_whats = whats.length >= 8 && whats.length <= 12;
+        // valida_email = emailVar != confirmarEmail;
 
-        //verificações
-        var verif_nome = nomeVar == '';
-        var verif_desc = descVar.length < 10;
-        //verifica se o cnpj está vazio, se o tamanho do digitado é diferente do padrão(14 dígitos) e elimina os valores falsos mais comuns
-        var verif_cnpj = cnpjVar == '' || cnpjVar.length != 14 || cnpjVar == '00000000000000' || cnpjVar == '11111111111111' || cnpjVar == '22222222222222' || cnpjVar == '33333333333333' || cnpjVar == '44444444444444' || cnpjVar == '55555555555555' || cnpjVar == '66666666666666' || cnpjVar == '77777777777777' || cnpjVar == '88888888888888' || cnpjVar == '99999999999999';
+        // //verificações
+        // var verif_nome = nomeVar == '';
+        // var verif_desc = descVar.length < 10;
+        // //verifica se o cnpj está vazio, se o tamanho do digitado é diferente do padrão(14 dígitos) e elimina os valores falsos mais comuns
+        // var verif_cnpj = cnpjVar == '' || cnpjVar.length != 14 || cnpjVar == '00000000000000' || cnpjVar == '11111111111111' || cnpjVar == '22222222222222' || cnpjVar == '33333333333333' || cnpjVar == '44444444444444' || cnpjVar == '55555555555555' || cnpjVar == '66666666666666' || cnpjVar == '77777777777777' || cnpjVar == '88888888888888' || cnpjVar == '99999999999999';
 
-        //var verif_senha = senhaVar.length <= 6;
+        // //var verif_senha = senhaVar.length <= 6;
 
 
-        if (valida_telefone || valida_email || verif_nome || verif_desc || verif_cnpj) {
-            alert("Preencha os campos corretamente")
+        // if (valida_telefone || valida_email || verif_nome || verif_desc || verif_cnpj) {
+        //     alert("Preencha os campos corretamente")
 
-            //finalizarAguardar();
-            return false;
-        }
+        //     //finalizarAguardar();
+        //     return false;
+        // }
 
         // Enviando o valor da nova input
         fetch("/usuarios/cadastrarEmpresa", {
@@ -426,30 +461,30 @@
 
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
-        var nomeVar = ipt_nomefabrica.value;
-        var telVar = ipt_telefoneFabrica.value;
+        // var nomeVar = ipt_nomefabrica.value;
+        // var telVar = ipt_telefoneFabrica.value;
 
-        var numVar = ipt_numeroFabrica.value;
-        var ruaVar = ipt_ruaFabrica.value;
-        var compVar = ipt_complementoFabrica.value;
-        var cepVar = ipt_cepFabrica.value;
-        var bairroVar = ipt_bairroFabrica.value;
-        var cidadeVar = ipt_cidadeFabrica.value;
-        //var estadoVar = ipt_EstadoFabrica.value;
-        var valida_telefone = "";
+        // var numVar = ipt_numeroFabrica.value;
+        // var ruaVar = ipt_ruaFabrica.value;
+        // var compVar = ipt_complementoFabrica.value;
+        // var cepVar = ipt_cepFabrica.value;
+        // var bairroVar = ipt_bairroFabrica.value;
+        // var cidadeVar = ipt_cidadeFabrica.value;
+        // //var estadoVar = ipt_EstadoFabrica.value;
+        // var valida_telefone = "";
 
-        // Validações
-        valida_telefone = telVar.length <= 8 && telVar.length >= 12;
-        //verificações
-        var verif_nome = nomeVar == '';
+        // // Validações
+        // valida_telefone = telVar.length <= 8 && telVar.length >= 12;
+        // //verificações
+        // var verif_nome = nomeVar == '';
         
 
-        if (valida_telefone || verif_nome) {
-            alert("Preencha os campos corretamente")
+        // if (valida_telefone || verif_nome) {
+        //     alert("Preencha os campos corretamente")
 
-            //finalizarAguardar();
-            return false;
-        }
+        //     //finalizarAguardar();
+        //     return false;
+        // }
 
         // Enviando o valor da nova input
         fetch("/usuarios/cadastrarFabrica", {
