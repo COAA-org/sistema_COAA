@@ -30,7 +30,7 @@ const serial = async (
             port: 3306,
             user: 'root',
             password: '1234567',
-            database: 'bdcooa'
+            database: 'COAA'
         }
     ).promise();
 
@@ -71,22 +71,16 @@ const serial = async (
         //parte do banco de dados
         if (HABILITAR_OPERACAO_INSERIR) {
             const date = new Date().toLocaleString();
-            var verifPassou = true;
             if (chave == 1) {
-                cont++;
-                console.log(chave + ',' + cont);
+                // cont++;
+                // console.log(chave + ',' + cont);
+                await poolBancoDados.execute(
+                    'INSERT INTO Registro (idRegistro, saidaDado) VALUES (?, ?)',
+                    [null, chave]
+                );
             }
             
-            async function inserirBanco() {
-                if (cont >= 10) {
-                        await poolBancoDados.execute(
-                            'INSERT INTO tbregistro (idRegistro, saidaDado) VALUES (?, ?)',
-                            [null, cont]
-                        );
-                    cont = 0;
-                }
-            }
-            setTimeout(inserirBanco, 5000, cont);
+            //setTimeout(inserirBanco, 5000, cont);
             
         }
 
