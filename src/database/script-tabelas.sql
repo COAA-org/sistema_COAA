@@ -6,82 +6,131 @@
 comandos para mysql - banco local - ambiente de desenvolvimento
 */
 
-CREATE DATABASE aquatech;
+create user coaa_adm1 identified by '1234567';
 
-USE aquatech;
+grant all privileges on COAA.* to coaa_adm1;
 
-CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50)
+grant usage on COAA.* to coaa_adm1;
+
+flush privileges;
+
+
+CREATE DATABASE COAA;
+USE COAA;
+
+CREATE TABLE Empresa
+(
+idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
+cnpj CHAR(14),
+razaoEmpresa VARCHAR(60),
+nomeEmpresa VARCHAR(60),
+telefone CHAR(11),
+email VARCHAR(60),
+numeroEndereco INT,
+fkEndereco INT
+);
+SELECT * FROM Empresa;
+
+CREATE TABLE Endereco
+(
+idEndereco INT PRIMARY KEY AUTO_INCREMENT,
+lougradouro VARCHAR(60),
+bairro VARCHAR(60),
+municipio VARCHAR(60),
+estado CHAR(2),
+cep CHAR(9)
+);
+INSERT INTO Endereco (lougradouro, bairro, municipio, cep)
+SELECT * FROM (SELECT 'cep') AS tmp
+WHERE NOT EXISTS (
+    SELECT cep FROM Endereco WHERE cep = 'Galera'
+) LIMIT 1;
+ALTER TABLE Empresa ADD CONSTRAINT FOREIGN KEY(fkEndereco) REFERENCES Endereco(idEndereco);
+desc Empresa;
+SELECT * FROM Empresa;
+UPDATE Empresa set cnpj = '89655215000154' where idEmpresa=2;
+SELECT * FROM Fabrica;
+SELECT * FROM Usuario;
+UPDATE Usuario
+	SET fkEmpresa = (SELECT idEmpresa FROM Empresa WHERE cnpj = '89655215000154')
+		WHERE idCadLog = (SELECT idCadLog as id FROM (SELECT idCadLog FROM Usuario  where email='sonoda.lari@gmail.com') as p);
+TRUNCATE Usuario;
+SELECT * FROM Endereco;
+DELETE FROM Endereco WHERE idEndereco in (1,2);
+DELETE FROM Empresa WHERE idEmpresa in (5);
+DELETE FROM Usuario WHERE idCadLog in (2,7);
+CREATE TABLE Fabrica
+(
+idFabrica INT PRIMARY KEY AUTO_INCREMENT,
+nomeFabrica VARCHAR(60),
+Telefone CHAR(12),
+TelefoneCelular CHAR(11),
+fkEmpresa INT,
+fkEndereco INT,
+complemento VARCHAR(60),
+numeroEndereco INT
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+ALTER TABLE Fabrica ADD CONSTRAINT FOREIGN KEY(fkEndereco) REFERENCES Endereco(idEndereco);
+ALTER TABLE Fabrica ADD CONSTRAINT FOREIGN KEY(fkEmpresa) REFERENCES Empresa(idEmpresa);
+
+CREATE TABLE LocalFab
+(
+idLocal INT PRIMARY KEY AUTO_INCREMENT,
+nomeLocal VARCHAR(60),
+setor VARCHAR(60),
+fkFabrica INT,
+FOREIGN KEY(fkFabrica) REFERENCES Fabrica(idFabrica)
 );
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300)
+CREATE TABLE Sensores
+(
+idSensores INT PRIMARY KEY AUTO_INCREMENT,
+modeloSensor VARCHAR(60),
+dataInstal DATE,
+fkLocal INT,
+FOREIGN KEY(fkLocal) REFERENCES LocalFab(idLocal)
+);
+INSERT INTO LocalFab VALUES (null, 'geral', 'banheiros', null);
+INSERT INTO Sensores VALUES (null, 'TRCT5000', current_date(), 1);
+
+
+CREATE TABLE Registro
+(
+idRegistro INT PRIMARY KEY AUTO_INCREMENT,
+saidaDado INT,
+dataHora DATETIME DEFAULT current_timestamp,
+fkSensores INT,
+FOREIGN KEY(fkSensores) REFERENCES Sensores(idSensores)
+);
+INSERT INTO Registro VALUES (null, 15, current_timestamp(), 1);
+INSERT INTO Registro VALUES (null, 25, current_timestamp(), 1);
+INSERT INTO Registro VALUES (null, 99, current_timestamp(), 1);
+INSERT INTO Registro VALUES (null, 40, current_timestamp(), 1);
+INSERT INTO Registro VALUES (null, 50, current_timestamp(), 1);
+INSERT INTO Registro VALUES (null, 80, current_timestamp(), 1);
+INSERT INTO Registro VALUES (null, 78, current_timestamp(), 1);
+SELECT saidaDado, dataHora FROM Registro JOIN Sensores ON fkSensores=idSensores
+										JOIN LocalFab ON fkLocal=idLocal;
+                                        
+SELECT * FROM Registro JOIN Sensores ON fkSensores=idSensores
+										JOIN LocalFab ON fkLocal=idLocal;
+CREATE TABLE usuario
+(
+idCadLog INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(45),
+email VARCHAR(60),
+senha VARCHAR(17),
+cpf CHAR(14),
+fkEmpresa INT,
+FOREIGN KEY(fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
 
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
+ALTER TABLE Empresa ADD WhatsApp CHAR(11);
 
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
-);
+SELECT * FROM Registro;
 
-
-/*
-comando para sql server - banco remoto - ambiente de produção
-*/
-
-CREATE TABLE usuario (
-	id INT PRIMARY KEY IDENTITY(1,1),
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
-);
-
-CREATE TABLE aviso (
-	id INT PRIMARY KEY IDENTITY(1,1),
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT FOREIGN KEY REFERENCES usuario(id)
-);
-
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY IDENTITY(1,1),
-	descricao VARCHAR(300)
-);
-
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
-
-CREATE TABLE medida (
-	id INT PRIMARY KEY IDENTITY(1,1),
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT FOREIGN KEY REFERENCES aquario(id)
-);
+ALTER TABLE Empresa ADD Complemento VARCHAR(60);
 
 /*
 comandos para criar usuário em banco de dados azure, sqlserver,
