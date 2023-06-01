@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COAA | Cadastro do Local</title>
+    <link rel="stylesheet" href="../css/style_cadastro.css">
+</head>
+
+<body>
+    <div id="tela1" style="display: block;">
+        <!--Começo página-->
+        <div class="header">
+            <div class="titulosAdm">
+                <h1>Cadastro do Local</h1>
+            </div>
+
+
+            <img src="../img/logotipo.png">
+        </div>
+        <!--Fim começo página-->
+
+        <!--Formulário-->
+        <div class="form">
+
+            <div class="formBlock">
+                <h1>Informações do Local</h1>
+                <div class="inputContainer">
+
+                    <div>
+                        <label class="label">Nome do Local</label>
+                        <input type="text" id="ipt_nomeLocal"></label>
+                    </div>
+
+                    <div>
+                        <label class="label">Setor</label>
+                        <input type="text" id="ipt_setor">
+                    </div>
+
+                    <div>
+                        <label class="label">Modelo do Produto</label>
+                        <select id="select_modeloSensor">
+                            <option value="tcrt5000" selected>TCRT 5000</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="btn">
+                    <button onclick="cadastraLocal()">Avançar</button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--Fim Formulário-->
+    </div>
+
+</body>
+
+<script src="../js/funcoes.js"></script>
+
+</html>
+<script>
+
+    function cadastraLocal() {
+        var erro =  false;
+
+        var nomeLocal = ipt_nomeLocal.value;
+        var setor = ipt_setor.value;
+        var modeloSensor = select_modeloSensor.value;
+
+        var check_nomeLocal = nomeLocal == "" || nomeLocal == undefined;
+        var check_setor = setor == "" || setor == undefined;
+
+        if(check_nomeLocal){
+            alert(`Prencha o nome do local corretamente`);
+            erro = true;
+        }
+
+        if(check_setor){
+            alert(`Prencha o nome do setor corretamente`);
+            erro = true;
+        }
+
+        if(!erro){
+
+            console.log("HEHEEHEHEHEHE deu certo :)")
+            //     fetch("/usuarios/cadastrarAdm", {
+            //         method: "POST",
+            //         headers: {
+            //             "Content-Type": "application/json"
+            //         },
+            //         body: JSON.stringify({
+            //             // crie um atributo que recebe o valor recuperado aqui
+            //             // Agora vá para o arquivo routes/usuario.js
+            //             nomeServer: nomeVar,
+            //             senhaServer: senhaVar,
+            //             emailServer: emailVar,
+            //             cpfServer: cpfVar
+            //         })
+            //     }).then(function (resposta) {
+        
+            //         console.log("resposta: ", resposta);
+        
+            //         if (resposta.ok) {
+            //             alert("Cadastro realizado com sucesso! Redirecionando para o cadastro de empresa");
+            //             document.getElementById("tela1").style.display = "none";
+            //             document.getElementById("tela2").style.display = "block";
+        
+            //             limparFormulario();
+            //         } else {
+            //             throw ("Houve um erro ao tentar realizar o cadastro!");
+            //         }
+            //     }).catch(function (resposta) {
+            //         console.log(`#ERRO: ${resposta}`);
+            //         //finalizarAguardar();
+            //     });
+        
+            //     return false;
+        }
+
+        // Enviando o valor da nova input
+
+    }
+
+
+
+
+</script>
