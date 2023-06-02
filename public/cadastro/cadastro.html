@@ -277,21 +277,16 @@
         //Verificação de campos vazios
         var valida_vazio = nomeVar == "" && senhaVar == "" && emailVar == "" && cpfVar == "" && chkSenhaVar == ""; //Todos os campos  estão vazios
         var nome_vazio = nomeVar == ""; //Nome está vazio
-        var senha_vazio = senhaVar == ""; //Senha está vazia
-        var email_vazio = emailVar == ""; //Email está vazio
-        var cpf_vazio = cpfVar == "";//CPF está vazio
-        var chkSenha_vazio = chkSenhaVar == ""; //Confirmação de senha está vazia
 
         // Validações (Se verdadeiras, os campos estão incorretos)
-        var verif_chkSenha = senhaVar != chkSenhaVar; //Senha diferente da confirmação de senha
-        var verif_emailFunc = emailVar.indexOf('@') == -1; //Email não tem @
-        var verif_senha = senhaVar.length <= 6; //Senha fraca
-        var verif_cpf = cpfVar.length < 11 || cpfVar.length > 11;//CPF com menos ou mais de 11 digitos
+        var verif_chkSenha = senhaVar != chkSenhaVar || chkSenhaVar == ""; //Senha diferente da confirmação de senha ou confirmação está vazia
+        var verif_emailFunc = emailVar.indexOf('@') == -1 || emailVar == ""; //Email não tem @ ou email vazio
+        var verif_senha = senhaVar.length <= 6 || senhaVar == ""; //Senha fraca ou vazia
+        var verif_cpf = cpfVar.length < 11 || cpfVar.length > 11 || cpfVar == "";//CPF com menos ou mais de 11 digitos ou vazio
 
 
         if (valida_vazio){//Nenhum campo preenchido
             alert("Todos os campos estão vazios, preencha-os corretamente!");
-
             return false;
         }
         else {//Alguns campos preenchidos
@@ -300,23 +295,18 @@
                 return false;
             }
 
-            if (email_vazio || verif_emailFunc) {
+            if (verif_emailFunc) {
                 alert("E-mail deve ser informado corretamente!")
                 return false;
             }
 
-            if (cpf_vazio || verif_cpf) {
-                alert("CPF deve ser informado corretamente!")
+            if (verif_cpf) {
+                alert("CPF deve ser informado corretamente! (11 Dígitos)")
                 return false;
             }
 
-            if (senha_vazio || verif_senha) {
+            if (verif_senha) {
                 alert("Senha inválida! Sua senha deve ser maior que 6 dígitos!")
-                return false;
-            }
-
-            if (chkSenha_vazio){
-                alert("Confirme sua senha!")
                 return false;
             }
 
