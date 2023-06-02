@@ -1,6 +1,6 @@
 let proximaAtualizacao;
 window.onload = obterDadosGrafico();
-
+var registro;
 
 
 // O gráfico é construído com três funções:
@@ -38,7 +38,7 @@ function obterDadosGrafico() {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
 }
-
+setInterval(obterDadosGrafico, 300000)
 // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
 // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
 // A função *plotarGrafico* também invoca a função *atualizarGrafico*
@@ -69,11 +69,14 @@ function plotarGrafico(resposta) {
 
     // Inserindo valores recebidos em estrutura para plotar o gráfico
     for (i = 0; i < resposta.length; i++) {
-        var registro = resposta[i];
+        registro = resposta[i];
+        
         labels.push(registro.inicio_contagem);
-        dados.datasets[0].data.push(registro.Fluxo);
+        // dados.datasets[0].data.push(registro.Fluxo);
+        dados.datasets.push({data: registro.Fluxo});
+
     }
-    
+    console.log(registro)
     console.log('----------------------------------------------')
     console.log('O gráfico será plotado com os respectivos valores:')
     console.log('Labels:')
@@ -96,7 +99,7 @@ function plotarGrafico(resposta) {
     );
 
 
-    setTimeout(() => atualizarGrafico(dados, myChart), 3600000);
+    setTimeout(() => atualizarGrafico(dados, myChart), 5000);
 }
 
 
@@ -125,29 +128,30 @@ function atualizarGrafico(dados, myChart) {
                     console.log("---------------------------------------------------------------")
                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
                     aviso.innerHTML = "<i>Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará.</i>"
-                    console.log("Nova editora capturada")
-                    console.log(novoRegistro[0].nomeEditora)
+                    console.log("Novo registro capturado")
+                    console.log(novoRegistro[0].Fluxo)
                     // console.log("Horário do último dado capturado:")
                     // console.log(dados.labels[dados.labels.length - 1])
                     console.log("---------------------------------------------------------------")
                 } else {
                     // tirando e colocando valores no gráfico
-                    dados.labels.shift(); // apagar o primeiro
-                    dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+                    //dados.labels.shift(); // apagar o primeiro
+                    dados.labels.push( novoRegistro[0].inicio_contagem); // incluir um novo momento
 
-                    dados.datasets[0].data.shift();
+                    // dados.datasets[0].data.shift();
+                    // dados.datasets.data.shift();
+                    // dados.datasets[0].data.push(novoRegistro[0].Fluxo); // incluir a nova qtde de Livros de determinada editora
                     dados.datasets[0].data.push(novoRegistro[0].Fluxo); // incluir a nova qtde de Livros de determinada editora
-
                     myChart.update();
                 }
 
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 3600000);
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 5000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-            proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 3600000);
+            proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 5000);
         }
     })
         .catch(function (error) {
