@@ -69,7 +69,7 @@
         <!--Fim Formulário-->
     </div>
 
-    <div id="tela2" style="display: none;">
+    <div id="tela2" style="display: block;">
         <!--Começo página-->
         <div class="header">
             <h1>Cadastro</h1>
@@ -180,7 +180,7 @@
 
     </div>
 
-    <div id="tela3" style="display: none;">
+    <div id="tela3" style="display: block;">
         <!--Começo página-->
         <div class="header">
             <h1>Cadastro fábrica</h1>
@@ -267,13 +267,12 @@
 <script>
 
     function cadastraUser() {
-        //Recupere o valor da nova input pelo nome do id
-        // Agora vá para o método fetch logo abaixo
-        var nomeVar = ipt_nomeAdm.value;
-        var senhaVar = ipt_senhaAdm.value;
-        var emailVar = ipt_emailAdm.value;
-        var cpfVar = ipt_cpfAdm.value;
-        var chkSenhaVar = ipt_checkSenhaAdm.value;
+        
+        var nomeVar = ipt_nomeAdm.value;//Obrigatório
+        var senhaVar = ipt_senhaAdm.value;//Obrigatório
+        var emailVar = ipt_emailAdm.value;//Obrigatório
+        var cpfVar = ipt_cpfAdm.value;//Obrigatório
+        var chkSenhaVar = ipt_checkSenhaAdm.value;//Obrigatório
 
         //Verificação de campos vazios
         var valida_vazio = nomeVar == "" && senhaVar == "" && emailVar == "" && cpfVar == "" && chkSenhaVar == ""; //Todos os campos  estão vazios
@@ -325,9 +324,7 @@
                 alert("Confirmação da senha incompatível!")
                 return false;
             }
-
         }
-        
 
         // Enviando o valor da nova input
         fetch("/usuarios/cadastrarAdm", {
@@ -364,39 +361,34 @@
         return false;
 
     }
+
     function cadastraEmpresa() {
 
-        // Recupere o valor da nova input pelo nome do id
-        // Agora vá para o método fetch logo abaixo
-        var nomeVar = ipt_nomeEmpresa.value;
-        var descVar = ipt_descricaoEmpresa.value;
-        var cnpjVar = ipt_cnpj.value;
-        var telVar = ipt_telefone.value;
-        //var whatsVar = ipt_wpp.value;
-        var emailVar = ipt_email.value;
-        var confirmarEmail = ipt_emailConfirm.value;
-        var ruaVar = ipt_rua.value;
-        var bairroVar = ipt_bairro.value;
-        var cidadeVar = ipt_cidade.value;
-        var estadoVar = ipt_estado.value;
-        var cepVar = ipt_cep.value;
-        var numeroVar= ipt_numero.value;
-       // var compVar = ipt_complemento.value;
+        var nomeVar = ipt_nomeEmpresa.value;//Obrigatório
+        var descVar = ipt_descricaoEmpresa.value;//Obrigatório
+        var cnpjVar = ipt_cnpj.value;//Obrigatório
+        var telVar = ipt_telefone.value;//Obrigatório
+        var emailVar = ipt_email.value;//Obrigatório
+        var confirmarEmail = ipt_emailConfirm.value;//Pensando em retirar
+        var ruaVar = ipt_rua.value;//Obrigatório
+        var bairroVar = ipt_bairro.value;//Obrigatório
+        var cidadeVar = ipt_cidade.value;//Obrigatório
+        var estadoVar = ipt_estado.value;//Obrigatório
+        var cepVar = ipt_cep.value;//Obrigatório
+        var numeroVar= ipt_numero.value;//Obrigatório
+        // var compVar = ipt_complemento.value;
 
+       
+        //Verificação de campos vazios
+        //Todos os campos estão vazios
+        var valida_vazio = nomeVar == "" && descVar == "" && cnpjVar == "" && telVar == "" && emailVar == "" && confirmarEmail == ""
+        && ruaVar == "" && bairroVar == "" && cidadeVar == "" && estadoVar == "" && cepVar == "" && numeroVar == "";
 
-
-        var valida_telefone = "";
-        // var valida_whats = "";
-        var valida_email = "";
-
-        // Validações
-        valida_telefone = telVar.length <= 8 && telVar.length >= 12;
-        // valida_whats = whats.length >= 8 && whats.length <= 12;
-        valida_email = emailVar != confirmarEmail;
-
-        //verificações
+        //Validações
         var verif_nome = nomeVar == '';
         var verif_desc = descVar.length < 10;
+        var valida_telefone = telVar.length <= 8 && telVar.length >= 12;
+        var valida_email = emailVar != confirmarEmail;    
         //verifica se o cnpj está vazio, se o tamanho do digitado é diferente do padrão(14 dígitos) e elimina os valores falsos mais comuns
         var verif_cnpj = cnpjVar == '' || cnpjVar.length != 14 || cnpjVar == '00000000000000' || cnpjVar == '11111111111111' || cnpjVar == '22222222222222' || cnpjVar == '33333333333333' || cnpjVar == '44444444444444' || cnpjVar == '55555555555555' || cnpjVar == '66666666666666' || cnpjVar == '77777777777777' || cnpjVar == '88888888888888' || cnpjVar == '99999999999999';
 
