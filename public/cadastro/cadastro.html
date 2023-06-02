@@ -291,27 +291,27 @@
         }
         else {//Alguns campos preenchidos
             if (nome_vazio) {
-                alert("Nome deve ser informado corretamente!")
+                alert("Nome deve ser informado corretamente!");
                 return false;
             }
 
             if (verif_emailFunc) {
-                alert("E-mail deve ser informado corretamente!")
+                alert("E-mail deve ser informado corretamente!");
                 return false;
             }
 
             if (verif_cpf) {
-                alert("CPF deve ser informado corretamente! (11 Dígitos)")
+                alert("CPF deve ser informado corretamente! (11 Dígitos)");
                 return false;
             }
 
             if (verif_senha) {
-                alert("Senha inválida! Sua senha deve ser maior que 6 dígitos!")
+                alert("Senha inválida! Sua senha deve ser maior que 6 dígitos!");
                 return false;
             }
 
             if (verif_chkSenha){
-                alert("Confirmação da senha incompatível!")
+                alert("Confirmação da senha incompatível!");
                 return false;
             }
         }
@@ -391,7 +391,7 @@
         var rua_vazio = ruaVar == "";//Rua está vazio
         var bairro_vazio = bairroVar == "";//Bairro está vazio
         var cidade_vazio = cidadeVar == "";//Cidade está vazio
-        var verif_estado = estadoVar.length > 2 || estadoVar == "";//Estado não é UF ou está vazio
+        var verif_estado = estadoVar.length != 2 || estadoVar == "";//Estado não é UF ou está vazio
         var verif_cep = cepVar.length != 8; //CEP menor que 8 dígitos
         var numero_vazio = numeroVar == "";//Número está vazio
 
