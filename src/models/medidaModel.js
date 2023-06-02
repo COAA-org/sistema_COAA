@@ -45,15 +45,15 @@ function buscarMedidasEmTempoReal(idSensor) {
     //                 order by id desc`;
 
     // } else 
-    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `SELECT count(R.saidaDado) AS 'Fluxo/hora', sec_to_time(time_to_sec(current_time())-10800) as 'inicio_contagem',
+    // if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `SELECT count(R.saidaDado) AS 'Fluxo', sec_to_time(time_to_sec(current_time())-3600) as 'inicio_contagem',
         sec_to_time(time_to_sec(current_time())) AS 'fim_contagem'  FROM Registro as R WHERE
-        dataHora >= sec_to_time(time_to_sec(current_time())-10800) AND dataHora <= sec_to_time(time_to_sec(current_time())) 
+        dataHora >= sec_to_time(time_to_sec(current_time())-3600) AND dataHora <= sec_to_time(time_to_sec(current_time())) 
         AND fkSensores = ${idSensor};`;
-    } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-        return
-    }
+    // } else {
+    //     console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+    //     return
+    // }
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

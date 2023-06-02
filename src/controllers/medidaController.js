@@ -24,7 +24,7 @@ var medidaModel = require("../models/medidaModel");
 
 function buscarMedidasEmTempoReal(req, res) {
 
-    var id = req.params.idSensor;
+    var id = 1;//req.params.idSensor;
 
     console.log(`Recuperando medidas em tempo real`);
 
