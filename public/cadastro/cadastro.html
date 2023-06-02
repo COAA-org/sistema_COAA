@@ -141,7 +141,7 @@
                     </div>
 
                     <div>
-                        <label class="label">Número:</label>
+                        <label class="label">Número de endereço:</label>
                         <input type="number" id="ipt_numero">
                     </div>
 
@@ -353,43 +353,112 @@
     }
 
     function cadastraEmpresa() {
-
+        //================Informações da empresa=============//
         var nomeVar = ipt_nomeEmpresa.value;//Obrigatório
         var descVar = ipt_descricaoEmpresa.value;//Obrigatório
         var cnpjVar = ipt_cnpj.value;//Obrigatório
+
+        //=====================Contato=================//
         var telVar = ipt_telefone.value;//Obrigatório
         var emailVar = ipt_email.value;//Obrigatório
         var confirmarEmail = ipt_emailConfirm.value;//Pensando em retirar
+
+        //===================Endereço================//
         var ruaVar = ipt_rua.value;//Obrigatório
         var bairroVar = ipt_bairro.value;//Obrigatório
         var cidadeVar = ipt_cidade.value;//Obrigatório
-        var estadoVar = ipt_estado.value;//Obrigatório
+        var estadoVar = ipt_estado.value;//Obrigatório (UF????)
         var cepVar = ipt_cep.value;//Obrigatório
         var numeroVar= ipt_numero.value;//Obrigatório
         // var compVar = ipt_complemento.value;
 
-       
         //Verificação de campos vazios
         //Todos os campos estão vazios
         var valida_vazio = nomeVar == "" && descVar == "" && cnpjVar == "" && telVar == "" && emailVar == "" && confirmarEmail == ""
-        && ruaVar == "" && bairroVar == "" && cidadeVar == "" && estadoVar == "" && cepVar == "" && numeroVar == "";
+        && ruaVar == "" && bairroVar == "" && cidadeVar == "" && estadoVar == "" && cepVar == "" && numeroVar == ""; //Todos os campos estão vazios
+        var nome_vazio = nomeVar == "";//Nome está vazio
+        var desc_vazio = descVar == "";//Descrição está vazia
 
-        //Validações
-        var verif_nome = nomeVar == '';
-        var verif_desc = descVar.length < 10;
-        var valida_telefone = telVar.length <= 8 && telVar.length >= 12;
-        var valida_email = emailVar != confirmarEmail;    
-        //verifica se o cnpj está vazio, se o tamanho do digitado é diferente do padrão(14 dígitos) e elimina os valores falsos mais comuns
-        var verif_cnpj = cnpjVar == '' || cnpjVar.length != 14 || cnpjVar == '00000000000000' || cnpjVar == '11111111111111' || cnpjVar == '22222222222222' || cnpjVar == '33333333333333' || cnpjVar == '44444444444444' || cnpjVar == '55555555555555' || cnpjVar == '66666666666666' || cnpjVar == '77777777777777' || cnpjVar == '88888888888888' || cnpjVar == '99999999999999';
+        //Validações (Se verdadeiro, campo incorreto)
+        //verifica se e o tamanho do digitado é diferente do padrão(14 dígitos) e elimina os valores falsos mais comuns
+        var verif_cnpj = cnpjVar.length != 14 || cnpjVar == '00000000000000' || cnpjVar == '11111111111111' || cnpjVar == '22222222222222' || 
+        cnpjVar == '33333333333333' || cnpjVar == '44444444444444' || cnpjVar == '55555555555555' || cnpjVar == '66666666666666' || 
+        cnpjVar == '77777777777777' || cnpjVar == '88888888888888' || cnpjVar == '99999999999999';
 
-        //var verif_senha = senhaVar.length <= 6;
+        var valida_telefone = telVar.length <= 8 || telVar.length >= 12; //Telefone com menos de 9 ou maior que 11 dígitos
+        var verif_emailFunc = emailVar.indexOf('@') == -1 || emailVar == ""; //Email não tem @ ou email vazio
+        var valida_chkEmail = emailVar != confirmarEmail; //Confirmação é diferente do email
+        var rua_vazio = ruaVar == "";//Rua está vazio
+        var bairro_vazio = bairroVar == "";//Bairro está vazio
+        var cidade_vazio = cidadeVar == "";//Cidade está vazio
+        var verif_estado = estadoVar.length > 2 || estadoVar == "";//Estado não é UF ou está vazio
+        var verif_cep = cepVar.length != 8; //CEP menor que 8 dígitos
+        var numero_vazio = numeroVar == "";//Número está vazio
 
-
-        if (valida_telefone || valida_email || verif_nome || verif_desc || verif_cnpj) {
-            alert("Preencha os campos corretamente")
-
-            //finalizarAguardar();
+        if (valida_vazio) {
+            alert("Todos os campos estão vazios, preencha-os corretamente!");
             return false;
+
+        } else {
+            if (nome_vazio) {
+                alert("Nome deve ser informado corretamente!");
+                return false;
+            }
+
+            if (desc_vazio) {
+                alert("Descrição deve ser informada corretamente!");
+                return false;
+            }
+
+            if (verif_cnpj) {
+                alert("CNPJ deve ser informado corretamente! (Deve conter 14 dígitos)");
+                return false;
+            }
+
+            if (valida_telefone) {
+                alert("Telefone deve ser informado corretamente! (Deve conter entre 9 a 11 dígitos)");
+                return false;
+            }
+
+            if (verif_emailFunc) {
+                alert("E-mail deve ser informado corretamente!");
+                return false;
+            }
+
+            if (valida_chkEmail) {
+                alert("Confirmação de e-mail é incompatível!");
+                return false;
+            }
+
+            if (rua_vazio) {
+                alert("Rua deve ser informada corretamente!");
+                return false;
+            }
+
+            if (bairro_vazio) {
+                alert("Bairro deve ser informado corretamente!");
+                return false;
+            }
+
+            if (cidade_vazio) {
+                alert("Cidade deve ser informada corretamente!");
+                return false;
+            }
+
+            if (verif_estado) {
+                alert("Estado deve ser informado corretamente! (Formato UF)");
+                return false;
+            }
+
+            if (verif_cep) {
+                alert("CEP deve ser informado corretamente! (Deve conter 8 dígitos)");
+                return false;
+            }
+
+            if (numero_vazio) {
+                alert("Numero de endereço deve ser informado corretamente!");
+                return false;
+            }
         }
 
         // Enviando o valor da nova input
