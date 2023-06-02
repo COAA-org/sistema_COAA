@@ -1,35 +1,32 @@
 var database = require("../database/config");
 
-//  function buscarUltimasMedidas(idSensor, limite_linhas) {
+function buscarUltimasMedidas(idSensor, limite_linhas) {
 
-//      instrucaoSql = ''
+    instrucaoSql = ''
 
-//      if (process.env.AMBIENTE_PROCESSO == "producao") {
-//          instrucaoSql = `select top ${limite_linhas}
-//          dht11_temperatura as temperatura, 
-//          dht11_umidade as umidade,  
-//                          momento,
-//                          FORMAT(momento, 'HH:mm:ss') as momento_grafico
-//                      from medida
-//                     where fk_aquario = ${idAquario}
-//                      order by id desc`;
-//      } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-//          instrucaoSql = `select 
-//          dht11_temperatura as temperatura, 
-//          dht11_umidade as umidade,
-//                          momento,
-//                          DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
-//                      from medida
-//                      where fk_aquario = ${idAquario}
-//                      order by id desc limit ${limite_linhas}`;
-//      } else {
-//          console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-//          return
-//      }
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `select top ${limite_linhas}
+          dht11_temperatura as temperatura, 
+          dht11_umidade as umidade,  
+                          momento,
+                          FORMAT(momento, 'HH:mm:ss') as momento_grafico
+                      from medida
+                     where fk_aquario = ${idAquario}
+                      order by id desc`;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `SELECT count(R.saidaDado) AS 'Fluxo', sec_to_time(time_to_sec(current_time())-300) as 'inicio_contagem',
+          sec_to_time(time_to_sec(current_time())) AS 'fim_contagem'  FROM Registro as R WHERE
+          dataHora >= sec_to_time(time_to_sec(current_time())-300) AND dataHora <= sec_to_time(time_to_sec(current_time())) 
+          AND fkSensores={${idSensor}}
+                      order by idRegistro desc limit ${limite_linhas}`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
 
-//      console.log("Executando a instrução SQL: \n" + instrucaoSql);
-//      return database.executar(instrucaoSql);
-//  }
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
 function buscarMedidasEmTempoReal(idSensor) {
 
@@ -45,15 +42,15 @@ function buscarMedidasEmTempoReal(idSensor) {
     //                 order by id desc`;
 
     // } else 
-    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `SELECT count(R.saidaDado) AS 'Fluxo/hora', sec_to_time(time_to_sec(current_time())-10800) as 'inicio_contagem',
+    // if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    instrucaoSql = `SELECT count(R.saidaDado) AS 'Fluxo', sec_to_time(time_to_sec(current_time())-300) as 'inicio_contagem',
         sec_to_time(time_to_sec(current_time())) AS 'fim_contagem'  FROM Registro as R WHERE
-        dataHora >= sec_to_time(time_to_sec(current_time())-10800) AND dataHora <= sec_to_time(time_to_sec(current_time())) 
+        dataHora >= sec_to_time(time_to_sec(current_time())-300) AND dataHora <= sec_to_time(time_to_sec(current_time())) 
         AND fkSensores = ${idSensor};`;
-    } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-        return
-    }
+    // } else {
+    //     console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+    //     return
+    // }
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
