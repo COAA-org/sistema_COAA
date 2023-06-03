@@ -49,7 +49,7 @@ function cadastrarEmpresa(cnpj, desc, nome, telefone, email, rua, bairro, estado
     //alterar aqui para os parâmetros da tabela 
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
-    var instrucaoEnd = `INSERT INTO Endereco (lougradouro, bairro, municipio, cep)
+    var instrucaoEnd = `INSERT INTO Endereco (lougradouro, bairro, cidade, cep)
     SELECT * FROM (SELECT '${rua}', '${bairro}', '${cidade}', '${cep}') AS tmp
     WHERE NOT EXISTS (
         SELECT cep FROM Endereco WHERE cep = '${cep}'
