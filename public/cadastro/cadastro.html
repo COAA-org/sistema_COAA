@@ -282,7 +282,7 @@
         var verif_chkSenha = senhaVar != chkSenhaVar || chkSenhaVar == ""; //Senha diferente da confirmação de senha ou confirmação está vazia
         var verif_emailFunc = emailVar.indexOf('@') == -1 || emailVar == ""; //Email não tem @ ou email vazio
         var verif_senha = senhaVar.length <= 6 || senhaVar == ""; //Senha fraca ou vazia
-        var verif_cpf = cpfVar.length < 11 || cpfVar.length > 11 || cpfVar == "";//CPF com menos ou mais de 11 digitos ou vazio
+        var verif_cpf = cpfVar.length < 11 || cpfVar.length > 11 || isNaN(cpfVar);//CPF com menos ou mais de 11 digitos
 
 
         if (valida_vazio){//Nenhum campo preenchido
@@ -376,23 +376,24 @@
         //Todos os campos estão vazios
         var valida_vazio = nomeVar == "" && descVar == "" && cnpjVar == "" && telVar == "" && emailVar == "" && confirmarEmail == ""
         && ruaVar == "" && bairroVar == "" && cidadeVar == "" && estadoVar == "" && cepVar == "" && numeroVar == ""; //Todos os campos estão vazios
+        
+        //Validações (Se verdadeiro, campo incorreto)
         var nome_vazio = nomeVar == "";//Nome está vazio
         var desc_vazio = descVar == "";//Descrição está vazia
 
-        //Validações (Se verdadeiro, campo incorreto)
         //verifica se e o tamanho do digitado é diferente do padrão(14 dígitos) e elimina os valores falsos mais comuns
         var verif_cnpj = cnpjVar.length != 14 || cnpjVar == '00000000000000' || cnpjVar == '11111111111111' || cnpjVar == '22222222222222' || 
         cnpjVar == '33333333333333' || cnpjVar == '44444444444444' || cnpjVar == '55555555555555' || cnpjVar == '66666666666666' || 
-        cnpjVar == '77777777777777' || cnpjVar == '88888888888888' || cnpjVar == '99999999999999';
+        cnpjVar == '77777777777777' || cnpjVar == '88888888888888' || cnpjVar == '99999999999999' || isNaN(cnpjVar);
 
-        var valida_telefone = telVar.length <= 8 || telVar.length >= 12; //Telefone com menos de 9 ou maior que 11 dígitos
+        var valida_telefone = telVar.length <= 8 || telVar.length >= 12 || isNaN(telVar); //Telefone com menos de 9 ou maior que 11 dígitos
         var verif_emailFunc = emailVar.indexOf('@') == -1 || emailVar == ""; //Email não tem @ ou email vazio
         var valida_chkEmail = emailVar != confirmarEmail; //Confirmação é diferente do email
         var rua_vazio = ruaVar == "";//Rua está vazio
         var bairro_vazio = bairroVar == "";//Bairro está vazio
         var cidade_vazio = cidadeVar == "";//Cidade está vazio
         var verif_estado = estadoVar.length != 2 || estadoVar == "";//Estado não é UF ou está vazio
-        var verif_cep = cepVar.length != 8; //CEP menor que 8 dígitos
+        var verif_cep = cepVar.length != 8 || isNaN(cepVar); //CEP menor que 8 dígitos
         var numero_vazio = numeroVar == "";//Número está vazio
 
         if (valida_vazio) {
@@ -515,31 +516,77 @@
 
     function cadastraFabrica() {
 
-        //Recupere o valor da nova input pelo nome do id
-        // Agora vá para o método fetch logo abaixo
+        //=======Informações da fábrica=======//
         var nomeVar = ipt_nomefabrica.value;
         var telVar = ipt_telefoneFabrica.value;
+        var NumSetorVar = ipt_numSetores.value;
 
-        var numVar = ipt_numeroFabrica.value;
+        //=======Endereço da fábrica=========//
         var ruaVar = ipt_ruaFabrica.value;
         var compVar = ipt_complementoFabrica.value;
         var cepVar = ipt_cepFabrica.value;
         var bairroVar = ipt_bairroFabrica.value;
         var cidadeVar = ipt_cidadeFabrica.value;
+        var numVar = ipt_numeroFabrica.value;
         //var estadoVar = ipt_EstadoFabrica.value;
-        var valida_telefone = "";
-
-        // Validações
-        valida_telefone = telVar.length <= 8 && telVar.length >= 12;
-        //verificações
-        var verif_nome = nomeVar == '';
         
+        //Verificação de campos vazios
+        var valida_vazio = nomeVar == "" && telVar == "" && numVar == "" && ruaVar == "" && compVar == "" && cepVar == "" && 
+        bairroVar == "" && cidadeVar == ""; //Todos os campos estão vazios
 
-        if (valida_telefone || verif_nome) {
-            alert("Preencha os campos corretamente")
-
-            //finalizarAguardar();
+        //Validações (Se verdadeiro, campo incorreto)
+        var nome_vazio = nomeVar == '';//Nome está vazio
+        var valida_telefone = telVar.length <= 8 || telVar.length >= 12 || isNaN(telVar); //Telefone com menos de 9 ou maior que 11 dígitos
+        var valida_setor = NumSetorVar = "" || isNaN(NumSetorVar);//Número de setores está vazio ou não é um número
+        var rua_vazio = ruaVar == "";//Rua está vazio
+        var verif_cep = cepVar.length != 8 || isNaN(cepVar); //CEP menor que 8 dígitos
+        var bairro_vazio = bairroVar == "";//Bairro está vazio
+        var cidade_vazio = cidadeVar == "";//Cidade está vazio
+        var numero_vazio = numVar == "";//Número está vazio
+        
+        if (valida_vazio) {
+            alert("Todos os campos estão vazios, preencha-os corretamente!");
             return false;
+        } else {
+            if (nome_vazio) {
+                alert("Nome deve ser informado corretamente!");
+                return false;
+            }
+
+            if (valida_telefone) {
+                alert("Telefone deve ser informado corretamente! (Deve conter entre 9 a 11 dígitos)");
+                return false;
+            }
+
+            if (valida_setor) {
+                alert("Quantifique a quantidade de setores da fábrica!");
+                return false;
+            }
+
+            if (rua_vazio) {
+                alert("Rua deve ser informada corretamente!");
+                return false;
+            }
+
+            if (verif_cep) {
+                alert("CEP deve ser informado corretamente! (Deve conter 8 dígitos)");
+                return false;
+            }
+
+            if (bairro_vazio) {
+                alert("Bairro deve ser informado corretamente!");
+                return false;
+            }
+
+            if (cidade_vazio) {
+                alert("Cidade deve ser informada corretamente!");
+                return false;
+            }
+
+            if (numero_vazio) {
+                alert("Numero de endereço deve ser informado corretamente!");
+                return false;
+            }
         }
 
         // Enviando o valor da nova input
