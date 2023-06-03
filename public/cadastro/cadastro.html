@@ -514,12 +514,14 @@
 
     }
 
+    var numSetorVar = ipt_numSetores.value;
+
     function cadastraFabrica() {
 
         //=======Informações da fábrica=======//
         var nomeVar = ipt_nomefabrica.value;
         var telVar = ipt_telefoneFabrica.value;
-        var NumSetorVar = ipt_numSetores.value;
+        numSetorVar = ipt_numSetores.value;
 
         //=======Endereço da fábrica=========//
         var ruaVar = ipt_ruaFabrica.value;
@@ -531,13 +533,13 @@
         //var estadoVar = ipt_EstadoFabrica.value;
         
         //Verificação de campos vazios
-        var valida_vazio = nomeVar == "" && telVar == "" && numVar == "" && ruaVar == "" && compVar == "" && cepVar == "" && 
+        var valida_vazio = nomeVar == "" && telVar == "" && numSetorVar == "" && numVar == "" && ruaVar == "" && compVar == "" && cepVar == "" && 
         bairroVar == "" && cidadeVar == ""; //Todos os campos estão vazios
 
         //Validações (Se verdadeiro, campo incorreto)
         var nome_vazio = nomeVar == '';//Nome está vazio
         var valida_telefone = telVar.length <= 8 || telVar.length >= 12 || isNaN(telVar); //Telefone com menos de 9 ou maior que 11 dígitos
-        var valida_setor = NumSetorVar = "" || isNaN(NumSetorVar);//Número de setores está vazio ou não é um número
+        var valida_setor = numSetorVar == "" || isNaN(numSetorVar);//Número de setores está vazio ou não é um número
         var rua_vazio = ruaVar == "";//Rua está vazio
         var verif_cep = cepVar.length != 8 || isNaN(cepVar); //CEP menor que 8 dígitos
         var bairro_vazio = bairroVar == "";//Bairro está vazio
