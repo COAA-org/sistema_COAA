@@ -282,14 +282,17 @@ const btnNext = document.getElementById('next-button');
 
 let currentSlide = 0;
 
+// Esconde item com propriedade ON
 function hideSlider() {
   slider.forEach(item => item.classList.remove('on'))
 }
 
+// Mostra item com propriedade ON
 function showSlider() {
   slider[currentSlide].classList.add('on')
 }
 
+// Vai para o próximo
 function nextSlider() {
   hideSlider()
   if(currentSlide === slider.length -1) {
@@ -300,6 +303,7 @@ function nextSlider() {
   showSlider()
 }
 
+// Vai para o anterior
 function prevSlider() {
   hideSlider()
   if(currentSlide === 0) {

@@ -15,6 +15,7 @@ body {
     font-family: 'Barlow';
     border-bottom: #000 2px solid;
     position: fixed;
+    z-index: 1;
 }
 
 .header .logo {
@@ -328,7 +329,7 @@ a {
     width: 100%;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
+    gap: 3rem;
     height: 400px;
     width: 1100px;
     border-radius: 50px;
@@ -339,7 +340,6 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    display: flex;
     flex-direction: row;
     width: 700px;
   }
@@ -358,6 +358,7 @@ a {
   
   .on {
     opacity: 1;
+    margin-left: 500px;
   }
   
   #prev-button, #next-button {
@@ -389,7 +390,7 @@ a {
     cursor: pointer;
 }
 
-  .time .slider{
+.time .slider{
     width: 20%;
     margin-left: 4%;
     margin-right: 4%;
