@@ -38,7 +38,8 @@ idEndereco INT PRIMARY KEY AUTO_INCREMENT,
 lougradouro VARCHAR(60),
 bairro VARCHAR(60),
 estado CHAR(2),
-cep CHAR(9)
+cidade VARCHAR(50),
+cep CHAR(8)
 );
 
 CREATE TABLE Fabrica

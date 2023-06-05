@@ -69,8 +69,8 @@ function cadastrarFabrica(nome, telefone, numero, rua, complemento, estado, cep,
     //////////////////////////////////
     // ALTERAR - COLOCAR LIGAÇÃO COM A CHAVE ESTRANGEIRA DA TABELA ENDEREÇO
     ///////////////////////////////////
-    var instrucaoEnd = `INSERT INTO Endereco (lougradouro, bairro, cidade, estado, cep)
-    SELECT * FROM (SELECT '${rua}', '${bairro}', '${cidade}', '${estado}', '${cep}') AS tmp
+    var instrucaoEnd = `INSERT INTO Endereco (lougradouro, bairro, estado, cidade, cep)
+    SELECT * FROM (SELECT '${rua}', '${bairro}', '${estado}', '${cidade}', '${cep}') AS tmp
     WHERE NOT EXISTS (
         SELECT cep FROM Endereco WHERE cep = '${cep}'
     ) LIMIT 1;`;
