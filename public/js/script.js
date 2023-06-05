@@ -314,3 +314,17 @@ btnNext.addEventListener('click', nextSlider)
 btnPrev.addEventListener('click', prevSlider)
 
 setInterval(nextSlider, 3000)
+
+window.addEventListener("scroll", function () {
+
+    var menu = document.getElementById("itens");
+
+    if (window.pageYOffset > 0) {
+        menu.style.position = 'fixed';
+        menu.style.marginTop = '10px';
+    }
+    else {
+        menu.style.position = 'static';
+        menu.style.marginTop = '10px';
+    }
+});
