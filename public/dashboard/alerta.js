@@ -1,7 +1,7 @@
 var alertas = [];
-
-function obterdados(idLocal) {
-    fetch(`/medidas/tempo-real/${idLocal}`)
+window.onload = obterdados();
+function obterdados() {
+    fetch(`/medidas/getDados/1`)
         .then(resposta => {
 
             if (resposta.ok) {
@@ -9,7 +9,7 @@ function obterdados(idLocal) {
 
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                    alertar(resposta, idLocal);
+                    alertar(resposta, 1);
                 });
             } else {
 
@@ -21,11 +21,11 @@ function obterdados(idLocal) {
         });
 
 }
+var fluxo;
+function alertar(resposta, idSensor) {
+    fluxo = resposta[0].Fluxo;
 
-function alertar(resposta, idLocal) {
-    var fluxo = resposta[0].temperatura;
-
-    console.log(idLocal === resposta[0].fkFabrica)
+    console.log(idSensor === resposta[0].fkSensor)
     
     var grauDeAviso ='';
 
@@ -39,7 +39,7 @@ function alertar(resposta, idLocal) {
 
     var classe_fluxo = 'cor-alerta';
 
-    if (temp >= limites.alto_fluxo) {
+    if (fluxo >= limites.alto_fluxo) {
         classe_fluxo = 'cor-alerta perigo-quente';
         grauDeAviso = 'perigo quente'
         grauDeAvisoCor = 'cor-alerta perigo-quente'
@@ -49,51 +49,52 @@ function alertar(resposta, idLocal) {
         classe_fluxo = 'cor-alerta alerta-quente';
         grauDeAviso = 'alerta quente'
         grauDeAvisoCor = 'cor-alerta alerta-quente'
-        exibirAlerta(fluxo, idLocal, grauDeAviso, grauDeAvisoCor)
+        exibirAlerta(fluxo, idSensor, grauDeAviso, grauDeAvisoCor)
     }
     else if (fluxo < limites.alto_fluxo && fluxo > limites.medio_fluxo) {
         classe_fluxo = 'cor-alerta ideal';
-        removerAlerta(idLocal);
+        removerAlerta(idSensor);
     }
     else if (fluxo <= limites.medio_fluxo && fluxo > limites.baixo_fluxo) {
         classe_fluxo = 'cor-alerta alerta-frio';
         grauDeAviso = 'alerta frio'
         grauDeAvisoCor = 'cor-alerta alerta-frio'
-        exibirAlerta(fluxo, idLocal, grauDeAviso, grauDeAvisoCor)
+        exibirAlerta(fluxo, idSensor, grauDeAviso, grauDeAvisoCor)
     }
-    else if (temp <= limites.baixo_fluxo) {
+    else if (fluxo <= limites.baixo_fluxo) {
         classe_fluxo = 'cor-alerta perigo-frio';
         grauDeAviso = 'perigo frio'
         grauDeAvisoCor = 'cor-alerta perigo-frio'
-        exibirAlerta(fluxo, idLocal, grauDeAviso, grauDeAvisoCor)
+        exibirAlerta(fluxo, idSensor, grauDeAviso, grauDeAvisoCor)
     }
 
     var card;
 
-    if (idLocal == 1) {
-        temp_aquario_1.innerHTML = temp + "°C";
+    if (idSensor == 1) {
+        alerta.innerHTML = fluxo + "Passagens";
         card = card_1
-    } else if (idLocal == 2) {
-        temp_aquario_2.innerHTML = temp + "°C";
-        card = card_2
-    } else if (idLocal == 3) {
-        temp_aquario_3.innerHTML = temp + "°C";
-        card = card_3
-    } else if (idLocal == 4) {
-        temp_aquario_4.innerHTML = temp + "°C";
-        card = card_4
     }
+    // } else if (idLocal == 2) {
+    //     temp_aquario_2.innerHTML = temp + "°C";
+    //     card = card_2
+    // } else if (idLocal == 3) {
+    //     temp_aquario_3.innerHTML = temp + "°C";
+    //     card = card_3
+    // } else if (idLocal == 4) {
+    //     temp_aquario_4.innerHTML = temp + "°C";
+    //     card = card_4
+    // }
 
     card.className = classe_fluxo;
 }
 
-function exibirAlerta(fluxo, idLocal, grauDeAviso, grauDeAvisoCor) {
-    var indice = alertas.findIndex(item => item.idLocal == idLocal);
+function exibirAlerta(fluxo, idSensor, grauDeAviso, grauDeAvisoCor) {
+    var indice = alertas.findIndex(item => item.idSensor == idSensor);
 
     if (indice >= 0) {
-        alertas[indice] = { idLocal, fluxo, grauDeAviso, grauDeAvisoCor }
+        alertas[indice] = { idSensor, fluxo, grauDeAviso, grauDeAvisoCor }
     } else {
-        alertas.push({ idLocal, fluxo, grauDeAviso, grauDeAvisoCor });
+        alertas.push({ idSensor, fluxo, grauDeAviso, grauDeAvisoCor });
     }
 
     exibirCards();
@@ -102,8 +103,8 @@ function exibirAlerta(fluxo, idLocal, grauDeAviso, grauDeAvisoCor) {
 // que pode ser inserido clicando com o seu teclado em alt+255 ou pelo código adicionado acima.
 }
 
-function removerAlerta(idLocal) {
-    alertas = alertas.filter(item => item.idLocal != idLocal);
+function removerAlerta(idSensor) {
+    alertas = alertas.filter(item => item.idSensor != idSensor);
     exibirCards();
 }
  
@@ -116,11 +117,11 @@ function exibirCards() {
     }
 }
 
-function transformarEmDiv({ idLocal, fluxo, grauDeAviso, grauDeAvisoCor }) {
+function transformarEmDiv({ idSensor, fluxo, grauDeAviso, grauDeAvisoCor }) {
     return `<div class="mensagem-alarme">
     <div class="informacao">
     <div class="${grauDeAvisoCor}">&#12644;</div> 
-     <h3>Aquário ${idLocal} está em estado de ${grauDeAviso}!</h3>
+     <h3>Aquário ${idSensor} está em estado de ${grauDeAviso}!</h3>
     <small>Temperatura ${fluxo}.</small>   
     </div>
     <div class="alarme-sino"></div>
