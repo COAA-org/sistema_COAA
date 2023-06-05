@@ -40,6 +40,48 @@ h1{
     margin-top: 10px;
 }
 
+.botoesUsuarioELocal {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    margin: 5%;
+}
+
+.botoesUsuarioELocal a {
+    text-decoration: none;
+    color: white;
+}
+
+.verUsuarios {
+    background-color:#E6005A;
+    color: white;
+    height: 2.7vw;
+    width: 21vh;
+    border: 1px solid black;
+    border-radius: 20px;
+    font-size: 17px;
+    font-weight: 795;
+    cursor: pointer;
+    box-shadow: 1px 2px black;
+    margin: 5%;
+    margin-left: 15%;
+}
+
+.novoLocal {
+    background-color:#E6005A;
+    color: white;
+    height: 2.9vw;
+    width: 21vh;
+    border: 1px solid black;
+    border-radius: 20px;
+    font-size: 17px;
+    font-weight: 795;
+    cursor: pointer;
+    box-shadow: 1px 2px black;
+    margin: 5%;
+    margin-left: 15%;
+}
+
 .header{
     display: flex;
     flex-direction: row;

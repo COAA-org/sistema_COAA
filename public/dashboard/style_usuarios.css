@@ -37,12 +37,19 @@
     width: 1050px;
 }
 
+.addUsuario {
+    border: 2px solid white;
+    width: 3vw;
+    height: 6vh;
+    border-radius: 50%;
+}
+
 .imagem-perfil{
     margin-right: 10px;
 }
 
 .botaoVoltar {
-    background-color:#B4FF5C;
+    background-color:#E6005A;
     color: black;
     height: 40px;
     width: 130px;
@@ -52,6 +59,11 @@
     font-weight: 900;
     cursor: pointer;
     box-shadow: 2px 3px black;
+}
+
+.botaoVoltar a {
+    text-decoration: none;
+    color: white;
 }
 
 .retaSeparar {
@@ -64,13 +76,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 35px;
     background-color:#E6005A;
     color: white;
-    height: 40px;
+    height: 44px;
     width: 135px;
     border: 1px solid black;
-    border-radius: 20px;
+    border-radius: 25px;
     font-size: 20px;
     font-weight: 900;
     cursor: pointer;
@@ -85,6 +97,7 @@
 
 .posicaoBotaoAdd p {
     font-size: 35px;
+    margin-bottom: 8%;
 }
 
 .listaUsuario {

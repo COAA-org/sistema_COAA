@@ -10,8 +10,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
     <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
-    <title>Dashboard Visão Geral</title>
-    <link rel="stylesheet" href="style_usuarios.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -24,14 +22,16 @@
             <button class="botaoAddUsuario" onclick="cadastUser()">
                 <div class="posicaoBotaoAdd">
                     <p>+</p>
-                    <img class="imagem-perfil" src="../img/login.png" alt="Foto-usuario" width="35px" height="35px">
+                    <div class="addUsuario">
+                        <img class="imagem-perfil" src="../img/usuario.png" alt="Foto-usuario" width="35px" height="35px">
+                    </div>
                 </div>
             </button>
         </div>
 
         <div class="conteudo">
             <div class="header">
-                <button class="botaoVoltar">Voltar</button>
+                <button class="botaoVoltar"> <a href="dashboard.html">Voltar</a> </button>
             </div>
 
             <div>
