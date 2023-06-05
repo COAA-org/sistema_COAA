@@ -231,6 +231,7 @@ function cadastrarFabrica(req, res) {
     var cep = req.body.cepServer;
     var bairro = req.body.bairroServer;
     var cidade = req.body.cidadeServer;
+    var estado = req.body.estadoServer;
     //var setores = req.body.setoresServer;
 
 
@@ -253,7 +254,7 @@ function cadastrarFabrica(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrarFabrica(nome, telefone, numero, rua, complemento, cep, bairro, cidade)
+        usuarioModel.cadastrarFabrica(nome, telefone, numero, rua, complemento, cep, bairro, cidade, estado)
             .then(
                 function (resultado) {
                     res.json(resultado);

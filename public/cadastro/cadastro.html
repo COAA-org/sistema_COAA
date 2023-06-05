@@ -114,11 +114,6 @@
                         <input type="text" id="ipt_telefone">
                     </div>
 
-                    <!-- <div>
-                        <label class="label">Whatsapp:</label>
-                        <input type="text" id="ipt_wpp">
-                    </div> -->
-
                     <div>
                         <label class="label">Email:</label>
                         <input type="email" id="ipt_email">
@@ -530,7 +525,7 @@
         var bairroVar = ipt_bairroFabrica.value;
         var cidadeVar = ipt_cidadeFabrica.value;
         var numVar = ipt_numeroFabrica.value;
-        //var estadoVar = ipt_EstadoFabrica.value;
+        var estadoVar = ipt_EstadoFabrica.value;
         
         //Verificação de campos vazios
         var valida_vazio = nomeVar == "" && telVar == "" && numSetorVar == "" && numVar == "" && ruaVar == "" && compVar == "" && cepVar == "" && 
@@ -542,9 +537,11 @@
         var valida_setor = numSetorVar == "" || isNaN(numSetorVar);//Número de setores está vazio ou não é um número
         var rua_vazio = ruaVar == "";//Rua está vazio
         var verif_cep = cepVar.length != 8 || isNaN(cepVar); //CEP menor que 8 dígitos
+        var verif_estado = estadoVar.length < 2 || estadoVar.length > 2;
         var bairro_vazio = bairroVar == "";//Bairro está vazio
         var cidade_vazio = cidadeVar == "";//Cidade está vazio
         var numero_vazio = numVar == "";//Número está vazio
+        var estado_vazio = estadoVar == "";//Estado está vazio
         
         if (valida_vazio) {
             alert("Todos os campos estão vazios, preencha-os corretamente!");
@@ -552,6 +549,11 @@
         } else {
             if (nome_vazio) {
                 alert("Nome deve ser informado corretamente!");
+                return false;
+            }
+
+            if (estado_vazio) {
+                alert("O estado deve ser informado corretamente!");
                 return false;
             }
 
@@ -572,6 +574,11 @@
 
             if (verif_cep) {
                 alert("CEP deve ser informado corretamente! (Deve conter 8 dígitos)");
+                return false;
+            }
+
+            if (verif_estado) {
+                alert("Estado inválido, siga o modelo: UF)");
                 return false;
             }
 
@@ -607,7 +614,8 @@
                 compServer: compVar,
                 cepServer: cepVar,
                 bairroServer: bairroVar,
-                cidadeServer: cidadeVar
+                cidadeServer: cidadeVar,
+                estadoServer: estadoVar
             })
         }).then(function (resposta) {
 
