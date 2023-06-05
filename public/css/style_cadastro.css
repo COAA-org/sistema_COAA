@@ -38,6 +38,22 @@ html, body {
     flex-wrap: wrap;
 }
 
+.margemCadastro{
+    margin-left: 30px; 
+    flex-direction: row;
+    display: flex;
+}
+
+.linha{
+    margin-left: 30px;
+}
+
+.linhaTerceira{
+    display: flex;
+    flex-direction: row;
+    margin-left: 60%;
+}
+
 .form .inputContainer {
     width: 50%;
     margin: 1% 5%;
@@ -76,10 +92,20 @@ input{
 
 /*Botão*/
 .btn {
-    width: 90%;
     margin-top: 10%;
     display: flex;
-    justify-content: flex-end;
+    margin-left: 5%;
+}
+
+.btnVoltar {
+    margin-top: 10%;
+    display: flex;
+    margin-left: 75%;
+}
+
+.btnVoltar button a {
+    text-decoration: none;
+    color: white;
 }
 
 button {
@@ -97,3 +123,7 @@ button {
 
 /*Fim botão*/
 
+.linha{
+    display: flex;
+    flex-direction: row;
+}

@@ -58,10 +58,16 @@
 
                 </div>
 
-                <div class="btn">
-                    <button onclick="cadastraUser()">Avançar</button>
-                </div>
+                <div class="linha">
+                    <div class="btnVoltar">
+                        <button><a href="../index.html">Voltar</a></button>
+                    </div>
 
+                    <div class="btn">
+                        <button onclick="cadastraUser()">Avançar</button>
+                    </div>
+                </div>
+                    
             </div>
 
         </div>
@@ -80,52 +86,53 @@
 
         <!--Formulário-->
         <div class="form">
+            <div class="linha segunda">
+                <div class="formBlock">
+                    <h1>Informações da empresa</h1>
+                    <div class="inputContainer">
 
-            <div class="formBlock">
-                <h1>Informações da empresa</h1>
-                <div class="inputContainer">
-
-                    <div>
-                        <label class="label">Nome da empresa:</label>
-                        <input type="text" id="ipt_nomeEmpresa"></label>
-                    </div>
-
-
-                    <div>
+                        <div>
+                            <label class="label">Nome da empresa:</label>
+                            <input type="text" id="ipt_nomeEmpresa"></label>
+                        </div>
+                        
+                        
+                        <div>
                         <label class="label">Descrição:</label>
                         <input type="text" id="ipt_descricaoEmpresa">
                     </div>
-
-
+                    
+                    
                     <div>
                         <label class="label">CNPJ:</label>
                         <input type="text" id="ipt_cnpj">
                     </div>
-
+                    
                 </div>
             </div>
-
+            
             <div class="formBlock">
                 <h1>Contato</h1>
                 <div class="inputContainer">
-
+                    
                     <div>
                         <label class="label">Telefone:</label>
                         <input type="text" id="ipt_telefone">
                     </div>
-
+                    
                     <div>
                         <label class="label">Email:</label>
                         <input type="email" id="ipt_email">
                     </div>
-
+                    
                     <div>
                         <label class="label">Confirmar email:</label>
                         <input type="email" id="ipt_emailConfirm">
                     </div>
-
+                    
                 </div>
             </div>
+        </div>
 
             <div class="formBlock">
                 <h1>Endereço</h1>
@@ -134,12 +141,12 @@
                         <label class="label">Rua:</label>
                         <input type="text" id="ipt_rua">
                     </div>
-
+                    
                     <div>
                         <label class="label">Número de endereço:</label>
                         <input type="number" id="ipt_numero">
                     </div>
-
+                    
                     <div>
                         <label class="label">Complemento:</label>
                         <input type="text" id="ipt_complemento">
@@ -149,7 +156,7 @@
                         <label class="label">CEP:</label>
                         <input type="text" id="ipt_cep">
                     </div>
-
+                    
                     <div>
                         <label class="label">Bairro:</label>
                         <input type="text" id="ipt_bairro">
@@ -159,19 +166,25 @@
                         <label class="label">Cidade:</label>
                         <input type="text" id="ipt_cidade">
                     </div>
-
+                    
                     <div>
                         <label class="label">Estado:</label>
                         <input type="text" id="ipt_estado">
                     </div>
                 </div>
                 <!--Fim Formulário-->
-                <div class="btn">
-                    <button onclick="cadastraEmpresa()">Avançar</button>
-                </div>
             </div>
 
-        </div>
+            <div class="linhaTerceira ">
+                <div class="btnVoltar">
+                    <button><a href="../index.html">Voltar</a></button>
+                </div>
+
+                <div class="btn">
+                    <button onclick="cadastraUser()">Avançar</button>
+                </div>
+            </div>
+            </div>
 
     </div>
 
@@ -186,21 +199,21 @@
 
         <!--Formulário-->
         <div class="form">
-
-            <div class="formBlock">
-                <h1>Informações da fábrica</h1>
-                <div class="inputContainer">
-                    <div>
-                        <label class="label">Nome da fábrica:</label>
-                        <input type="text" id="ipt_nomefabrica"></label>
+            <div class="margemCadastro">
+                <div class="formBlock">
+                    <h1>Informações da fábrica</h1>
+                    <div class="inputContainer">
+                        <div>
+                            <label class="label">Nome da fábrica:</label>
+                            <input type="text" id="ipt_nomefabrica"></label>
+                        </div>
+                        <div>
+                            <label class="label">Telefone:</label>
+                            <input type="text" id="ipt_telefoneFabrica">
+                        </div>
                     </div>
-                    <div>
-                        <label class="label">Telefone:</label>
-                        <input type="text" id="ipt_telefoneFabrica">
-                    </div>
-                </div>
             </div>
-
+            
             <div class="formBlock">
                 <br><br>
                 <h1>Setores</h1>
@@ -211,7 +224,8 @@
                     </div>
                 </div>
             </div>
-
+        </div>
+            
             <div class="formBlock">
                 <h1>Endereço da fábrica</h1>
                 <div class="inputContainer">
@@ -245,8 +259,14 @@
                     </div>
                 </div>
                 <!--Fim Formulário-->
-                <div class="btn">
-                    <button onclick="cadastraFabrica()">Avançar</button>
+                <div class="linha">
+                    <div class="btnVoltar">
+                        <button><a href="../index.html">Voltar</a></button>
+                    </div>
+
+                    <div class="btn">
+                        <button onclick="cadastraUser()">Avançar</button>
+                    </div>
                 </div>
             </div>
 
