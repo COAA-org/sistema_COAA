@@ -160,7 +160,7 @@ a {
     color: #fff;
 }
 
-#btn_saibaMais {
+/* #btn_saibaMais {
     width: 200px;
     height: 40px;
     padding: 5px;
@@ -168,10 +168,50 @@ a {
     font-family: 'Barlow';
     font-weight: bold;
     font-size: medium;
-    box-shadow: 5px 5px #000;
-    border: 0px;
+    /* box-shadow: 5px 5px #000; */
+    /* border: 0px;
     border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+} */ 
+
+.button-32 {
+    width: 160px;
+    height: 40px;
+    font-family: 'Barlow';
+    font-weight: bold;
+    font-size: medium;
+    background-color: #B4FF5C;
+  border-radius: 12px;
+  color: #000;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px 15px;
+  text-align: center;
+  transition: 200ms;
+  box-sizing: border-box;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
+
+.button-32:not(:disabled):hover,
+.button-32:not(:disabled):focus {
+  outline: 0;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(0,0,0,.2), 0 3px 8px 0 rgba(0,0,0,.15);
+}
+
+.button-32:disabled {
+  filter: saturate(0.2) opacity(0.5);
+  -webkit-filter: saturate(0.2) opacity(0.5);
+  cursor: not-allowed;
+}
+
+
+
+
 
 .banner .container p {
     font-size: 60px;
