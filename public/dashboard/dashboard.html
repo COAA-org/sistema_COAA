@@ -24,7 +24,7 @@
             <div class="parteVerde">
                 <img class="logo" src="../img/Logo.png" alt="Logo da parte verde" width="200" height="50">
                 <div class="setores">
-                    <div class="geral"><b><u>Visão Geral</u></b></div>
+                    <div class="geral"><b><u>Entrada Principal</u></b></div>
                     <br>
                     <div class="setor1">
                         <h1>1° Setor</a></h1>
@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div>
-                    <h1 class="titulo">Visão Geral - Hoje</h1>
+                    <h1 class="titulo" id="tit_graf">Entrada Principal - Hoje</h1>
                 </div>
                 <div class="quadrados">
                     <div class="organizar-quadrados">
@@ -98,7 +98,7 @@
 
                         <div class="alertas">
                             <p><b>Alertas!</b></p>
-                            <div class="caixa-alerta">
+                            <div class="caixa-alerta" id="caixa_alertas">
                                 <p id="alerta">Super lotação no refeitório 2!</p>
 
                             </div>
@@ -164,7 +164,10 @@
 <script>
     maiorHoraPico()
     h1_user.innerHTML = sessionStorage.NOME_USUARIO;
-    h3_empresa.innerHTML = sessionStorage.NOME_EMPRESA;
+    h3_empresa.innerHTML = sessionStorage.NOME_EMPRESA; 
+    var date = new Date();
+    tit_graf.innerHTML += ' ' + date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear();
+
 </script>
 
 </script>

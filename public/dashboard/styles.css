@@ -145,7 +145,7 @@ h1{
 .caixa-alerta{
     border: rgba(0, 0, 0, 0.5) 1px solid;
     border-radius: 10px;
-    height: 30px;
+    height: fit-content;
     margin-top: 10px;
     padding: 10px;
     text-align: center;
@@ -249,3 +249,34 @@ margin-top: 50px;
 .setor1 p a:hover{
     border-bottom: 3px solid #396a01;
 }
+.cor-alerta {
+    width: 9%;
+    height: 30%;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .perigo-frio {
+    background-color: #5c6bc0;
+  }
+  
+  .perigo-quente {
+    background-color: #ff7043;
+  }
+  
+  .alerta-frio {
+    background-color: #42a5f5;
+  }
+  
+  .alerta-quente {
+    background-color: #ffee58;
+  }
+  
+  .ideal {
+    background-color: #9ccc65;
+  }
+
+  .informacao{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

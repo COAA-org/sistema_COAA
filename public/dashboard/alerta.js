@@ -41,13 +41,13 @@ function alertar(resposta, idSensor) {
 
     if (fluxo >= limites.alto_fluxo) {
         classe_fluxo = 'cor-alerta perigo-quente';
-        grauDeAviso = 'perigo quente'
+        grauDeAviso = 'perigo superlotação'
         grauDeAvisoCor = 'cor-alerta perigo-quente'
         exibirAlerta(fluxo, idLocal, grauDeAviso, grauDeAvisoCor)
     }
     else if (fluxo < limites.alto_fluxo && fluxo >= limites.ideal_fluxo) {
         classe_fluxo = 'cor-alerta alerta-quente';
-        grauDeAviso = 'alerta quente'
+        grauDeAviso = 'alerta alto fluxo'
         grauDeAvisoCor = 'cor-alerta alerta-quente'
         exibirAlerta(fluxo, idSensor, grauDeAviso, grauDeAvisoCor)
     }
@@ -57,23 +57,23 @@ function alertar(resposta, idSensor) {
     }
     else if (fluxo <= limites.medio_fluxo && fluxo > limites.baixo_fluxo) {
         classe_fluxo = 'cor-alerta alerta-frio';
-        grauDeAviso = 'alerta frio'
+        grauDeAviso = 'alerta baixo fluxo'
         grauDeAvisoCor = 'cor-alerta alerta-frio'
         exibirAlerta(fluxo, idSensor, grauDeAviso, grauDeAvisoCor)
     }
     else if (fluxo <= limites.baixo_fluxo) {
         classe_fluxo = 'cor-alerta perigo-frio';
-        grauDeAviso = 'perigo frio'
+        grauDeAviso = 'perigo baixo fluxo'
         grauDeAvisoCor = 'cor-alerta perigo-frio'
         exibirAlerta(fluxo, idSensor, grauDeAviso, grauDeAvisoCor)
     }
 
     var card;
 
-    if (idSensor == 1) {
-        alerta.innerHTML = fluxo + "Passagens";
-        card = card_1
-    }
+    // if (idSensor == 1) {
+    //     alerta.innerHTML = fluxo + "Passagens";
+    //     card = card_1
+    // }
     // } else if (idLocal == 2) {
     //     temp_aquario_2.innerHTML = temp + "°C";
     //     card = card_2
@@ -118,12 +118,12 @@ function exibirCards() {
 }
 
 function transformarEmDiv({ idSensor, fluxo, grauDeAviso, grauDeAvisoCor }) {
-    return `<div class="mensagem-alarme">
+    return caixa_alertas.innerHTML += `<div class="mensagem-alarme">
     <div class="informacao">
     <div class="${grauDeAvisoCor}">&#12644;</div> 
-     <h3>Aquário ${idSensor} está em estado de ${grauDeAviso}!</h3>
-    <small>Temperatura ${fluxo}.</small>   
-    </div>
     <div class="alarme-sino"><img src="https://3.bp.blogspot.com/-L-2pZJfZceY/VzUSHQMU-tI/AAAAAAAAUlg/B2lXYsXhPskIBCZLTb5z0lSlLgjg2LKowCLcB/s1600/Gifs%2Banimados%2BSino%2B2.gif" style="width: 60px; height: 60px;"></div>
+     <span style="font-size: 85%;">Fluxo Atual: ${fluxo}<br>
+     O local está em estado de ${grauDeAviso}!</span> 
+    </div>
     </div>`;
 }
