@@ -106,29 +106,33 @@
         else {//Alguns campos preenchidos
             if (nome_vazio) {
                 alert("Nome deve ser informado corretamente!")
+                return false;
             }
 
             if (email_vazio || verif_emailFunc) {
                 alert("E-mail deve ser informado corretamente!")
+                return false;
             }
 
             if (cpf_vazio || verif_cpf) {
                 alert("CPF deve ser informado corretamente!")
+                return false;
             }
 
             if (senha_vazio || verif_senha) {
                 alert("Senha inválida! Sua senha deve ser maior que 6 dígitos!")
+                return false;
             }
 
             if (chkSenha_vazio){
                 alert("Confirme sua senha!")
+                return false;
             }
 
             if (verif_chkSenha){
                 alert("Confirmação da senha incompatível!")
+                return false;
             }
-
-            return false;
         }
 
         // Enviando o valor da nova input
