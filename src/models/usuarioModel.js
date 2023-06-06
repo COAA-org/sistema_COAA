@@ -94,6 +94,18 @@ function cadastrarAdm(nome, senha, email, cpf) {
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
+function cadastrarFkAdmEmp(idFunc, cnpj) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarAdm():", idFunc, cnpj);
+    //alterar aqui para os parâmetros da tabela 
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+        UPDATE usuario SET fkEmpresa=(SELECT idEmpresa FROM Empresa WHERE cnpj='${cnpj}')
+        WHERE idCadLog=${idFunc};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 
 function cadastrarFunc(nome, senha, email, cpf, fkEmpresa) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarAdm():", nome, email, senha, cpf, fkEmpresa);
@@ -132,6 +144,7 @@ module.exports = {
     cadastrarEmpresa,
     cadastrarFabrica,
     cadastrarFunc,
+    cadastrarFkAdmEmp,
     deletarFunc,
     listar,
     listarFuncs,
