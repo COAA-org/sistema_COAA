@@ -38,6 +38,14 @@ html, body {
     flex-wrap: wrap;
 }
 
+.formContatoEmpresa {
+    margin-left: -63%;
+}
+
+.formSetor {
+    margin-left: -93%;
+}
+
 .margemCadastro{
     margin-left: 30px; 
     flex-direction: row;
