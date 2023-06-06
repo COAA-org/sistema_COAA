@@ -1,5 +1,5 @@
 var alertas = [];
-window.onload = obterdados();
+window.onload = obterdados(),atualizacaoPeriodica();
 function obterdados() {
     fetch(`/medidas/getDados/1`)
         .then(resposta => {
@@ -118,7 +118,8 @@ function exibirCards() {
 }
 
 function transformarEmDiv({ idSensor, fluxo, grauDeAviso, grauDeAvisoCor }) {
-    return caixa_alertas.innerHTML += `<div class="mensagem-alarme">
+    
+    return caixa_alertas.innerHTML = `<div class="mensagem-alarme">
     <div class="informacao">
     <div class="${grauDeAvisoCor}">&#12644;</div> 
     <div class="alarme-sino"><img src="https://3.bp.blogspot.com/-L-2pZJfZceY/VzUSHQMU-tI/AAAAAAAAUlg/B2lXYsXhPskIBCZLTb5z0lSlLgjg2LKowCLcB/s1600/Gifs%2Banimados%2BSino%2B2.gif" style="width: 60px; height: 60px;"></div>
@@ -126,4 +127,10 @@ function transformarEmDiv({ idSensor, fluxo, grauDeAviso, grauDeAvisoCor }) {
      O local está em estado de ${grauDeAviso}!</span> 
     </div>
     </div>`;
+}
+
+function atualizacaoPeriodica() {
+    
+    obterdados();
+    setTimeout(atualizacaoPeriodica, 12000);
 }
