@@ -55,7 +55,7 @@ function plotarGrafico(resposta) {
     let dados = {
         labels: labels,
         datasets: [{
-            label: 'Fluxo/Horas',
+            label: 'Fluxo/Hora',
             data: [],
             fill: false,
             backgroundColor: ['rgb (0, 255, 0)'],
@@ -74,7 +74,7 @@ function plotarGrafico(resposta) {
         labels.push(registro.inicio_contagem);
         // dados.datasets[0].data.push(registro.Fluxo);
         dados.datasets.push({data: registro.Fluxo});
-        
+
     }
     console.log(registro)
     console.log('----------------------------------------------')
@@ -146,12 +146,12 @@ function atualizarGrafico(dados, myChart) {
                 }
 
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 5000);
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 120000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-            proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 5000);
+            proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 120000);
         }
     })
         .catch(function (error) {
