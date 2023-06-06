@@ -1,11 +1,3 @@
--- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
--- Você precisa executar os comandos no banco de dados para criar as tabelas,
--- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
-
-/*
-comandos para mysql - banco local - ambiente de desenvolvimento
-*/
-
 create user coaa_adm1 identified by '1234567';
 
 grant all privileges on COAA.* to coaa_adm1;
@@ -13,7 +5,6 @@ grant all privileges on COAA.* to coaa_adm1;
 grant usage on COAA.* to coaa_adm1;
 
 flush privileges;
-
 
 CREATE DATABASE COAA;
 USE COAA;
@@ -92,9 +83,7 @@ FOREIGN KEY(fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
 
 ALTER TABLE Empresa ADD CONSTRAINT FOREIGN KEY(fkEndereco) REFERENCES Endereco(idEndereco);
-
 ALTER TABLE Fabrica ADD CONSTRAINT FOREIGN KEY(fkEndereco) REFERENCES Endereco(idEndereco);
-
 ALTER TABLE Fabrica ADD CONSTRAINT FOREIGN KEY(fkEmpresa) REFERENCES Empresa(idEmpresa);
 
 SELECT * FROM (SELECT 'cep') AS tmp
@@ -102,18 +91,27 @@ WHERE NOT EXISTS (
     SELECT cep FROM Endereco WHERE cep = 'Galera'
 ) LIMIT 1;
 
-UPDATE Empresa set cnpj = '89655215000154' where idEmpresa=2;
-
 UPDATE Usuario
 	SET fkEmpresa = (SELECT idEmpresa FROM Empresa WHERE cnpj = '89655215000154')
 		WHERE idCadLog = (SELECT idCadLog as id FROM (SELECT idCadLog FROM Usuario  where email='sonoda.lari@gmail.com') as p);
+
 TRUNCATE Usuario;
 
-DELETE FROM Endereco WHERE idEndereco in (1,2);
-DELETE FROM Empresa WHERE idEmpresa in (5);
-DELETE FROM Usuario WHERE idCadLog in (2,7);
+-- =================Usuário de Login Rápido (Lembrar)======================
 
-INSERT INTO LocalFab VALUES (null, 'geral', 'banheiros', null);
+INSERT INTO Usuario(nome, email, senha, cpf, fkEmpresa) VALUES
+('Felipe Alves', 'Felipe@email.com', '1234567', '12345678910', null);
+INSERT INTO Empresa(cnpj, nomeEmpresa, telefone, email, numeroEndereco, fkEndereco) VALUES
+('11111111111112', 'Sphack Ltda.', '12345678910', 'Sphack@email.com', 123, null);
+INSERT INTO Endereco(lougradouro, bairro, estado, cidade, cep) VALUES
+('Rua do Limoeiro', 'Bairro do Limoeiro', 'SP', 'São Paulo', '12345678');
+INSERT INTO Fabrica(nomeFabrica, Telefone, fkEmpresa, fkEndereco, numeroEndereco) VALUES
+('Fábrica Sphack', '10987654321', 1, 1, 321);
+
+UPDATE Usuario SET fkEmpresa = 1 WHERE idCadLog = 1;
+UPDATE Empresa SET fkEndereco = 1 WHERE idEmpresa = 1;
+
+-- =====================================================================
 
 INSERT INTO Sensores VALUES (null, 'TRCT5000', current_date(), 1);
 
@@ -124,6 +122,9 @@ INSERT INTO Registro VALUES (null, 40, current_timestamp(), 1);
 INSERT INTO Registro VALUES (null, 50, current_timestamp(), 1);
 INSERT INTO Registro VALUES (null, 80, current_timestamp(), 1);
 INSERT INTO Registro VALUES (null, 78, current_timestamp(), 1);
+
+
+-- ===============SELECTS para apoio=================
 
 SELECT saidaDado, dataHora FROM Registro JOIN Sensores ON fkSensores=idSensores
 										JOIN LocalFab ON fkLocal=idLocal;
@@ -138,21 +139,3 @@ SELECT * FROM LocalFab;
 SELECT * FROM Sensores;
 SELECT * FROM Registro;
 SELECT * FROM Usuario;
-
-/*
-comandos para criar usuário em banco de dados azure, sqlserver,
-com permissão de insert + update + delete + select
-*/
-
-CREATE USER [usuarioParaAPIWebDataViz_datawriter_datareader]
-WITH PASSWORD = '#Gf_senhaParaAPIWebDataViz',
-DEFAULT_SCHEMA = dbo;
-
-EXEC sys.sp_addrolemember @rolename = N'db_datawriter',
-@membername = N'usuarioParaAPIWebDataViz_datawriter_datareader';
-
-EXEC sys.sp_addrolemember @rolename = N'db_datareader',
-@membername = N'usuarioParaAPIWebDataViz_datawriter_datareader';
-
-USE COAA;
-ALTER TABLE Endereco ADD COLUMN cidade varchar(50);
