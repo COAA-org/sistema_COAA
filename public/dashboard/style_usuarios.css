@@ -1,10 +1,10 @@
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.parteVerde{
+.parteVerde {
     background-color: #B4FF5C;
     height: 100vh;
     width: 220px;
@@ -13,11 +13,11 @@
     flex-direction: column;
 }
 
-.divGrande{
+.divGrande {
     display: flex;
 }
 
-.logo{
+.logo {
     padding: 5px;
 }
 
@@ -26,14 +26,14 @@
     padding: 5px;
 }
 
-.header{
+.header {
     display: flex;
     flex-direction: row;
     justify-content: end;
     padding: 15px;
 }
 
-.conteudo{
+.conteudo {
     width: 1050px;
 }
 
@@ -44,12 +44,12 @@
     border-radius: 50%;
 }
 
-.imagem-perfil{
+.imagem-perfil {
     margin-right: 10px;
 }
 
 .botaoVoltar {
-    background-color:#E6005A;
+    background-color: #E6005A;
     color: black;
     height: 40px;
     width: 130px;
@@ -77,7 +77,7 @@
     justify-content: center;
     align-items: center;
     margin-top: 35px;
-    background-color:#E6005A;
+    background-color: #E6005A;
     color: white;
     height: 44px;
     width: 135px;
@@ -114,44 +114,109 @@ h1 {
     margin-left: 140px;
     font-size: 30px;
 }
+
 table {
     width: 100%;
     margin: 0;
 }
 
-#linhaTabela{
+#linhaTabela {
     width: 100%;
     margin: 0;
 }
 
-#linhaTabela .dado{
+#linhaTabela .dado {
     width: 50%;
     text-align: center;
     padding: 1%;
 }
-#btn_delete{
-    background-color: red;
-    color: #fff;
-    border: none;
-    border-radius: 15px;
-    padding: 10px;
-    margin-right: 2%;
-}
-table{
+
+table {
     margin: 0;
     border: 0;
     padding: 0;
 }
-tr{
+
+tr {
     margin: 0;
     border: 0;
     padding: 0;
 }
-#btn_Alterar{
+
+#btn_Alterar {
     background-color: blue;
     color: #fff;
     border: none;
     border-radius: 15px;
     padding: 10px;
     margin-left: 2%;
+}
+
+#btn_delete {
+    border: 2px solid #422800;
+    box-shadow: #422800 4px 4px 0 0;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    background-color: rgb(254, 96, 96);
+    border: none;
+    border-radius: 15px;
+    width: 40px;
+    height: 35px;
+    margin-right: 2%;
+}
+
+#btn_delete:hover {
+    background-color: #ff0000;
+}
+
+#btn_delete:active {
+    box-shadow: #422800 2px 2px 0 0;
+    transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+    #btn_delete {
+        min-width: 70px;
+    }
+}
+
+
+#btn_Alterar {
+    border: 2px solid #422800;
+    box-shadow: #422800 4px 4px 0 0;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    background-color: rgb(112, 134, 255);
+    border: none;
+    border-radius: 15px;
+    width: 40px;
+    height: 35px;
+    margin-right: 2%;
+}
+
+#btn_Alterar:hover {
+    background-color: blue;
+}
+
+#btn_Alterar:active {
+    box-shadow: #422800 2px 2px 0 0;
+    transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+    #btn_Alterar {
+        min-width: 70px;
+    }
 }
