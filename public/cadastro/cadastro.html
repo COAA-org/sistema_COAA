@@ -540,6 +540,7 @@
         var nomeVar = ipt_nomefabrica.value;
         var telVar = ipt_telefoneFabrica.value;
         numSetorVar = ipt_numSetores.value;
+        var empresaVar = ipt_nomeEmpresa.value;
 
         //=======Endereço da fábrica=========//
         var ruaVar = ipt_ruaFabrica.value;
@@ -638,7 +639,8 @@
                 estadoServer: estadoVar,
                 cidadeServer: cidadeVar,
                 compServer: compVar,
-                cepServer: cepVar
+                cepServer: cepVar,
+                empresaServer: empresaVar
             })
         }).then(function (resposta) {
 
