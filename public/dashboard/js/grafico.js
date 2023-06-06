@@ -161,3 +161,30 @@ function atualizarGrafico(dados, myChart) {
 }
 
 
+function grafico_barras(){
+    // HTML id => grafico_barras_visaoGeral
+
+    
+
+    const grafico_barras = document.getElementById('grafico_barras_visaoGeral');
+
+    new Chart(grafico_barras, {
+        type: 'bar',
+        data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            borderWidth: 1
+        }]
+        },
+        options: {
+        scales: {
+            y: {
+            beginAtZero: true
+            }
+        }
+        }
+    });
+
+}

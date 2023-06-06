@@ -4,7 +4,8 @@
     font-family: 'barlow';
 }
 
-html, body {
+html,
+body {
     height: 100%;
     width: 100%;
     display: flex;
@@ -16,7 +17,7 @@ body {
     background-image: url("../img/bg_login.png");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center center ;
+    background-position: center center;
 }
 
 /*Conteiner do formulário*/
@@ -80,6 +81,11 @@ body {
     cursor: pointer;
 }
 
+.inputBox a {
+    text-decoration: none;
+    color: black;
+}
+
 button {
     height: 40px;
     width: 275px;
@@ -92,6 +98,7 @@ button {
     box-shadow: 2px 3px black;
     cursor: pointer;
 }
+
 /*Fim Conteiner do formulário*/
 
 /*Imagens*/
@@ -114,25 +121,5 @@ button {
     height: 430px;
     width: 470px;
 }
-
-/*.gears {
-    height: 0.1%;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-}
-
-.halfGear {
-    transform-origin: bottom right;
-    height: 120px;
-    width: fit-content;
-}
-
-.quarterGear {
-    transform-origin: bottom right;
-    height: 155px;
-    width: fit-content;
-}*/
 
 /*Fim imagens*/
