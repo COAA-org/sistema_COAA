@@ -70,10 +70,10 @@ function plotarGrafico(resposta) {
     // Inserindo valores recebidos em estrutura para plotar o gráfico
     for (i = 0; i < resposta.length; i++) {
         registro = resposta[i];
-        
+
         labels.push(registro.inicio_contagem);
         // dados.datasets[0].data.push(registro.Fluxo);
-        dados.datasets.push({data: registro.Fluxo});
+        dados.datasets.push({ data: registro.Fluxo });
 
     }
     console.log(registro)
@@ -136,7 +136,7 @@ function atualizarGrafico(dados, myChart) {
                 } else {
                     // tirando e colocando valores no gráfico
                     //dados.labels.shift(); // apagar o primeiro
-                    dados.labels.push( novoRegistro[0].inicio_contagem); // incluir um novo momento
+                    dados.labels.push(novoRegistro[0].inicio_contagem); // incluir um novo momento
 
                     // dados.datasets[0].data.shift();
                     // dados.datasets.data.shift();
@@ -161,29 +161,36 @@ function atualizarGrafico(dados, myChart) {
 }
 
 
-function grafico_barras(){
+function grafico_barras() {
     // HTML id => grafico_barras_visaoGeral
 
-    
+    fetch(`/dash//fluxoHora`).then((resposta) => {
+        if (resposta.ok) {
+            resposta.json().
+        }
+
+    }).catch((resposta) => {
+
+    })
 
     const grafico_barras = document.getElementById('grafico_barras_visaoGeral');
 
     new Chart(grafico_barras, {
         type: 'bar',
         data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            borderWidth: 1
-        }]
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
         },
         options: {
-        scales: {
-            y: {
-            beginAtZero: true
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
             }
-        }
         }
     });
 
