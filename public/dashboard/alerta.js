@@ -124,6 +124,6 @@ function transformarEmDiv({ idSensor, fluxo, grauDeAviso, grauDeAvisoCor }) {
      <h3>Aquário ${idSensor} está em estado de ${grauDeAviso}!</h3>
     <small>Temperatura ${fluxo}.</small>   
     </div>
-    <div class="alarme-sino"></div>
+    <div class="alarme-sino"><img src="https://3.bp.blogspot.com/-L-2pZJfZceY/VzUSHQMU-tI/AAAAAAAAUlg/B2lXYsXhPskIBCZLTb5z0lSlLgjg2LKowCLcB/s1600/Gifs%2Banimados%2BSino%2B2.gif" style="width: 60px; height: 60px;"></div>
     </div>`;
 }
