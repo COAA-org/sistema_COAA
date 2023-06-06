@@ -109,6 +109,15 @@ input{
     margin-left: 5%;
 }
 
+.btn a {
+    text-decoration: none;
+    color: white;
+}
+
+.botaoCadastraLocal {
+    margin-left: 3%;
+}
+
 .btnVoltar {
     margin-top: 10%;
     display: flex;
@@ -134,6 +143,16 @@ button {
 }
 
 /*Fim botão*/
+
+/* Select  */
+
+#select_modeloSensor {
+    border-radius: 8%;
+    margin-left: 4%;
+    margin-top: 4%;
+}
+
+/* Fim Select */
 
 .linha{
     display: flex;
