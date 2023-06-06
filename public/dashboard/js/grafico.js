@@ -55,7 +55,7 @@ function plotarGrafico(resposta) {
     let dados = {
         labels: labels,
         datasets: [{
-            label: 'Fluxo/Hora',
+            label: 'Fluxo/Horas',
             data: [],
             fill: false,
             backgroundColor: ['rgb (0, 255, 0)'],
@@ -74,7 +74,7 @@ function plotarGrafico(resposta) {
         labels.push(registro.inicio_contagem);
         // dados.datasets[0].data.push(registro.Fluxo);
         dados.datasets.push({data: registro.Fluxo});
-
+        
     }
     console.log(registro)
     console.log('----------------------------------------------')

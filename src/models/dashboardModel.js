@@ -1,11 +1,11 @@
-var database = require("../database/config"); 
+var database = require("../database/config");
 
-function info(msg){
+function info(msg) {
     console.log(`[Dashboard Model] Executando no banco: ${msg}`)
 }
 
 // Horário de maior pico
-function maiorHoraPico(){
+function maiorHoraPico() {
     var query = `
     SELECT HOUR(dataHora) hora, SUM(saidaDado) qtdFluxo FROM COAA.Registro 
         GROUP BY HOUR(dataHora)
@@ -18,7 +18,7 @@ function maiorHoraPico(){
 
 
 // Lugar menos movimentado
-function menosMovimentado(){
+function menosMovimentado() {
     var query = `
     
     `
@@ -28,7 +28,7 @@ function menosMovimentado(){
 }
 
 // Lugar mais movimentado
-function maisMovimentado(){
+function maisMovimentado() {
     var query = `
 
     `
@@ -39,7 +39,7 @@ function maisMovimentado(){
 
 
 // Fluxo por hora
-function fluxoPorHora(){
+function fluxoPorHora() {
     var query = `
     SELECT HOUR(dataHora) hora, SUM(saidaDado) qtdFluxo FROM COAA.Registro
         GROUP BY HOUR(dataHora)
@@ -50,10 +50,10 @@ function fluxoPorHora(){
 }
 
 
-module.exports ={
+module.exports = {
     maiorHoraPico,
     menosMovimentado,
     maisMovimentado,
-    fluxoPorHora    
+    fluxoPorHora
 
 }

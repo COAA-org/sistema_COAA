@@ -12,6 +12,7 @@
     <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
     <title>Dashboard Visão Geral</title> 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./js/kpi.js"></script>
 </head>
 
 <body>
@@ -62,7 +63,7 @@
                             <div class="quadrado">
                                 <p><b><u>Horário de maior pico</u></b></p>
                                 <br>
-                                <h4>18:30h</h4>
+                                <h4><span id="h4_maiorPico"></span>:00</h4>
                             </div>
 
                             <div class="quadrado">
@@ -157,6 +158,7 @@
 <script src="js/grafico.js"></script>
 <script src="alerta.js"></script>
 <script>
+    maiorHoraPico()
     // var paginacao = {};
     // var tempo = {};
     // function obterDados(grafico, endpoint) {
