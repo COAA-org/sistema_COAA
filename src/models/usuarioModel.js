@@ -94,15 +94,12 @@ function cadastrarAdm(nome, senha, email, cpf) {
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
-function cadastrarFkAdmEmp(idFunc, cnpj) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarAdm():", idFunc, cnpj);
+function cadastrarFkAdmEmp(emailAdm, nomeAdm, cnpj) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarAdm():", emailAdm, nomeAdm, cnpj);
     //alterar aqui para os parâmetros da tabela 
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
-    var instrucao = `
-        UPDATE usuario SET fkEmpresa=(SELECT idEmpresa FROM Empresa WHERE cnpj='${cnpj}')
-        WHERE idCadLog=${idFunc};
-    `;
+    var instrucao = `UPDATE Usuario SET fkEmpresa = (SELECT idEmpresa FROM Empresa WHERE cnpj='${cnpj}') WHERE idCadLog=(SELECT idCadLog as id FROM (SELECT idCadLog FROM Usuario WHERE email='${emailAdm}' AND nome='${nomeAdm}') as LR)`;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }

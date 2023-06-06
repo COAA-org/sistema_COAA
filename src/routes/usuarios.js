@@ -22,6 +22,11 @@ router.get("/listarFuncById/:idFunc", function (req, res) {
 router.post("/cadastrarEmpresa", function (req, res) {
     usuarioController.cadastrarEmpresa(req, res);
 })
+
+router.put("/cadFkEmpAdm", function (req, res) {
+    usuarioController.cadFkEmpAdm(req, res);
+})
+
 router.post("/cadastrarAdm", function (req, res) {
     usuarioController.cadastrarAdm(req, res);
 })

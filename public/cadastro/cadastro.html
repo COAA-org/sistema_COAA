@@ -362,6 +362,7 @@
                 alert("Cadastro realizado com sucesso! Redirecionando para o cadastro de empresa");
                 document.getElementById("tela1").style.display = "none";
                 document.getElementById("tela2").style.display = "block";
+                
 
                 // limparFormulario();
             } else {
@@ -520,20 +521,56 @@
                 document.getElementById("tela3").style.display = "block";
                 document.getElementById("tela2").style.display = "none";
                 
+
+                cadFkAdmEmpresa();
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            //finalizarAguardar();
         });
 
         return false;
 
     }
 
-    var numSetorVar = ipt_numSetores.value;
+    function cadFkAdmEmpresa(){
+        var cnpjVar = ipt_cnpj.value;//Obrigatório
+        var nomeVar = ipt_nomeAdm.value;//Obrigatório
+        var emailVar = ipt_emailAdm.value;//Obrigatório
 
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadFkEmpAdm", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                cnpjServer:cnpjVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+            } else {
+                throw ("Houve um erro ao tentar realizar a atualização de adm com o id da empresa!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+    
+        });
+
+        return false;
+        
+    }
+    
+    var numSetorVar = ipt_numSetores.value;
     function cadastraFabrica() {
 
         //=======Informações da fábrica=======//
