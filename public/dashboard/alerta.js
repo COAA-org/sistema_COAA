@@ -1,7 +1,7 @@
 var alertas = [];
-window.onload = obterdados(),atualizacaoPeriodica();
-function obterdados() {
-    fetch(`/medidas/getDados/1`)
+window.onload = obterdados(1),atualizacaoPeriodica();
+function obterdados(idSensor) {
+    fetch(`/medidas/getDados/${idSensor}`)
         .then(resposta => {
 
             if (resposta.ok) {
@@ -109,17 +109,17 @@ function removerAlerta(idSensor) {
 }
  
 function exibirCards() {
-    alerta.innerHTML = '';
+    caixa_alertas.innerHTML = '';
 
     for (var i = 0; i < alertas.length; i++) {
         var mensagem = alertas[i];
-        alerta.innerHTML += transformarEmDiv(mensagem);
+        caixa_alertas.innerHTML += transformarEmDiv(mensagem);
     }
 }
 
 function transformarEmDiv({ idSensor, fluxo, grauDeAviso, grauDeAvisoCor }) {
     
-    return caixa_alertas.innerHTML = `<div class="mensagem-alarme">
+    return `<div class="mensagem-alarme">
     <div class="informacao">
     <div class="${grauDeAvisoCor}">&#12644;</div> 
     <div class="alarme-sino"><img src="https://3.bp.blogspot.com/-L-2pZJfZceY/VzUSHQMU-tI/AAAAAAAAUlg/B2lXYsXhPskIBCZLTb5z0lSlLgjg2LKowCLcB/s1600/Gifs%2Banimados%2BSino%2B2.gif" style="width: 60px; height: 60px;"></div>
@@ -131,6 +131,6 @@ function transformarEmDiv({ idSensor, fluxo, grauDeAviso, grauDeAvisoCor }) {
 
 function atualizacaoPeriodica() {
     
-    obterdados();
+    obterdados(1);
     setTimeout(atualizacaoPeriodica, 12000);
 }
