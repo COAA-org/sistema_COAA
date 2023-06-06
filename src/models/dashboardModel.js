@@ -50,10 +50,6 @@ function fluxoPorHora(){
 }
 
 
-
-
-
-
 module.exports ={
     maiorHoraPico,
     menosMovimentado,
