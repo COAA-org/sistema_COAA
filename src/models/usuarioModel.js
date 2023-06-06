@@ -57,6 +57,7 @@ function cadastrarEmpresa(cnpj, desc, nome, telefone, email, rua, bairro, estado
     var instrucao = `
         INSERT INTO Empresa (cnpj, razaoEmpresa, nomeEmpresa, telefone, email, numeroEndereco, fkEndereco) VALUES ('${cnpj}', '${desc}', '${nome}', '${telefone}', '${email}', ${numero}, (SELECT idEndereco FROM Endereco WHERE cep='${cep}'));
     `;
+    // var instrucao3= `UPDATE usuario SET `
     //sessionStorage.EMPRESA = 
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucaoEnd), database.executar(instrucao);

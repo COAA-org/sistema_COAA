@@ -254,7 +254,7 @@ function cadastrarFabrica(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrarFabrica(nome, telefone, numero, rua, complemento, cep, bairro, cidade, estado)
+        usuarioModel.cadastrarFabrica(nome, telefone, numero, rua, complemento, estado, cep, bairro, cidade)
             .then(
                 function (resultado) {
                     res.json(resultado);

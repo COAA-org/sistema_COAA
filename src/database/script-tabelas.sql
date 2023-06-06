@@ -153,3 +153,6 @@ EXEC sys.sp_addrolemember @rolename = N'db_datawriter',
 
 EXEC sys.sp_addrolemember @rolename = N'db_datareader',
 @membername = N'usuarioParaAPIWebDataViz_datawriter_datareader';
+
+USE COAA;
+ALTER TABLE Endereco ADD COLUMN cidade varchar(50);
