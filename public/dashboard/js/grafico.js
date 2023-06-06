@@ -166,32 +166,42 @@ function grafico_barras() {
 
     fetch(`/dash//fluxoHora`).then((resposta) => {
         if (resposta.ok) {
-            resposta.json().
+            resposta.json().then((resposta) => {
+                
+                resposta.reverse();
+            
+                const grafico_barras = document.getElementById('grafico_barras_visaoGeral');
+            
+                new Chart(grafico_barras, {
+                    type: 'bar',
+                    data: {
+                        labels: [`${resposta[0].hora}:00`, `${resposta[1].hora}:00`, `${resposta[2].hora}:00`, `${resposta[3].hora}:00`, `${resposta[4].hora}:00`],
+                        datasets: [{
+                            label: 'Fluxo',
+                            data: [resposta[0].qtdFluxo, resposta[1].qtdFluxo, resposta[2].qtdFluxo, resposta[3].qtdFluxo, resposta[4].qtdFluxo],
+                            borderWidth: 1,
+                            backgroundColor: '#B4FF5C',
+                            
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                
+                
+            });
+        
         }
 
     }).catch((resposta) => {
 
     })
 
-    const grafico_barras = document.getElementById('grafico_barras_visaoGeral');
-
-    new Chart(grafico_barras, {
-        type: 'bar',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
 
 }
