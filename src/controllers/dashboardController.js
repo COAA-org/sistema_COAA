@@ -1,7 +1,7 @@
 var dashModel = require("../models/dashboardModel");
 
 function info(msg){
-    console.log("[Dashboard Controller] Executando: ")
+    console.log(`[Dashboard Controller] Executando: ${msg}`)
 }
 
 function maiorHoraPico(req, res){
@@ -25,10 +25,10 @@ function maiorHoraPico(req, res){
 }
 
 
-function fluxoPorHora(){
+function fluxoPorHora(req, res){
     info("Fluxo por hora");
     
-    dashModel.maiorHoraPico().then((resultado) =>{
+    dashModel.fluxoPorHora().then((resultado) =>{
         
         if(resultado.length > 0){
             res.status(200).json(resultado);

@@ -41,9 +41,9 @@ function maisMovimentado(){
 // Fluxo por hora
 function fluxoPorHora(){
     var query = `
-    SELECT HOUR(dataHora), SUM(saidaDado) qtdFluxo FROM COAA.Registro 
-		GROUP BY HOUR(dataHora)
-		ORDER BY qtdFluxo;
+    SELECT HOUR(dataHora) hora, SUM(saidaDado) qtdFluxo FROM COAA.Registro
+        GROUP BY HOUR(dataHora)
+        ORDER BY HOUR(dataHora) ASC;
     `
     info(query);
     return database.executar(query);
@@ -54,6 +54,6 @@ module.exports ={
     maiorHoraPico,
     menosMovimentado,
     maisMovimentado,
-    fluxoPorHora
+    fluxoPorHora    
 
 }
