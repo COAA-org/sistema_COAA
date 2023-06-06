@@ -578,6 +578,7 @@
         var telVar = ipt_telefoneFabrica.value;
         numSetorVar = ipt_numSetores.value;
         var empresaVar = ipt_nomeEmpresa.value;
+        var cnpjVar = ipt_cnpj.value;//Obrigatório
 
         //=======Endereço da fábrica=========//
         var ruaVar = ipt_ruaFabrica.value;
@@ -603,6 +604,8 @@
         var cidade_vazio = cidadeVar == "";//Cidade está vazio
         var numero_vazio = numVar == "";//Número está vazio
         var estado_vazio = estadoVar == "";//Estado está vazio
+
+
         
         if (valida_vazio) {
             alert("Todos os campos estão vazios, preencha-os corretamente!");
@@ -677,7 +680,8 @@
                 cidadeServer: cidadeVar,
                 compServer: compVar,
                 cepServer: cepVar,
-                empresaServer: empresaVar
+                empresaServer: empresaVar,
+                cnpjServer: cnpjVar
             })
         }).then(function (resposta) {
 

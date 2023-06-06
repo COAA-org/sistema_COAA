@@ -27,6 +27,7 @@ router.put("/cadFkEmpAdm", function (req, res) {
     usuarioController.cadFkEmpAdm(req, res);
 })
 
+
 router.post("/cadastrarAdm", function (req, res) {
     usuarioController.cadastrarAdm(req, res);
 })

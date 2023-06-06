@@ -62,8 +62,8 @@ function cadastrarEmpresa(cnpj, desc, nome, telefone, email, rua, bairro, estado
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucaoEnd), database.executar(instrucao);
 }
-function cadastrarFabrica(nome, telefone, numero, rua, complemento, estado, cep, bairro, cidade, empresa) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, telefone, numero, rua, complemento, cep, bairro, cidade, empresa);
+function cadastrarFabrica(nome, telefone, numero, rua, complemento, estado, cep, bairro, cidade, empresa, cnpj) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, telefone, numero, rua, complemento, cep, bairro, cidade, empresa, cnpj);
     //alterar aqui para os parâmetros da tabela 
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
@@ -76,7 +76,7 @@ function cadastrarFabrica(nome, telefone, numero, rua, complemento, estado, cep,
         SELECT cep FROM Endereco WHERE cep = '${cep}'
     ) LIMIT 1;`;
     var instrucao = `
-        INSERT INTO Fabrica (nomeFabrica, telefone, fkEndereco, complemento, numeroEndereco, fkEmpresa) VALUES ('${nome}', '${telefone}', (SELECT idEndereco FROM Endereco WHERE cep = '${cep}'), '${complemento}', '${numero}', (SELECT idEmpresa FROM Empresa WHERE razaoSocial='${empresa}'));
+        INSERT INTO Fabrica (nomeFabrica, telefone, fkEndereco, complemento, numeroEndereco, fkEmpresa) VALUES ('${nome}', '${telefone}', (SELECT idEndereco FROM Endereco WHERE cep = '${cep}'), '${complemento}', '${numero}', (SELECT idEmpresa FROM Empresa WHERE nomeEmpresa='${empresa}' AND cnpj = '${cnpj}'));
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucao + "\n Executando a instrução: \n" + instrucaoEnd);

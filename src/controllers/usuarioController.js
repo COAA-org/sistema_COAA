@@ -262,6 +262,7 @@ function cadastrarFabrica(req, res) {
     var cidade = req.body.cidadeServer;
     var estado = req.body.estadoServer;
     var empresa = req.body.empresaServer;
+    var cnpj = req.body.cnpjServer;
     //var setores = req.body.setoresServer;
 
 
@@ -283,10 +284,12 @@ function cadastrarFabrica(req, res) {
         res.status(400).send("Sua cidade está undefined!");
     }else if (empresa == undefined) {
         res.status(400).send("Sua empresa está undefined!");
+    }else if (cnpj == undefined) {
+        res.status(400).send("Seu CNPJ está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrarFabrica(nome, telefone, numero, rua, complemento, estado, cep, bairro, cidade, empresa)
+        usuarioModel.cadastrarFabrica(nome, telefone, numero, rua, complemento, estado, cep, bairro, cidade, empresa, cnpj)
             .then(
                 function (resultado) {
                     res.json(resultado);
