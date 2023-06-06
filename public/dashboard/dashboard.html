@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../img/image-removebg-preview (12).ico" type="image/x-icon">
     <title>Dashboard Visão Geral</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
@@ -52,7 +53,10 @@
             <div class="conteudo">
                 <div class="header">
                     <img class="imagem-perfil" src="../img/login.png" alt="Foto-usuario" width="40px" height="40px">
-                    <h1>Usuário</h1>
+                    <div id="dados_user">
+                        <h1 id="h1_user">Usuário</h1>
+                        <h4 id="h3_empresa">Empresa</h4>
+                    </div>
                 </div>
                 <div>
                     <h1 class="titulo">Visão Geral - Hoje</h1>
@@ -159,44 +163,8 @@
 <script src="alerta.js"></script>
 <script>
     maiorHoraPico()
-    // var paginacao = {};
-    // var tempo = {};
-    // function obterDados(grafico, endpoint) {
-    //     var http = new XMLHttpRequest();
-    //     http.open('GET', 'http://localhost:3000/sensores/' + endpoint, false);
-    //     http.send(null);
-    //     var valores = JSON.parse(http.responseText);
-    //     if (paginacao[endpoint] == null) {
-    //         paginacao[endpoint] = 0;
-    //     }
-    //     if (tempo[endpoint] == null) {
-    //         tempo[endpoint] = 0;
-    //     }
-    //     // Exibir à partir do último elemento exibido anteriormente
-    //     var ultimaPaginacao = paginacao[endpoint];
-    //     paginacao[endpoint] = valores.length;
-    //     var valores = valores.slice(ultimaPaginacao);
-    //     valores.forEach((valor) => {
-    //         //Máximo de 60 itens exibidos no gráfico
-    //         if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
-    //             grafico.data.labels.shift();
-    //             grafico.data.datasets[0].data.shift();
-    //         }
-
-    //         grafico.data.labels.push(tempo[endpoint]++);
-    //         grafico.data.datasets[0].data.push(parseFloat(valor));
-    //         grafico.update();
-    //     })
-    // }
-
-    // setInterval(() => {
-    //     // obterDados(dht11Umidade, 'dht11/umidade');
-    //     //obterDados(dht11Temperatura, 'dht11/temperatura');
-    //     //obterDados(luminosidade, 'luminosidade');
-    //     //obterDados(lm35Temperatura, 'lm35/temperatura');
-    //     obterDados(chave, 'chave');
-    // }, 1000);
-
+    h1_user.innerHTML = sessionStorage.NOME_USUARIO;
+    h3_empresa.innerHTML = sessionStorage.NOME_EMPRESA;
 </script>
 
 </script>

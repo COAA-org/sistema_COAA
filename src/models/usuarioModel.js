@@ -37,7 +37,8 @@ function entrar(email, senha) {
     //alterar aqui para os parâmetros da tabela 
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
     var instrucao = `
-        SELECT * FROM Usuario WHERE email = '${email}' AND senha = '${senha}';
+    SELECT U.*, E.nomeEmpresa FROM Usuario AS U JOIN
+	Empresa as E  ON U.fkEmpresa=E.idEmpresa WHERE U.email = '${email}' AND U.senha = '${senha}'; 
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -129,7 +130,7 @@ function cadastrarLocal(nomeLocal, setor, modeloSensor){
 
     var modSensor = modeloSensor;
     var instrucao = `
-        INSERT INTO LocalFab (nomeLocal, setor) VALUES(${nomeLocal}, ${setor}) ;
+        INSERT INTO LocalFab (nomeLocal, setor) VALUES('${nomeLocal}', '${setor}') ;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
