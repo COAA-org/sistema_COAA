@@ -43,7 +43,10 @@
         <div class="conteudo">
             <div class="header">
                 <img class="imagem-perfil" src="../img/login.png" alt="Foto-usuario" width="40px" height="40px">
-                <h1>Usuário</h1>
+                <div id="dados_user">
+                    <h1 id="h1_user">Usuário</h1>
+                    <h4 id="h3_empresa">Empresa</h4>
+                </div>
             </div>
             <div>
                 <h1 class="titulo">1° Setor - Corredor - Hoje</h1>
@@ -158,6 +161,11 @@
 
         </div>
 </body>
+<script>
+    h1_user.innerHTML = sessionStorage.NOME_USUARIO;
+    h3_empresa.innerHTML = sessionStorage.NOME_EMPRESA;
+    
+</script>
 <script>    
     const ctx = document.getElementById('myChart1');
 

@@ -35,9 +35,8 @@
                 <button class="botaoVoltar"> <a href="dashboard.html">Voltar</a> </button>
             </div>
 
-            <div>
-                <h1>Usuários</h1>
-
+            <div id="dados_user">
+                <h1 id="h1_user">Usuário</h1>
             </div>
 
             <div class="listaUsuario">
@@ -53,6 +52,10 @@
 
 
 </html>
+
+<script>
+    h1_user.innerHTML = sessionStorage.NOME_USUARIO;
+</script>
 <script>
     var idServer = sessionStorage.ID_EMPRESA;
 
