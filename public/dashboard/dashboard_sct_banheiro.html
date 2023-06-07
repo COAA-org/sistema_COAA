@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="style_setor.css">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./js/kpi.js"></script>
 </head>
 
 <body>
@@ -70,8 +71,8 @@
                     </div>
                     <div class="quadrado-maior">
                         <div style="display: flex; margin-left: 20px;">
-                            <div style="width: 96%;">
-                                <canvas id="myChart1"></canvas>
+                            <div style="width: 95%;">
+                                <canvas id="grafico_barras_visaoGeral"></canvas>
                             </div>
                         </div>
                     </div>
@@ -158,6 +159,17 @@
 
         </div>
 </body>
+<script src="js/grafico.js"></script>
+<script src="alerta.js"></script>
+<script>
+    maiorHoraPico();
+    grafico_barras();
+    h1_user.innerHTML = sessionStorage.NOME_USUARIO;
+    h3_empresa.innerHTML = sessionStorage.NOME_EMPRESA; 
+    var date = new Date();
+    tit_graf.innerHTML += ' ' + date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear();
+
+</script>
 <script>    
     const ctx = document.getElementById('myChart1');
 
