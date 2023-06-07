@@ -122,7 +122,7 @@ function transformarEmDiv({ idSensor, fluxo, grauDeAviso, grauDeAvisoCor }) {
     return `<div class="mensagem-alarme">
     <div class="informacao">
     <div class="${grauDeAvisoCor}">&#12644;</div> 
-    <div class="alarme-sino"><img src="https://3.bp.blogspot.com/-L-2pZJfZceY/VzUSHQMU-tI/AAAAAAAAUlg/B2lXYsXhPskIBCZLTb5z0lSlLgjg2LKowCLcB/s1600/Gifs%2Banimados%2BSino%2B2.gif" style="width: 60px; height: 60px;"></div>
+    <div class="alarme-sino"><img src="../img/sino.png" style="width: 35px; height: 35px;"></div>
      <span style="font-size: 85%;">Fluxo Atual: ${fluxo}<br>
      O local está em estado de ${grauDeAviso}!</span> 
     </div>
