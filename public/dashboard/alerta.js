@@ -22,6 +22,7 @@ function obterdados(idSensor) {
 
 }
 var fluxo;
+var card;
 function alertar(resposta, idSensor) {
     fluxo = resposta[0].Fluxo;
 
@@ -68,7 +69,7 @@ function alertar(resposta, idSensor) {
         exibirAlerta(fluxo, idSensor, grauDeAviso, grauDeAvisoCor)
     }
 
-    var card;
+    
 
     // if (idSensor == 1) {
     //     alerta.innerHTML = fluxo + "Passagens";

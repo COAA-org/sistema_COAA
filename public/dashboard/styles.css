@@ -163,7 +163,7 @@ h1 {
     -webkit-text-stroke: 1px black;
 }
 
-.caixa-alerta {
+.classe_fluxo {
     border: rgba(0, 0, 0, 0.5) 1px solid;
     border-radius: 10px;
     height: fit-content;

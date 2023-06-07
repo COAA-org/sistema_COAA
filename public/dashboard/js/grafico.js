@@ -58,8 +58,9 @@ function plotarGrafico(resposta) {
             label: 'Fluxo/Hora',
             data: [],
             fill: false,
-            backgroundColor: ['rgb (0, 255, 0)'],
-            tension: 0.1
+            tension: 0.1,
+            borderColor: '#B4FF5C',
+            backgroundColor: '#B4FF5C'
         }]
     };
 
@@ -68,14 +69,19 @@ function plotarGrafico(resposta) {
     console.log(resposta)
 
     // Inserindo valores recebidos em estrutura para plotar o gráfico
-    for (i = 0; i < resposta.length; i++) {
-        registro = resposta[i];
+    
+    dados.datasets[0].data.push(resposta[0].Fluxo);
 
-        labels.push(registro.inicio_contagem);
-        // dados.datasets[0].data.push(registro.Fluxo);
-        dados.datasets.push({ data: registro.Fluxo });
+    
+    // for (i = 0; i < resposta.length; i++) {
+    //     console.log(`>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${resposta[i].inicio_contagem}`)
+    //     registro = resposta[i];
 
-    }
+    //     labels.push(registro.inicio_contagem);
+    //     // dados.datasets[0].data.push(registro.Fluxo);
+    //     dados.datasets.push({ data: registro.Fluxo });
+
+    // }
     console.log(registro)
     console.log('----------------------------------------------')
     console.log('O gráfico será plotado com os respectivos valores:')

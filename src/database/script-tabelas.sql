@@ -86,6 +86,10 @@ ALTER TABLE Empresa ADD CONSTRAINT FOREIGN KEY(fkEndereco) REFERENCES Endereco(i
 ALTER TABLE Fabrica ADD CONSTRAINT FOREIGN KEY(fkEndereco) REFERENCES Endereco(idEndereco);
 ALTER TABLE Fabrica ADD CONSTRAINT FOREIGN KEY(fkEmpresa) REFERENCES Empresa(idEmpresa);
 
+ALTER TABLE Endereco ADD COLUMN cidade VARCHAR(50);
+
+ SELECT cep FROM Endereco WHERE cep = '08140089'
+
 SELECT * FROM (SELECT 'cep') AS tmp
 WHERE NOT EXISTS (
     SELECT cep FROM Endereco WHERE cep = 'Galera'
@@ -139,3 +143,5 @@ SELECT * FROM LocalFab;
 SELECT * FROM Sensores;
 SELECT * FROM Registro;
 SELECT * FROM Usuario;
+
+UPDATE Usuario SET fkEmpresa = 2 WHERE idCadLog = 3;
